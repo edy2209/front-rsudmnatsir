@@ -323,37 +323,78 @@ export default function LandingPage() {
             </motion.div>
             
             <motion.div 
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
+              className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-16"
               initial={{ opacity: 0, y: 40 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
+              {/* Primary CTA - Buat Janji Temu */}
               <motion.div
-                whileHover={{ scale: 1.05, y: -5 }}
+                whileHover={{ scale: 1.08, y: -8 }}
                 whileTap={{ scale: 0.95 }}
+                className="relative group"
               >
+                <div className="absolute -inset-1 bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
                 <Link 
                   href={routes.appointments}
-                  className="bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white px-10 py-4 rounded-2xl text-lg font-bold hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+                  className="relative bg-white text-gray-900 px-12 py-5 rounded-3xl text-xl font-bold hover:shadow-2xl transition-all duration-500 flex items-center gap-3 border-2 border-transparent hover:border-red-200"
                 >
-                  <span className="relative z-10 flex items-center gap-2">
-                    <HeartIcon className="w-5 h-5" />
+                  <motion.div
+                    className="flex items-center justify-center w-8 h-8 bg-gradient-to-r from-red-500 to-pink-500 rounded-full"
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                      rotate: [0, 10, 0]
+                    }}
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <HeartIcon className="w-5 h-5 text-white" />
+                  </motion.div>
+                  <span className="bg-gradient-to-r from-red-600 via-pink-600 to-purple-600 bg-clip-text text-transparent font-extrabold">
                     Buat Janji Temu
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <motion.div
+                    className="w-3 h-3 bg-green-500 rounded-full shadow-lg"
+                    animate={{ 
+                      scale: [1, 1.5, 1],
+                      opacity: [0.7, 1, 0.7]
+                    }}
+                    transition={{ 
+                      duration: 1.5, 
+                      repeat: Infinity 
+                    }}
+                  />
                 </Link>
               </motion.div>
               
+              {/* Secondary CTA - Lihat Layanan */}
               <motion.div
                 whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}
+                className="relative group"
               >
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-green-500 rounded-2xl opacity-0 group-hover:opacity-75 transition duration-300 blur"></div>
                 <Link 
                   href={routes.services}
-                  className="border-2 border-blue-600 text-blue-600 px-10 py-4 rounded-2xl text-lg font-bold hover:bg-blue-600 hover:text-white transition-all duration-300 hover:shadow-xl flex items-center gap-2"
+                  className="relative bg-transparent border-3 border-blue-600 text-blue-600 px-10 py-4 rounded-2xl text-lg font-bold hover:bg-blue-600 hover:text-white transition-all duration-300 hover:shadow-xl flex items-center gap-3 backdrop-blur-sm"
                 >
-                  <SparklesIcon className="w-5 h-5" />
-                  Lihat Layanan
+                  <motion.div
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                  >
+                    <SparklesIcon className="w-6 h-6" />
+                  </motion.div>
+                  <span>Lihat Layanan</span>
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="text-xl"
+                  >
+                    →
+                  </motion.div>
                 </Link>
               </motion.div>
             </motion.div>
