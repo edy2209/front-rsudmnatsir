@@ -1,433 +1,1364 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import Link from 'next/link';
+import { 
+  HeartIcon, 
+  BuildingOffice2Icon, 
+  UserGroupIcon, 
+  BeakerIcon,
+  CpuChipIcon,
+  ShieldCheckIcon,
+  ClockIcon,
+  PhoneIcon,
+  MapPinIcon,
+  EnvelopeIcon,
+  SparklesIcon,
+  CheckCircleIcon,
+  TruckIcon,
+  BoltIcon
+} from '@heroicons/react/24/outline';
 
-export default function LandingPage() {
+export default function Dashboard() {
+  const [scrolled, setScrolled] = useState(false);
+  
+  const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref: servicesRef, inView: servicesInView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref: statsRef, inView: statsInView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref: aboutRef, inView: aboutInView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref: doctorsRef, inView: doctorsInView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref: contactRef, inView: contactInView } = useInView({ threshold: 0.1, triggerOnce: true });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 20;
+      setScrolled(isScrolled);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const
+      }
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-hidden">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg sticky top-0 z-50">
+      <motion.nav 
+        className={`fixed top-0 w-full z-50 border-b transition-all duration-500 ${
+          scrolled 
+            ? 'bg-white/90 backdrop-blur-3xl shadow-2xl border-white/30' 
+            : 'bg-white/70 backdrop-blur-2xl shadow-lg border-white/20'
+        }`}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        style={{
+          backdropFilter: scrolled ? 'blur(30px) saturate(200%) brightness(1.1)' : 'blur(20px) saturate(150%)',
+          WebkitBackdropFilter: scrolled ? 'blur(30px) saturate(200%) brightness(1.1)' : 'blur(20px) saturate(150%)',
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-green-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">RS</span>
-              </div>
+            <motion.div 
+              className="flex items-center space-x-4"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400 }}
+            >
+              <motion.div 
+                className="w-12 h-12 bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 rounded-2xl flex items-center justify-center shadow-lg"
+                animate={{ 
+                  rotate: [0, 360],
+                  scale: scrolled ? [1, 1.1, 1] : [1, 1.05, 1]
+                }}
+                transition={{ 
+                  rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                  scale: { duration: scrolled ? 2 : 3, repeat: Infinity, ease: "easeInOut" }
+                }}
+              >
+                <SparklesIcon className="w-7 h-7 text-white" />
+              </motion.div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">RSUD M. Natsir</h1>
-                <p className="text-xs text-gray-600">Rumah Sakit Umum Daerah</p>
+                <motion.h1 
+                  className="text-xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent"
+                  animate={{ 
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{ 
+                    duration: 5, 
+                    repeat: Infinity, 
+                    ease: "linear" 
+                  }}
+                  style={{ backgroundSize: "200% 200%" }}
+                >
+                  RSUD M. Natsir
+                </motion.h1>
+                <motion.div 
+                  className="text-xs text-gray-600"
+                  animate={{ opacity: scrolled ? [1, 0.7, 1] : [1, 0.8, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  Dashboard Rumah Sakit
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
+            
             <div className="hidden md:flex space-x-8">
-              <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors">Beranda</a>
-              <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors">Layanan</a>
-              <a href="#doctors" className="text-gray-700 hover:text-blue-600 transition-colors">Dokter</a>
-              <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">Tentang</a>
-              <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors">Kontak</a>
+              {[
+                { href: "#home", label: "Beranda" },
+                { href: "#services", label: "Layanan" },
+                { href: "#doctors", label: "Dokter" },
+                { href: "#about", label: "Tentang" },
+                { href: "#contact", label: "Kontak" }
+              ].map((item, index) => (
+                <motion.a
+                  key={item.label}
+                  href={item.href}
+                  className="text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium relative group px-2 py-1"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 + 0.5 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                >
+                  {item.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-green-600 transition-all duration-300 group-hover:w-full"></span>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"
+                    initial={false}
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                </motion.a>
+              ))}
             </div>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors">
-              Pendaftaran Online
-            </button>
+            
+            <motion.button 
+              className="bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white px-6 py-3 rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.8 }}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="relative z-10">Dashboard</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <motion.div
+                className="absolute inset-0 bg-white/20 rounded-2xl opacity-0 group-hover:opacity-20"
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  rotate: [0, 180, 360]
+                }}
+                transition={{ 
+                  duration: 4, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+              />
+            </motion.button>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Hero Section */}
-      <section id="home" className="bg-gradient-to-r from-blue-600 to-green-500 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <section id="home" className="relative pt-32 pb-20 overflow-hidden" ref={heroRef}>
+        {/* Background Animation */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+          <div className="absolute top-32 right-10 w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+          <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={heroInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <motion.h1 
+                className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={heroInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+              >
                 Pelayanan Kesehatan 
-                <span className="text-yellow-300"> Terpercaya</span>
-              </h1>
-              <p className="text-xl mb-8 text-blue-100">
+                <motion.span 
+                  className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent block"
+                  animate={{ 
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    ease: "linear" 
+                  }}
+                  style={{ backgroundSize: "200% 200%" }}
+                >
+                  Terpercaya
+                </motion.span>
+              </motion.h1>
+              
+              <motion.p 
+                className="text-xl mb-8 text-gray-600 leading-relaxed"
+                initial={{ opacity: 0, y: 30 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
                 RSUD M. Natsir memberikan pelayanan kesehatan berkualitas tinggi dengan teknologi modern 
                 dan tenaga medis profesional untuk kesehatan keluarga Anda.
-              </p>
-              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                  Daftar Sekarang
-                </button>
-                <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+              </motion.p>
+              
+              <motion.div 
+                className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+                initial={{ opacity: 0, y: 40 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <motion.button 
+                  className="bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white px-8 py-4 rounded-2xl font-bold hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    <CheckCircleIcon className="w-5 h-5" />
+                    Daftar Sekarang
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </motion.button>
+                
+                <motion.button 
+                  className="border-2 border-red-500 text-red-600 px-8 py-4 rounded-2xl font-bold hover:bg-red-500 hover:text-white transition-all duration-300 hover:shadow-xl flex items-center gap-2"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <HeartIcon className="w-5 h-5" />
                   Layanan Darurat
-                </button>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="w-full h-96 bg-white/20 rounded-2xl backdrop-blur-sm flex items-center justify-center">
+                </motion.button>
+              </motion.div>
+            </motion.div>
+            
+            <motion.div 
+              className="relative"
+              initial={{ opacity: 0, x: 50 }}
+              animate={heroInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <motion.div 
+                className="w-full h-96 bg-gradient-to-br from-white/80 to-blue-100/80 rounded-3xl backdrop-blur-sm flex items-center justify-center shadow-2xl border border-white/50"
+                whileHover={{ scale: 1.02, y: -10 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <div className="text-center">
-                  <div className="w-32 h-32 bg-white/30 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2">24/7 Siap Melayani</h3>
-                  <p className="text-blue-100">Pelayanan kesehatan terbaik setiap saat</p>
+                  <motion.div 
+                    className="w-32 h-32 bg-gradient-to-br from-blue-500 to-green-500 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  >
+                    <HeartIcon className="w-16 h-16 text-white" />
+                  </motion.div>
+                  <motion.h3 
+                    className="text-2xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1 }}
+                  >
+                    24/7 Siap Melayani
+                  </motion.h3>
+                  <p className="text-gray-600">Pelayanan kesehatan terbaik setiap saat</p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-gray-50">
+      <section id="services" className="py-20 bg-gradient-to-br from-white via-blue-50/30 to-green-50/30 relative" ref={servicesRef}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Layanan Unggulan Kami</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            animate={servicesInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.h2 
+              className="text-4xl md:text-5xl font-bold text-gray-800 mb-6"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={servicesInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                Layanan Unggulan Kami
+              </span>
+            </motion.h2>
+            <motion.p 
+              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={servicesInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
               Berbagai layanan kesehatan terlengkap dengan standar medis internasional 
               untuk memberikan perawatan terbaik bagi pasien
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate={servicesInView ? "visible" : "hidden"}
+          >
             {/* IGD */}
-            <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-              <div className="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+            <motion.div 
+              className="group bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500 border border-white/50 relative overflow-hidden"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -10 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <motion.div 
+                className="w-16 h-16 bg-gradient-to-br from-red-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg relative z-10"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <HeartIcon className="w-8 h-8 text-white" />
+              </motion.div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4 relative z-10">Instalasi Gawat Darurat</h3>
+              <p className="text-gray-600 mb-6 relative z-10">Pelayanan 24 jam untuk kasus darurat dengan tim medis yang siap siaga</p>
+              <div className="flex items-center text-red-600 font-semibold relative z-10">
+                <motion.span
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  24/7 Tersedia
+                </motion.span>
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </motion.div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Instalasi Gawat Darurat</h3>
-              <p className="text-gray-600 mb-6">Pelayanan 24 jam untuk kasus darurat dengan tim medis yang siap siaga</p>
-              <div className="flex items-center text-red-600 font-semibold">
-                <span>24/7 Tersedia</span>
-                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            </div>
+            </motion.div>
 
             {/* Rawat Inap */}
-            <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-              <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Rawat Inap</h3>
-              <p className="text-gray-600 mb-6">Fasilitas rawat inap dengan kamar yang nyaman dan perawatan medis terbaik</p>
-              <div className="flex items-center text-blue-600 font-semibold">
+            <motion.div 
+              className="group bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500 border border-white/50 relative overflow-hidden"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -10 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <motion.div 
+                className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg relative z-10"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <BuildingOffice2Icon className="w-8 h-8 text-white" />
+              </motion.div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4 relative z-10">Rawat Inap</h3>
+              <p className="text-gray-600 mb-6 relative z-10">Fasilitas rawat inap dengan kamar yang nyaman dan perawatan medis terbaik</p>
+              <div className="flex items-center text-blue-600 font-semibold relative z-10">
                 <span>120 Tempat Tidur</span>
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </div>
-            </div>
+            </motion.div>
 
             {/* Poliklinik */}
-            <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-              <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Poliklinik Spesialis</h3>
-              <p className="text-gray-600 mb-6">Berbagai poliklinik spesialis dengan dokter berpengalaman</p>
-              <div className="flex items-center text-green-600 font-semibold">
+            <motion.div 
+              className="group bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500 border border-white/50 relative overflow-hidden"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -10 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <motion.div 
+                className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg relative z-10"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <UserGroupIcon className="w-8 h-8 text-white" />
+              </motion.div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4 relative z-10">Poliklinik Spesialis</h3>
+              <p className="text-gray-600 mb-6 relative z-10">Berbagai poliklinik spesialis dengan dokter berpengalaman</p>
+              <div className="flex items-center text-green-600 font-semibold relative z-10">
                 <span>15 Spesialisasi</span>
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </div>
-            </div>
+            </motion.div>
 
             {/* Laboratorium */}
-            <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-              <div className="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Laboratorium</h3>
-              <p className="text-gray-600 mb-6">Pemeriksaan laboratorium lengkap dengan teknologi terdepan</p>
-              <div className="flex items-center text-purple-600 font-semibold">
+            <motion.div 
+              className="group bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500 border border-white/50 relative overflow-hidden"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -10 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <motion.div 
+                className="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg relative z-10"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <BeakerIcon className="w-8 h-8 text-white" />
+              </motion.div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4 relative z-10">Laboratorium</h3>
+              <p className="text-gray-600 mb-6 relative z-10">Pemeriksaan laboratorium lengkap dengan teknologi terdepan</p>
+              <div className="flex items-center text-purple-600 font-semibold relative z-10">
                 <span>Hasil Cepat & Akurat</span>
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </div>
-            </div>
+            </motion.div>
 
             {/* Radiologi */}
-            <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-              <div className="w-16 h-16 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Radiologi</h3>
-              <p className="text-gray-600 mb-6">Pemeriksaan radiologi dengan peralatan CT Scan, MRI, dan USG terbaru</p>
-              <div className="flex items-center text-orange-600 font-semibold">
+            <motion.div 
+              className="group bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500 border border-white/50 relative overflow-hidden"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -10 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <motion.div 
+                className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg relative z-10"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <CpuChipIcon className="w-8 h-8 text-white" />
+              </motion.div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4 relative z-10">Radiologi</h3>
+              <p className="text-gray-600 mb-6 relative z-10">Pemeriksaan radiologi dengan peralatan CT Scan, MRI, dan USG terbaru</p>
+              <div className="flex items-center text-orange-600 font-semibold relative z-10">
                 <span>Teknologi Modern</span>
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </div>
-            </div>
+            </motion.div>
 
             {/* Farmasi */}
-            <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-              <div className="w-16 h-16 bg-teal-100 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Farmasi</h3>
-              <p className="text-gray-600 mb-6">Apotek rumah sakit dengan stok obat lengkap dan konsultasi farmasis</p>
-              <div className="flex items-center text-teal-600 font-semibold">
+            <motion.div 
+              className="group bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500 border border-white/50 relative overflow-hidden"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -10 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <motion.div 
+                className="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg relative z-10"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <ShieldCheckIcon className="w-8 h-8 text-white" />
+              </motion.div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4 relative z-10">Farmasi</h3>
+              <p className="text-gray-600 mb-6 relative z-10">Apotek rumah sakit dengan stok obat lengkap dan konsultasi farmasis</p>
+              <div className="flex items-center text-teal-600 font-semibold relative z-10">
                 <span>Obat Tersedia 24/7</span>
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-blue-600">
+      <section className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 relative overflow-hidden" ref={statsRef}>
+        {/* Background Animation */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-10 left-1/4 w-96 h-96 bg-white/10 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
+          <div className="absolute top-32 right-1/4 w-96 h-96 bg-blue-300/20 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
+          <div className="absolute bottom-10 left-1/2 w-96 h-96 bg-purple-300/20 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center text-white">
-            <div>
-              <div className="text-4xl font-bold mb-2">35+</div>
-              <div className="text-blue-200">Dokter Spesialis</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">120</div>
-              <div className="text-blue-200">Tempat Tidur</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">24/7</div>
-              <div className="text-blue-200">Layanan Darurat</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">15+</div>
-              <div className="text-blue-200">Tahun Pengalaman</div>
-            </div>
-          </div>
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            animate={statsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.h2 
+              className="text-4xl md:text-5xl font-bold text-white mb-4"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={statsInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Statistik Rumah Sakit
+            </motion.h2>
+            <motion.p 
+              className="text-xl text-blue-100 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={statsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              Kepercayaan masyarakat adalah motivasi kami untuk terus memberikan yang terbaik
+            </motion.p>
+          </motion.div>
+
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate={statsInView ? "visible" : "hidden"}
+          >
+            <motion.div 
+              className="group text-center text-white bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 border border-white/20"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05, y: -10 }}
+            >
+              <motion.div 
+                className="text-5xl font-bold mb-3 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent"
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+              >
+                35+
+              </motion.div>
+              <div className="text-blue-100 font-semibold text-lg">Dokter Spesialis</div>
+              <p className="text-blue-200 text-sm mt-2">Tim medis berpengalaman</p>
+            </motion.div>
+
+            <motion.div 
+              className="group text-center text-white bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 border border-white/20"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05, y: -10 }}
+            >
+              <motion.div 
+                className="text-5xl font-bold mb-3 bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent"
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: 0.5
+                }}
+              >
+                120
+              </motion.div>
+              <div className="text-blue-100 font-semibold text-lg">Tempat Tidur</div>
+              <p className="text-blue-200 text-sm mt-2">Fasilitas rawat inap nyaman</p>
+            </motion.div>
+
+            <motion.div 
+              className="group text-center text-white bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 border border-white/20"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05, y: -10 }}
+            >
+              <motion.div 
+                className="text-5xl font-bold mb-3 bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent"
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: 1
+                }}
+              >
+                24/7
+              </motion.div>
+              <div className="text-blue-100 font-semibold text-lg">Layanan Darurat</div>
+              <p className="text-blue-200 text-sm mt-2">Siap melayani setiap saat</p>
+            </motion.div>
+
+            <motion.div 
+              className="group text-center text-white bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 border border-white/20"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05, y: -10 }}
+            >
+              <motion.div 
+                className="text-5xl font-bold mb-3 bg-gradient-to-r from-purple-400 to-indigo-500 bg-clip-text text-transparent"
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: 1.5
+                }}
+              >
+                15+
+              </motion.div>
+              <div className="text-blue-100 font-semibold text-lg">Tahun Pengalaman</div>
+              <p className="text-blue-200 text-sm mt-2">Terpercaya oleh masyarakat</p>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white">
+      <section id="about" className="py-20 bg-gradient-to-br from-white via-gray-50 to-blue-50 relative" ref={aboutRef}>
+        {/* Background Animation */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 left-10 w-64 h-64 bg-blue-200/30 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-64 h-64 bg-green-200/30 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Tentang RSUD M. Natsir</h2>
-              <p className="text-lg text-gray-600 mb-6">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={aboutInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8 }}
+            >
+              <motion.h2 
+                className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+                initial={{ opacity: 0, y: 30 }}
+                animate={aboutInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                  Tentang RSUD M. Natsir
+                </span>
+              </motion.h2>
+              
+              <motion.p 
+                className="text-lg text-gray-600 mb-8 leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={aboutInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
                 RSUD M. Natsir adalah rumah sakit umum daerah yang telah melayani masyarakat selama lebih dari 15 tahun. 
                 Kami berkomitmen memberikan pelayanan kesehatan berkualitas tinggi dengan mengutamakan keselamatan 
-                dan kepuasan pasien.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span className="text-gray-700">Akreditasi KARS (Komisi Akreditasi Rumah Sakit)</span>
+                dan kepuasan pasien melalui teknologi medis terdepan dan tenaga profesional yang berpengalaman.
+              </motion.p>
+              
+              <motion.div 
+                className="space-y-4"
+                initial={{ opacity: 0, y: 30 }}
+                animate={aboutInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                {[
+                  { icon: CheckCircleIcon, text: "Akreditasi KARS (Komisi Akreditasi Rumah Sakit)", color: "from-green-500 to-emerald-500" },
+                  { icon: ShieldCheckIcon, text: "Sertifikat ISO 9001:2015", color: "from-blue-500 to-cyan-500" },
+                  { icon: HeartIcon, text: "Kerjasama dengan BPJS Kesehatan", color: "from-purple-500 to-pink-500" },
+                  { icon: SparklesIcon, text: "Teknologi Medis Terkini", color: "from-orange-500 to-yellow-500" }
+                ].map((item, index) => (
+                  <motion.div 
+                    key={index}
+                    className="flex items-center space-x-4 group"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={aboutInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                    whileHover={{ x: 10 }}
+                  >
+                    <motion.div 
+                      className={`w-12 h-12 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center shadow-lg`}
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <item.icon className="w-6 h-6 text-white" />
+                    </motion.div>
+                    <span className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors">
+                      {item.text}
+                    </span>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+            
+            <motion.div 
+              className="relative"
+              initial={{ opacity: 0, x: 50 }}
+              animate={aboutInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <motion.div 
+                className="w-full h-96 bg-gradient-to-br from-white/80 to-blue-100/80 rounded-3xl backdrop-blur-sm flex items-center justify-center shadow-2xl border border-white/50 relative overflow-hidden"
+                whileHover={{ scale: 1.02, y: -10 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                {/* Animated background elements */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-green-500/5"></div>
+                <motion.div 
+                  className="absolute top-4 right-4 w-20 h-20 bg-blue-300/20 rounded-full"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    rotate: [0, 180, 360]
+                  }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                />
+                <motion.div 
+                  className="absolute bottom-4 left-4 w-16 h-16 bg-green-300/20 rounded-full"
+                  animate={{ 
+                    scale: [1, 1.3, 1],
+                    rotate: [360, 180, 0]
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                />
+                
+                <div className="text-center relative z-10">
+                  <motion.div 
+                    className="w-32 h-32 bg-gradient-to-br from-blue-500 via-purple-500 to-green-500 rounded-full mx-auto mb-6 flex items-center justify-center shadow-2xl"
+                    animate={{ 
+                      rotate: [0, 360],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{ 
+                      rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                      scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                    }}
+                  >
+                    <ShieldCheckIcon className="w-16 h-16 text-white" />
+                  </motion.div>
+                  <motion.h3 
+                    className="text-2xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent"
+                    initial={{ opacity: 0 }}
+                    animate={aboutInView ? { opacity: 1 } : {}}
+                    transition={{ delay: 1.2 }}
+                  >
+                    Standar Internasional
+                  </motion.h3>
+                  <motion.p 
+                    className="text-gray-600 font-medium"
+                    initial={{ opacity: 0 }}
+                    animate={aboutInView ? { opacity: 1 } : {}}
+                    transition={{ delay: 1.4 }}
+                  >
+                    Pelayanan berkualitas dengan standar medis terbaik
+                  </motion.p>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span className="text-gray-700">Sertifikat ISO 9001:2015</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span className="text-gray-700">Kerjasama dengan BPJS Kesehatan</span>
-                </div>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="w-full h-96 bg-gradient-to-br from-blue-100 to-green-100 rounded-2xl flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-32 h-32 bg-white rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg">
-                    <svg className="w-16 h-16 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Standar Internasional</h3>
-                  <p className="text-gray-600">Pelayanan berkualitas dengan standar medis terbaik</p>
-                </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Doctors Section */}
-      <section id="doctors" className="py-20 bg-gray-50">
+      <section id="doctors" className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative" ref={doctorsRef}>
+        {/* Background Animation */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 right-20 w-72 h-72 bg-purple-200/20 rounded-full mix-blend-multiply filter blur-xl animate-bounce"></div>
+          <div className="absolute bottom-20 left-20 w-72 h-72 bg-blue-200/20 rounded-full mix-blend-multiply filter blur-xl animate-bounce animation-delay-2000"></div>
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Tim Dokter Terbaik</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            animate={doctorsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.h2 
+              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={doctorsInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                Tim Dokter Terbaik
+              </span>
+            </motion.h2>
+            <motion.p 
+              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={doctorsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
               Didukung oleh tim dokter spesialis berpengalaman dan bersertifikat yang siap memberikan pelayanan terbaik
-            </p>
-          </div>
+              dengan teknologi medis terdepan dan pendekatan holistik.
+            </motion.p>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <div className="h-64 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-3xl font-bold text-blue-600">DS</span>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate={doctorsInView ? "visible" : "hidden"}
+          >
+            {[
+              { 
+                initial: "DS", 
+                name: "Dr. Sarah Ahmad, Sp.JP", 
+                specialty: "Spesialis Jantung dan Pembuluh Darah", 
+                experience: "Pengalaman 12 tahun dalam bidang kardiologi dengan sertifikasi internasional",
+                gradient: "from-blue-400 to-blue-600",
+                bgGradient: "from-blue-50 to-blue-100"
+              },
+              { 
+                initial: "RH", 
+                name: "Dr. Rahman Hakim, Sp.B", 
+                specialty: "Spesialis Bedah Umum", 
+                experience: "Ahli bedah dengan keahlian khusus dalam bedah laparoskopi dan trauma",
+                gradient: "from-green-400 to-green-600",
+                bgGradient: "from-green-50 to-green-100"
+              },
+              { 
+                initial: "LP", 
+                name: "Dr. Lisa Permata, Sp.A", 
+                specialty: "Spesialis Anak", 
+                experience: "Dokter spesialis anak dengan fokus pada tumbuh kembang dan imunisasi",
+                gradient: "from-purple-400 to-purple-600",
+                bgGradient: "from-purple-50 to-purple-100"
+              }
+            ].map((doctor, index) => (
+              <motion.div 
+                key={index}
+                className="group bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-white/50 relative"
+                variants={itemVariants}
+                whileHover={{ scale: 1.02, y: -10 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-gray-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <motion.div 
+                  className={`h-64 bg-gradient-to-br ${doctor.gradient} flex items-center justify-center relative overflow-hidden`}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Floating elements */}
+                  <motion.div 
+                    className="absolute top-4 right-4 w-8 h-8 bg-white/20 rounded-full"
+                    animate={{ 
+                      y: [0, -10, 0],
+                      rotate: [0, 180, 360]
+                    }}
+                    transition={{ 
+                      duration: 4, 
+                      repeat: Infinity, 
+                      ease: "easeInOut" 
+                    }}
+                  />
+                  <motion.div 
+                    className="absolute bottom-4 left-4 w-6 h-6 bg-white/20 rounded-full"
+                    animate={{ 
+                      y: [0, 10, 0],
+                      rotate: [360, 180, 0]
+                    }}
+                    transition={{ 
+                      duration: 3, 
+                      repeat: Infinity, 
+                      ease: "easeInOut",
+                      delay: 1
+                    }}
+                  />
+                  
+                  <motion.div 
+                    className="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-2xl relative z-10"
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.8 }}
+                  >
+                    <motion.span 
+                      className={`text-3xl font-bold bg-gradient-to-br ${doctor.gradient} bg-clip-text text-transparent`}
+                      animate={{ 
+                        scale: [1, 1.1, 1]
+                      }}
+                      transition={{ 
+                        duration: 2, 
+                        repeat: Infinity, 
+                        ease: "easeInOut",
+                        delay: index * 0.5
+                      }}
+                    >
+                      {doctor.initial}
+                    </motion.span>
+                  </motion.div>
+                </motion.div>
+                
+                <div className="p-8 relative z-10">
+                  <motion.h3 
+                    className="text-xl font-bold text-gray-900 mb-3"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={doctorsInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                  >
+                    {doctor.name}
+                  </motion.h3>
+                  <motion.p 
+                    className={`bg-gradient-to-r ${doctor.gradient} bg-clip-text text-transparent font-semibold mb-4`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={doctorsInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 1 + index * 0.1 }}
+                  >
+                    {doctor.specialty}
+                  </motion.p>
+                  <motion.p 
+                    className="text-gray-600 text-sm leading-relaxed"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={doctorsInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 1.2 + index * 0.1 }}
+                  >
+                    {doctor.experience}
+                  </motion.p>
+                  
+                  <motion.div 
+                    className="mt-6 flex items-center space-x-2"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={doctorsInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 1.4 + index * 0.1 }}
+                  >
+                    <motion.div 
+                      className={`w-4 h-4 bg-gradient-to-r ${doctor.gradient} rounded-full`}
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    <span className="text-gray-500 text-sm font-medium">Tersedia untuk konsultasi</span>
+                  </motion.div>
                 </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Dr. Sarah Ahmad, Sp.JP</h3>
-                <p className="text-blue-600 font-semibold mb-3">Spesialis Jantung dan Pembuluh Darah</p>
-                <p className="text-gray-600 text-sm">Pengalaman 12 tahun dalam bidang kardiologi dengan sertifikasi internasional</p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <div className="h-64 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
-                <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-3xl font-bold text-green-600">RH</span>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Dr. Rahman Hakim, Sp.B</h3>
-                <p className="text-green-600 font-semibold mb-3">Spesialis Bedah Umum</p>
-                <p className="text-gray-600 text-sm">Ahli bedah dengan keahlian khusus dalam bedah laparoskopi dan trauma</p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <div className="h-64 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
-                <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-3xl font-bold text-purple-600">LP</span>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Dr. Lisa Permata, Sp.A</h3>
-                <p className="text-purple-600 font-semibold mb-3">Spesialis Anak</p>
-                <p className="text-gray-600 text-sm">Dokter spesialis anak dengan fokus pada tumbuh kembang dan imunisasi</p>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-white">
+      <section id="contact" className="py-20 bg-gradient-to-br from-white via-blue-50 to-green-50 relative" ref={contactRef}>
+        {/* Background Animation */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 left-1/4 w-80 h-80 bg-blue-200/20 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-green-200/20 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-200/20 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Hubungi Kami</h2>
-            <p className="text-xl text-gray-600">Kami siap melayani Anda 24 jam setiap hari</p>
-          </div>
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            animate={contactInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.h2 
+              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={contactInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                Hubungi Kami
+              </span>
+            </motion.h2>
+            <motion.p 
+              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={contactInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              Kami siap melayani Anda 24 jam setiap hari. Jangan ragu untuk menghubungi kami kapan saja.
+            </motion.p>
+          </motion.div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-8 text-center">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
+          <motion.div 
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate={contactInView ? "visible" : "hidden"}
+          >
+            {/* Phone */}
+            <motion.div 
+              className="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center hover:shadow-2xl transition-all duration-500 border border-white/50 relative overflow-hidden"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -10 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <motion.div 
+                className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg relative z-10"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <PhoneIcon className="w-10 h-10 text-white" />
+              </motion.div>
+              
+              <h3 className="text-xl font-bold text-gray-900 mb-4 relative z-10">Telepon</h3>
+              <p className="text-gray-600 mb-6 relative z-10">Hubungi kami untuk informasi dan pendaftaran</p>
+              
+              <div className="space-y-2 relative z-10">
+                <motion.div 
+                  className="text-blue-600 font-semibold text-lg"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  (021) 555-0123
+                </motion.div>
+                <motion.div 
+                  className="text-red-600 font-semibold flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <HeartIcon className="w-4 h-4" />
+                  </motion.div>
+                  IGD: (021) 555-0911
+                </motion.div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Telepon</h3>
-              <p className="text-gray-600 mb-4">Hubungi kami untuk informasi dan pendaftaran</p>
-              <p className="text-blue-600 font-semibold text-lg">(021) 555-0123</p>
-              <p className="text-blue-600 font-semibold">IGD: (021) 555-0911</p>
-            </div>
+            </motion.div>
 
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-8 text-center">
-              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
+            {/* Address */}
+            <motion.div 
+              className="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center hover:shadow-2xl transition-all duration-500 border border-white/50 relative overflow-hidden"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -10 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <motion.div 
+                className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg relative z-10"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <MapPinIcon className="w-10 h-10 text-white" />
+              </motion.div>
+              
+              <h3 className="text-xl font-bold text-gray-900 mb-4 relative z-10">Alamat</h3>
+              <p className="text-gray-600 mb-6 relative z-10">Kunjungi rumah sakit kami</p>
+              
+              <div className="space-y-2 relative z-10">
+                <motion.div 
+                  className="text-green-600 font-semibold"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  Jl. Kesehatan No. 123
+                </motion.div>
+                <motion.div 
+                  className="text-green-600 font-semibold"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  Jakarta Selatan 12345
+                </motion.div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Alamat</h3>
-              <p className="text-gray-600 mb-4">Kunjungi rumah sakit kami</p>
-              <p className="text-green-600 font-semibold">Jl. Kesehatan No. 123</p>
-              <p className="text-green-600 font-semibold">Jakarta Selatan 12345</p>
-            </div>
+            </motion.div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-8 text-center">
-              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+            {/* Operating Hours */}
+            <motion.div 
+              className="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center hover:shadow-2xl transition-all duration-500 border border-white/50 relative overflow-hidden"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -10 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <motion.div 
+                className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg relative z-10"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <ClockIcon className="w-10 h-10 text-white" />
+              </motion.div>
+              
+              <h3 className="text-xl font-bold text-gray-900 mb-4 relative z-10">Jam Operasional</h3>
+              <p className="text-gray-600 mb-6 relative z-10">Jadwal pelayanan rumah sakit</p>
+              
+              <div className="space-y-2 relative z-10">
+                <motion.div 
+                  className="text-purple-600 font-semibold"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  Senin - Jumat: 07:00 - 20:00
+                </motion.div>
+                <motion.div 
+                  className="text-purple-600 font-semibold"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  Weekend: 08:00 - 16:00
+                </motion.div>
+                <motion.div 
+                  className="text-red-600 font-semibold flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    <SparklesIcon className="w-4 h-4" />
+                  </motion.div>
+                  IGD: 24 Jam
+                </motion.div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Jam Operasional</h3>
-              <p className="text-gray-600 mb-4">Jadwal pelayanan rumah sakit</p>
-              <p className="text-purple-600 font-semibold">Senin - Jumat: 07:00 - 20:00</p>
-              <p className="text-purple-600 font-semibold">Weekend: 08:00 - 16:00</p>
-              <p className="text-red-600 font-semibold">IGD: 24 Jam</p>
+            </motion.div>
+          </motion.div>
+
+          {/* Quick Contact Actions */}
+          <motion.div 
+            className="mt-16 text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={contactInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.button 
+                className="bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white px-8 py-4 rounded-2xl font-bold hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  <PhoneIcon className="w-5 h-5" />
+                  Hubungi Sekarang
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </motion.button>
+              
+              <motion.button 
+                className="border-2 border-green-500 text-green-600 px-8 py-4 rounded-2xl font-bold hover:bg-green-500 hover:text-white transition-all duration-300 hover:shadow-xl flex items-center gap-2 justify-center"
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <EnvelopeIcon className="w-5 h-5" />
+                Kirim Email
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <footer className="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white py-16 relative overflow-hidden">
+        {/* Background Animation */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 left-20 w-64 h-64 bg-blue-500/10 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-64 h-64 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-green-500/5 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            {/* Brand Section */}
             <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-green-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">RS</span>
-                </div>
+              <motion.div 
+                className="flex items-center space-x-4 mb-6"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <motion.div 
+                  className="w-16 h-16 bg-gradient-to-r from-blue-600 via-purple-600 to-green-500 rounded-2xl flex items-center justify-center shadow-lg"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.8 }}
+                >
+                  <SparklesIcon className="w-8 h-8 text-white" />
+                </motion.div>
                 <div>
-                  <h3 className="text-xl font-bold">RSUD M. Natsir</h3>
-                  <p className="text-gray-400">Rumah Sakit Umum Daerah</p>
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
+                    RSUD M. Natsir
+                  </h3>
+                  <p className="text-gray-300">Rumah Sakit Umum Daerah</p>
                 </div>
-              </div>
-              <p className="text-gray-400 mb-4">
+              </motion.div>
+              
+              <motion.p 
+                className="text-gray-300 mb-6 leading-relaxed max-w-md"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
                 Memberikan pelayanan kesehatan terbaik dengan teknologi modern dan tenaga medis profesional 
-                untuk kesehatan masyarakat yang lebih baik.
-              </p>
-              <div className="flex space-x-4">
-                <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors cursor-pointer">
-                  <span className="text-white font-bold">f</span>
-                </div>
-                <div className="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors cursor-pointer">
-                  <span className="text-white font-bold">t</span>
-                </div>
-                <div className="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors cursor-pointer">
-                  <span className="text-white font-bold">i</span>
-                </div>
-              </div>
+                untuk kesehatan masyarakat yang lebih baik. Komitmen kami adalah keselamatan dan kepuasan pasien.
+              </motion.p>
+              
+              <motion.div 
+                className="flex space-x-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                {[
+                  { name: "Facebook", color: "from-blue-600 to-blue-700", icon: "f" },
+                  { name: "Twitter", color: "from-blue-400 to-blue-500", icon: "t" },
+                  { name: "Instagram", color: "from-pink-600 to-purple-600", icon: "i" },
+                  { name: "YouTube", color: "from-red-600 to-red-700", icon: "y" }
+                ].map((social, index) => (
+                  <motion.div 
+                    key={social.name}
+                    className={`w-12 h-12 bg-gradient-to-br ${social.color} rounded-xl flex items-center justify-center hover:shadow-lg transition-all duration-300 cursor-pointer group`}
+                    whileHover={{ scale: 1.1, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <span className="text-white font-bold group-hover:scale-110 transition-transform">
+                      {social.icon}
+                    </span>
+                  </motion.div>
+                ))}
+              </motion.div>
             </div>
             
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Layanan</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">IGD</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Rawat Inap</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Poliklinik</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Laboratorium</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Radiologi</a></li>
+            {/* Services */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <h4 className="text-lg font-semibold mb-6 text-white flex items-center gap-2">
+                <HeartIcon className="w-5 h-5 text-blue-400" />
+                Layanan Utama
+              </h4>
+              <ul className="space-y-3 text-gray-300">
+                {[
+                  "Instalasi Gawat Darurat",
+                  "Rawat Inap",
+                  "Poliklinik Spesialis",
+                  "Laboratorium",
+                  "Radiologi",
+                  "Farmasi 24 Jam"
+                ].map((service, index) => (
+                  <motion.li 
+                    key={service}
+                    className="hover:text-blue-400 transition-colors cursor-pointer hover:translate-x-2 transition-transform duration-200"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <span className="hover:underline">{service}</span>
+                  </motion.li>
+                ))}
               </ul>
-            </div>
+            </motion.div>
             
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Kontak</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>(021) 555-0123</li>
-                <li>IGD: (021) 555-0911</li>
-                <li>info@rsudmnatsir.com</li>
-                <li>Jl. Kesehatan No. 123<br />Jakarta Selatan 12345</li>
+            {/* Contact Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <h4 className="text-lg font-semibold mb-6 text-white flex items-center gap-2">
+                <PhoneIcon className="w-5 h-5 text-green-400" />
+                Kontak Darurat
+              </h4>
+              <ul className="space-y-3 text-gray-300">
+                <motion.li 
+                  className="flex items-center gap-2 hover:text-blue-400 transition-colors"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                  (021) 555-0123
+                </motion.li>
+                <motion.li 
+                  className="flex items-center gap-2 hover:text-red-400 transition-colors"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+                  IGD: (021) 555-0911
+                </motion.li>
+                <motion.li 
+                  className="flex items-center gap-2 hover:text-green-400 transition-colors"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  info@rsudmnatsir.com
+                </motion.li>
+                <motion.li 
+                  className="flex items-start gap-2 hover:text-purple-400 transition-colors leading-relaxed"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse mt-1.5"></div>
+                  <span>
+                    Jl. Kesehatan No. 123<br />
+                    Jakarta Selatan 12345
+                  </span>
+                </motion.li>
               </ul>
-            </div>
+            </motion.div>
           </div>
           
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-            <p className="text-gray-400">
-              © 2025 RSUD M. Natsir. Semua hak cipta dilindungi.
-            </p>
-          </div>
+          {/* Divider */}
+          <motion.div 
+            className="border-t border-gray-700/50 pt-8"
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <motion.p 
+                className="text-gray-400 text-sm mb-4 md:mb-0"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                viewport={{ once: true }}
+              >
+                © 2025 RSUD M. Natsir. Semua hak cipta dilindungi. Melayani dengan sepenuh hati.
+              </motion.p>
+              
+              <motion.div 
+                className="flex items-center space-x-6 text-sm text-gray-400"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1 }}
+                viewport={{ once: true }}
+              >
+                <motion.a 
+                  href="#" 
+                  className="hover:text-blue-400 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  Kebijakan Privasi
+                </motion.a>
+                <motion.a 
+                  href="#" 
+                  className="hover:text-green-400 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  Syarat & Ketentuan
+                </motion.a>
+                <motion.a 
+                  href="#" 
+                  className="hover:text-purple-400 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  Karir
+                </motion.a>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </footer>
     </div>
