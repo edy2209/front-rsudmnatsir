@@ -18,11 +18,14 @@ import {
   SparklesIcon,
   CheckCircleIcon,
   TruckIcon,
-  BoltIcon
+  BoltIcon,
+  ChevronDownIcon,
+  ArrowUpIcon
 } from '@heroicons/react/24/outline';
 
 export default function Dashboard() {
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1, triggerOnce: true });
   const { ref: servicesRef, inView: servicesInView } = useInView({ threshold: 0.1, triggerOnce: true });
@@ -33,8 +36,12 @@ export default function Dashboard() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 20;
-      setScrolled(isScrolled);
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      
+      setScrolled(scrollTop > 20);
+      setScrollProgress(scrollPercent);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -181,6 +188,309 @@ export default function Dashboard() {
           </div>
         </div>
       </motion.nav>
+
+      {/* Scroll Progress Indicator */}
+      <motion.div
+        className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 z-50 origin-left"
+        style={{ scaleX: scrollProgress / 100 }}
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: scrollProgress / 100 }}
+        transition={{ duration: 0.1 }}
+      />
+
+      {/* Scroll Indicator - Mouse Icon */}
+      <motion.div 
+        className="fixed right-8 top-1/2 transform -translate-y-1/2 z-40 flex flex-col items-center space-y-4"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: scrolled ? 1 : 0.7, x: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        {/* Progress Circle */}
+        <motion.div 
+          className="relative w-16 h-16 progress-circle"
+          whileHover={{ scale: 1.1 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 64 64">
+            <circle
+              cx="32"
+              cy="32"
+              r="28"
+              stroke="currentColor"
+              strokeWidth="3"
+              fill="none"
+              className="text-gray-200"
+            />
+            <motion.circle
+              cx="32"
+              cy="32"
+              r="28"
+              stroke="url(#gradient)"
+              strokeWidth="3"
+              fill="none"
+              strokeDasharray={`${2 * Math.PI * 28}`}
+              strokeDashoffset={`${2 * Math.PI * 28 * (1 - scrollProgress / 100)}`}
+              className="transition-all duration-300 ease-out"
+              style={{
+                filter: 'drop-shadow(0 0 6px rgba(59, 130, 246, 0.4))'
+              }}
+            />
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#3B82F6" />
+                <stop offset="33%" stopColor="#8B5CF6" />
+                <stop offset="66%" stopColor="#EC4899" />
+                <stop offset="100%" stopColor="#10B981" />
+              </linearGradient>
+            </defs>
+          </svg>
+          
+          {/* Mouse Icon */}
+          <motion.div 
+            className="absolute inset-0 flex items-center justify-center"
+            animate={{ 
+              scale: [1, 1.05, 1],
+            }}
+            transition={{ 
+              duration: 3, 
+              repeat: Infinity, 
+              ease: "easeInOut" 
+            }}
+          >
+            <div className="w-6 h-10 border-2 border-gray-500 rounded-full relative bg-white/90 backdrop-blur-sm shadow-lg">
+              <motion.div 
+                className="w-1 h-2 bg-gradient-to-b from-blue-500 via-purple-500 to-green-500 rounded-full absolute left-1/2 top-2 transform -translate-x-1/2 mouse-scroll"
+                animate={{ 
+                  y: [0, 4, 0],
+                  opacity: [1, 0.3, 1],
+                  scale: [1, 0.8, 1]
+                }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+              />
+              {/* Mouse wheel indicator */}
+              <motion.div 
+                className="absolute inset-x-0 bottom-1 h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mx-1"
+                animate={{ 
+                  scaleX: [0.5, 1, 0.5],
+                  opacity: [0.3, 0.8, 0.3]
+                }}
+                transition={{ 
+                  duration: 2.5, 
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: 0.5
+                }}
+              />
+            </div>
+          </motion.div>
+
+          {/* Progress Percentage */}
+          <motion.div 
+            className="absolute inset-0 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: scrolled ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <span className="text-xs font-bold text-gray-700 bg-white/80 rounded-full w-8 h-8 flex items-center justify-center shadow-sm">
+              {Math.round(scrollProgress)}
+            </span>
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll Text with Animation */}
+        <motion.div 
+          className="flex flex-col items-center space-y-1"
+          animate={{ opacity: scrolled ? 0.6 : 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          <motion.div 
+            className="text-xs font-bold text-gray-500 transform rotate-90 tracking-widest"
+            animate={{ 
+              y: [0, -2, 0],
+              opacity: [0.7, 1, 0.7]
+            }}
+            transition={{ 
+              duration: 3, 
+              repeat: Infinity, 
+              ease: "easeInOut" 
+            }}
+          >
+            SCROLL
+          </motion.div>
+          <motion.div 
+            animate={{ 
+              y: [0, 4, 0],
+              opacity: [0.4, 0.8, 0.4]
+            }}
+            transition={{ 
+              duration: 2, 
+              repeat: Infinity, 
+              ease: "easeInOut",
+              delay: 0.5
+            }}
+          >
+            <ChevronDownIcon className="w-4 h-4 text-gray-400" />
+          </motion.div>
+        </motion.div>
+
+        {/* Navigation Dots */}
+        <div className="flex flex-col space-y-3">
+          {[
+            { section: 'home', label: 'Beranda', color: 'from-blue-500 to-cyan-500' },
+            { section: 'services', label: 'Layanan', color: 'from-green-500 to-emerald-500' },
+            { section: 'stats', label: 'Statistik', color: 'from-purple-500 to-violet-500' },
+            { section: 'about', label: 'Tentang', color: 'from-orange-500 to-amber-500' },
+            { section: 'doctors', label: 'Dokter', color: 'from-pink-500 to-rose-500' },
+            { section: 'contact', label: 'Kontak', color: 'from-teal-500 to-cyan-500' }
+          ].map((item, index) => {
+            const isActive = 
+              (item.section === 'home' && scrollProgress < 16) ||
+              (item.section === 'services' && scrollProgress >= 16 && scrollProgress < 32) ||
+              (item.section === 'stats' && scrollProgress >= 32 && scrollProgress < 48) ||
+              (item.section === 'about' && scrollProgress >= 48 && scrollProgress < 64) ||
+              (item.section === 'doctors' && scrollProgress >= 64 && scrollProgress < 80) ||
+              (item.section === 'contact' && scrollProgress >= 80);
+            
+            return (
+              <motion.button
+                key={item.section}
+                className={`group relative w-3 h-3 rounded-full transition-all duration-300 scroll-dot ${
+                  isActive 
+                    ? `bg-gradient-to-r ${item.color} shadow-lg` 
+                    : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+                whileHover={{ scale: 1.4 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => {
+                  const element = document.getElementById(item.section);
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                initial={{ opacity: 0, x: 20, scale: 0.5 }}
+                animate={{ 
+                  opacity: 1, 
+                  x: 0, 
+                  scale: isActive ? 1.2 : 1 
+                }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 300
+                }}
+              >
+                {/* Active Indicator Ring */}
+                {isActive && (
+                  <motion.div 
+                    className={`absolute inset-0 rounded-full bg-gradient-to-r ${item.color} opacity-30`}
+                    initial={{ scale: 1 }}
+                    animate={{ scale: [1, 1.8, 1] }}
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity, 
+                      ease: "easeInOut" 
+                    }}
+                  />
+                )}
+                
+                {/* Tooltip */}
+                <motion.div 
+                  className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-gray-900/90 backdrop-blur-sm text-white px-3 py-2 rounded-xl text-xs font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap pointer-events-none shadow-xl border border-gray-700"
+                  initial={{ opacity: 0, x: 10, scale: 0.8 }}
+                  whileHover={{ opacity: 1, x: 0, scale: 1 }}
+                >
+                  {item.label}
+                  <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1 w-2 h-2 bg-gray-900/90 rotate-45 border-l border-b border-gray-700"></div>
+                  
+                  {/* Tooltip Glow */}
+                  <div className={`absolute inset-0 rounded-xl bg-gradient-to-r ${item.color} opacity-20 blur-sm -z-10`}></div>
+                </motion.div>
+              </motion.button>
+            );
+          })}
+        </div>
+      </motion.div>
+
+      {/* Back to Top Button */}
+      <motion.button
+        className="fixed right-8 bottom-8 w-14 h-14 bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 z-40 flex items-center justify-center group overflow-hidden"
+        initial={{ opacity: 0, y: 100, scale: 0 }}
+        animate={{ 
+          opacity: scrollProgress > 20 ? 1 : 0,
+          y: scrollProgress > 20 ? 0 : 100,
+          scale: scrollProgress > 20 ? 1 : 0
+        }}
+        transition={{ 
+          type: "spring", 
+          stiffness: 300, 
+          damping: 20 
+        }}
+        whileHover={{ scale: 1.1, y: -5 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+      >
+        <motion.div
+          animate={{ 
+            y: [0, -2, 0],
+          }}
+          transition={{ 
+            duration: 2, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+        >
+          <ArrowUpIcon className="w-6 h-6 group-hover:scale-110 transition-transform relative z-10" />
+        </motion.div>
+        
+        {/* Background Gradient Animation */}
+        <motion.div
+          className="absolute inset-0 rounded-full bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          animate={{ 
+            rotate: [0, 360],
+          }}
+          transition={{ 
+            duration: 8, 
+            repeat: Infinity, 
+            ease: "linear" 
+          }}
+        />
+        
+        {/* Ripple Effect */}
+        <motion.div
+          className="absolute inset-0 rounded-full bg-white/20"
+          animate={{ 
+            scale: [1, 1.3, 1],
+            opacity: [0.3, 0, 0.3]
+          }}
+          transition={{ 
+            duration: 2.5, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+        />
+        
+        {/* Pulse Ring */}
+        <motion.div
+          className="absolute inset-0 rounded-full border-2 border-white/30"
+          animate={{ 
+            scale: [1, 1.5, 1],
+            opacity: [0.5, 0, 0.5]
+          }}
+          transition={{ 
+            duration: 3, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 0.5
+          }}
+        />
+      </motion.button>
 
       {/* Hero Section */}
       <section id="home" className="relative pt-32 pb-20 overflow-hidden" ref={heroRef}>
