@@ -26,6 +26,7 @@ import {
 export default function Dashboard() {
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1, triggerOnce: true });
   const { ref: servicesRef, inView: servicesInView } = useInView({ threshold: 0.1, triggerOnce: true });
@@ -133,13 +134,15 @@ export default function Dashboard() {
               </div>
             </motion.div>
             
+            {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8">
               {[
                 { href: "#home", label: "Beranda" },
                 { href: "#services", label: "Layanan" },
                 { href: "#doctors", label: "Dokter" },
                 { href: "#about", label: "Tentang" },
-                { href: "#contact", label: "Kontak" }
+                { href: "#contact", label: "Kontak" },
+                { href: "/test-api", label: "Test API" }
               ].map((item, index) => (
                 <motion.a
                   key={item.label}
@@ -161,9 +164,102 @@ export default function Dashboard() {
                 </motion.a>
               ))}
             </div>
+
+            {/* Mobile Menu Button */}
+            <motion.button
+              className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r from-blue-100 to-green-100 hover:from-blue-200 hover:to-green-200 transition-all duration-300 shadow-lg"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <motion.div
+                animate={mobileMenuOpen ? { rotate: 90 } : { rotate: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {mobileMenuOpen ? (
+                  <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
+              </motion.div>
+            </motion.button>
           </div>
         </div>
       </motion.nav>
+
+      {/* Mobile Menu */}
+      <motion.div
+        className={`fixed top-0 left-0 w-full h-full bg-white/95 backdrop-blur-3xl z-40 md:hidden ${
+          mobileMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'
+        }`}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ 
+          opacity: mobileMenuOpen ? 1 : 0,
+          y: mobileMenuOpen ? 0 : -20
+        }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        style={{
+          backdropFilter: 'blur(30px) saturate(200%) brightness(1.1)',
+          WebkitBackdropFilter: 'blur(30px) saturate(200%) brightness(1.1)',
+        }}
+      >
+        <div className="flex flex-col items-center justify-center h-full space-y-8 px-6">
+          {/* Mobile Menu Items */}
+          <div className="flex flex-col space-y-6 w-full max-w-xs">
+            {[
+              { href: "#home", label: "Beranda", icon: BuildingOffice2Icon },
+              { href: "#services", label: "Layanan", icon: HeartIcon },
+              { href: "#doctors", label: "Dokter", icon: UserGroupIcon },
+              { href: "#about", label: "Tentang", icon: ShieldCheckIcon },
+              { href: "#contact", label: "Kontak", icon: PhoneIcon },
+              { href: "/test-api", label: "Test API", icon: CpuChipIcon }
+            ].map((item, index) => (
+              <motion.a
+                key={item.label}
+                href={item.href}
+                className="flex items-center space-x-4 p-4 rounded-xl bg-gradient-to-r from-blue-50 to-green-50 hover:from-blue-100 hover:to-green-100 transition-all duration-300 text-gray-700 hover:text-blue-600 w-full shadow-sm hover:shadow-md"
+                onClick={() => setMobileMenuOpen(false)}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ 
+                  opacity: mobileMenuOpen ? 1 : 0,
+                  x: mobileMenuOpen ? 0 : -20
+                }}
+                transition={{ delay: 0.1 + index * 0.1 }}
+                whileHover={{ scale: 1.02, x: 4 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <item.icon className="w-6 h-6 text-blue-600" />
+                <span className="text-lg font-medium">{item.label}</span>
+              </motion.a>
+            ))}
+          </div>
+
+          {/* Mobile Menu Footer */}
+          <motion.div
+            className="mt-8 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ 
+              opacity: mobileMenuOpen ? 1 : 0,
+              y: mobileMenuOpen ? 0 : 20
+            }}
+            transition={{ delay: 0.6 }}
+          >
+            <p className="text-sm text-gray-500">
+              © 2024 RSUD M. Natsir
+            </p>
+            <p className="text-xs text-gray-400 mt-1">
+              Kesehatan Terbaik untuk Semua
+            </p>
+          </motion.div>
+        </div>
+      </motion.div>
 
       {/* Scroll Progress Indicator */}
       <motion.div
