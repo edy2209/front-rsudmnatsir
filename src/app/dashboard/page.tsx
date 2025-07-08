@@ -141,8 +141,7 @@ export default function Dashboard() {
                 { href: "#services", label: "Layanan" },
                 { href: "#doctors", label: "Dokter" },
                 { href: "#about", label: "Tentang" },
-                { href: "#contact", label: "Kontak" },
-                { href: "/test-api", label: "Test API" }
+                { href: "#contact", label: "Kontak" }
               ].map((item, index) => (
                 <motion.a
                   key={item.label}
@@ -218,8 +217,7 @@ export default function Dashboard() {
               { href: "#services", label: "Layanan", icon: HeartIcon },
               { href: "#doctors", label: "Dokter", icon: UserGroupIcon },
               { href: "#about", label: "Tentang", icon: ShieldCheckIcon },
-              { href: "#contact", label: "Kontak", icon: PhoneIcon },
-              { href: "/test-api", label: "Test API", icon: CpuChipIcon }
+              { href: "#contact", label: "Kontak", icon: PhoneIcon }
             ].map((item, index) => (
               <motion.a
                 key={item.label}
