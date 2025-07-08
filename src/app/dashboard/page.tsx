@@ -161,30 +161,6 @@ export default function Dashboard() {
                 </motion.a>
               ))}
             </div>
-            
-            <motion.button 
-              className="bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white px-6 py-3 rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8 }}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="relative z-10">Dashboard</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <motion.div
-                className="absolute inset-0 bg-white/20 rounded-2xl opacity-0 group-hover:opacity-20"
-                animate={{ 
-                  scale: [1, 1.2, 1],
-                  rotate: [0, 180, 360]
-                }}
-                transition={{ 
-                  duration: 4, 
-                  repeat: Infinity, 
-                  ease: "easeInOut" 
-                }}
-              />
-            </motion.button>
           </div>
         </div>
       </motion.nav>

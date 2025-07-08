@@ -16,7 +16,8 @@ import {
   SparklesIcon,
   ShieldCheckIcon,
   BeakerIcon,
-  CpuChipIcon
+  CpuChipIcon,
+  ChevronDownIcon
 } from '@heroicons/react/24/outline';
 import { routes } from '@/utils/routes';
 
@@ -24,6 +25,9 @@ export default function LandingPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeService, setActiveService] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [activeSection, setActiveSection] = useState(0);
   
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1, triggerOnce: true });
   const { ref: servicesRef, inView: servicesInView } = useInView({ threshold: 0.1, triggerOnce: true });
@@ -32,7 +36,42 @@ export default function LandingPage() {
 
   useEffect(() => {
     setIsLoaded(true);
+    
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      setScrollProgress(scrollPercent);
+      setShowBackToTop(scrollTop > 300);
+      
+      // Determine active section based on scroll position
+      const sections = document.querySelectorAll('section');
+      let currentSection = 0;
+      
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+          currentSection = index;
+        }
+      });
+      
+      setActiveSection(currentSection);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToSection = (index: number) => {
+    const sections = document.querySelectorAll('section');
+    if (sections[index]) {
+      sections[index].scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -122,6 +161,225 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-hidden">
+      {/* Scroll Indicators */}
+      <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
+        <motion.div
+          className="h-full bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 relative"
+          style={{ width: `${scrollProgress}%` }}
+          initial={{ width: 0 }}
+          animate={{ width: `${scrollProgress}%` }}
+          transition={{ duration: 0.1 }}
+        >
+          {/* Glowing effect */}
+          <motion.div
+            className="absolute top-0 right-0 w-2 h-full bg-white opacity-50 rounded-full"
+            animate={{
+              opacity: [0.5, 1, 0.5],
+              scale: [1, 1.5, 1]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        </motion.div>
+      </div>
+
+      {/* Mouse Scroll Icon */}
+      <AnimatePresence>
+        {!showBackToTop && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ delay: 2, duration: 0.8 }}
+            className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40 pointer-events-none"
+          >
+            <div className="flex flex-col items-center space-y-3">
+              {/* Mouse Icon with Scroll Wheel */}
+              <motion.div
+                animate={{
+                  y: [0, -8, 0],
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="relative"
+              >
+                {/* Mouse Body */}
+                <div className="w-7 h-12 border-2 border-gray-500 rounded-full bg-white/10 backdrop-blur-sm flex justify-center relative">
+                  {/* Scroll Wheel */}
+                  <motion.div
+                    animate={{
+                      y: [2, 10, 2],
+                      opacity: [1, 0.3, 1]
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="w-1 h-3 bg-gray-600 rounded-full mt-2"
+                  />
+                </div>
+                
+                {/* Scroll Down Arrow */}
+                <motion.div
+                  animate={{
+                    y: [0, 5, 0],
+                    opacity: [0.5, 1, 0.5]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.5
+                  }}
+                  className="absolute -bottom-8 left-1/2 transform -translate-x-1/2"
+                >
+                  <ChevronDownIcon className="w-5 h-5 text-gray-600" />
+                </motion.div>
+              </motion.div>
+              
+              {/* Scroll Text */}
+              <motion.p
+                animate={{
+                  opacity: [0.6, 1, 0.6]
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="text-sm text-gray-600 font-medium"
+              >
+                Scroll untuk lanjut
+              </motion.p>
+              
+              {/* Animated Dots */}
+              <div className="flex space-x-1">
+                {[0, 1, 2].map((index) => (
+                  <motion.div
+                    key={index}
+                    animate={{
+                      scale: [1, 1.3, 1],
+                      opacity: [0.4, 1, 0.4]
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      delay: index * 0.2
+                    }}
+                    className="w-1.5 h-1.5 bg-gray-500 rounded-full"
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Navigation Dots */}
+      <motion.div 
+        className="fixed right-8 top-1/2 transform -translate-y-1/2 z-40"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 1, duration: 0.8 }}
+      >
+        <div className="flex flex-col space-y-4">
+          {['Hero', 'Services', 'Facilities', 'Contact'].map((section, index) => (
+            <motion.button
+              key={section}
+              onClick={() => scrollToSection(index)}
+              className={`relative w-3 h-3 rounded-full transition-all duration-300 ${
+                activeSection === index
+                  ? 'bg-blue-600 scale-150'
+                  : 'bg-gray-300 hover:bg-gray-400'
+              }`}
+              whileHover={{ scale: 1.5 }}
+              whileTap={{ scale: 0.8 }}
+              title={section}
+            >
+              {activeSection === index && (
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-blue-600"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: [0, 1.5, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+              )}
+            </motion.button>
+          ))}
+        </div>
+        
+        {/* Section Labels */}
+        <div className="absolute -left-20 top-0 flex flex-col space-y-4">
+          {['Hero', 'Services', 'Facilities', 'Contact'].map((section, index) => (
+            <motion.div
+              key={section}
+              className={`text-right transition-all duration-300 ${
+                activeSection === index
+                  ? 'text-blue-600 font-semibold opacity-100'
+                  : 'text-gray-500 opacity-0'
+              }`}
+              animate={{
+                opacity: activeSection === index ? 1 : 0,
+                x: activeSection === index ? 0 : 10
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              <span className="text-sm">{section}</span>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Back to Top Button */}
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.5, y: 100 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.5, y: 100 }}
+            whileHover={{ 
+              scale: 1.1,
+              boxShadow: "0 10px 30px rgba(59, 130, 246, 0.5)"
+            }}
+            whileTap={{ scale: 0.9 }}
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-40 group"
+          >
+            <motion.div
+              animate={{ y: [0, -3, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="text-xl font-bold"
+            >
+              ↑
+            </motion.div>
+            
+            {/* Ripple Effect */}
+            <motion.div
+              className="absolute inset-0 rounded-full bg-white opacity-20"
+              initial={{ scale: 0 }}
+              animate={{ scale: [0, 1.5, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+            
+            {/* Tooltip */}
+            <motion.div
+              className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              initial={{ opacity: 0, y: 10 }}
+              whileHover={{ opacity: 1, y: 0 }}
+            >
+              Kembali ke atas
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
+            </motion.div>
+          </motion.button>
+        )}
+      </AnimatePresence>
       {/* Navigation */}
       <motion.nav 
         initial={{ y: -100, opacity: 0 }}
@@ -263,7 +521,7 @@ export default function LandingPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 relative overflow-hidden">
+      <section className="pt-32 pb-20 px-4 relative overflow-hidden" id="hero-section">
         {/* Background Animation */}
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
@@ -334,39 +592,51 @@ export default function LandingPage() {
                 whileTap={{ scale: 0.95 }}
                 className="relative group"
               >
-                <div className="absolute -inset-1 bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+                {/* Glowing Background */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 rounded-3xl blur opacity-60 group-hover:opacity-100 transition duration-500 animate-pulse"></div>
+                
                 <Link 
                   href={routes.appointments}
-                  className="relative bg-white text-gray-900 px-12 py-5 rounded-3xl text-xl font-bold hover:shadow-2xl transition-all duration-500 flex items-center gap-3 border-2 border-transparent hover:border-red-200"
+                  className="relative bg-white hover:bg-gray-50 text-gray-900 px-10 py-5 rounded-3xl text-xl font-bold transition-all duration-500 flex items-center gap-4 shadow-2xl border border-gray-100 min-w-[280px] justify-center"
                 >
+                  {/* Medical Cross Icon */}
                   <motion.div
-                    className="flex items-center justify-center w-8 h-8 bg-gradient-to-r from-red-500 to-pink-500 rounded-full"
+                    className="flex items-center justify-center w-10 h-10 bg-gradient-to-r from-red-500 to-pink-500 rounded-full shadow-lg"
                     animate={{ 
-                      scale: [1, 1.2, 1],
-                      rotate: [0, 10, 0]
+                      rotate: [0, 5, -5, 0],
+                      scale: [1, 1.1, 1]
                     }}
                     transition={{ 
-                      duration: 2, 
+                      duration: 3, 
                       repeat: Infinity,
                       ease: "easeInOut"
                     }}
                   >
-                    <HeartIcon className="w-5 h-5 text-white" />
+                    <div className="relative">
+                      <div className="w-4 h-1 bg-white rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                      <div className="w-1 h-4 bg-white rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                    </div>
                   </motion.div>
-                  <span className="bg-gradient-to-r from-red-600 via-pink-600 to-purple-600 bg-clip-text text-transparent font-extrabold">
-                    Buat Janji Temu
-                  </span>
+                  
+                  <div className="flex flex-col items-start">
+                    <span className="text-lg font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent">
+                      Buat Janji Temu
+                    </span>
+                    <span className="text-sm text-gray-500 font-medium">
+                      Konsultasi dengan dokter
+                    </span>
+                  </div>
+                  
+                  {/* Arrow Icon */}
                   <motion.div
-                    className="w-3 h-3 bg-green-500 rounded-full shadow-lg"
-                    animate={{ 
-                      scale: [1, 1.5, 1],
-                      opacity: [0.7, 1, 0.7]
-                    }}
-                    transition={{ 
-                      duration: 1.5, 
-                      repeat: Infinity 
-                    }}
-                  />
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="text-blue-600"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </motion.div>
                 </Link>
               </motion.div>
               
@@ -376,25 +646,18 @@ export default function LandingPage() {
                 whileTap={{ scale: 0.95 }}
                 className="relative group"
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-green-500 rounded-2xl opacity-0 group-hover:opacity-75 transition duration-300 blur"></div>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-green-500 rounded-2xl opacity-0 group-hover:opacity-50 transition duration-300 blur"></div>
                 <Link 
                   href={routes.services}
-                  className="relative bg-transparent border-3 border-blue-600 text-blue-600 px-10 py-4 rounded-2xl text-lg font-bold hover:bg-blue-600 hover:text-white transition-all duration-300 hover:shadow-xl flex items-center gap-3 backdrop-blur-sm"
+                  className="relative bg-transparent border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-2xl text-lg font-bold hover:bg-blue-600 hover:text-white transition-all duration-300 hover:shadow-xl flex items-center gap-3 backdrop-blur-sm min-w-[200px] justify-center"
                 >
                   <motion.div
                     animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                   >
                     <SparklesIcon className="w-6 h-6" />
                   </motion.div>
                   <span>Lihat Layanan</span>
-                  <motion.div
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="text-xl"
-                  >
-                    →
-                  </motion.div>
                 </Link>
               </motion.div>
             </motion.div>
@@ -435,7 +698,7 @@ export default function LandingPage() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-gradient-to-br from-white via-blue-50/30 to-green-50/30 relative">
+      <section className="py-20 bg-gradient-to-br from-white via-blue-50/30 to-green-50/30 relative" id="services-section">
         <div className="container mx-auto px-4" ref={servicesRef}>
           <motion.div 
             className="text-center mb-16"
@@ -548,7 +811,7 @@ export default function LandingPage() {
       </section>
 
       {/* Facilities Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-blue-50/50 to-green-50/50 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-gray-50 via-blue-50/50 to-green-50/50 relative overflow-hidden" id="facilities-section">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -671,7 +934,7 @@ export default function LandingPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-green-600 text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-green-600 text-white relative overflow-hidden" id="contact-section">
         {/* Animated Background */}
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-full h-full opacity-10">
