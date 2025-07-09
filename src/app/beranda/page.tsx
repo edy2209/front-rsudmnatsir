@@ -11,7 +11,6 @@ import {
   UserGroupIcon, 
   ClockIcon,
   PhoneIcon,
-  MapPinIcon,
   EnvelopeIcon,
   SparklesIcon,
   ShieldCheckIcon,
