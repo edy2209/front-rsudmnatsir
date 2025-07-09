@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 // GET endpoint untuk test API
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     // Simulasi delay untuk testing
     await new Promise(resolve => setTimeout(resolve, 500));

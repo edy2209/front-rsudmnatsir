@@ -416,4 +416,3 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
     </nav>
   );
 }
-228261661421

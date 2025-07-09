@@ -11,7 +11,6 @@ import {
   ClockIcon,
   SparklesIcon,
   CheckBadgeIcon,
-  StarIcon,
   PhoneIcon,
   MapPinIcon,
   EnvelopeIcon

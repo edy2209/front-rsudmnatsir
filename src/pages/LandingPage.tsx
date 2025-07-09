@@ -23,8 +23,6 @@ import { routes } from '@/utils/routes';
 import Navigation from '@/components/Navigation';
 
 export default function LandingPage() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [activeService, setActiveService] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
@@ -35,8 +33,6 @@ export default function LandingPage() {
   const { ref: statsRef, inView: statsInView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   useEffect(() => {
-    setIsLoaded(true);
-    
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -608,7 +604,6 @@ export default function LandingPage() {
                     y: -10,
                     transition: { type: "spring", stiffness: 300 }
                   }}
-                  onMouseEnter={() => setActiveService(index)}
                   initial={{ opacity: 0, y: 50 }}
                   animate={servicesInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: service.delay }}

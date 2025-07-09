@@ -14,9 +14,7 @@ import {
   TruckIcon,
   EyeIcon,
   BoltIcon,
-  SparklesIcon,
-  MapPinIcon,
-  EnvelopeIcon
+  SparklesIcon
 } from '@heroicons/react/24/outline';
 import Navigation from '@/components/Navigation';
 import Link from 'next/link';
