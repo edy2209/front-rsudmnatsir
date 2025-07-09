@@ -78,45 +78,45 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
     {
       label: 'Fasilitas dan Layanan',
       children: [
-        { label: 'Layanan Unggulan', href: '#' },
+        { label: 'Layanan Unggulan', href: routes.layananUnggulan },
         {
           label: 'Rawat Jalan',
           children: [
-            { label: 'Klinik Penyakit Dalam', href: '#' },
-            { label: 'Klinik Bedah', href: '#' },
-            { label: 'Klinik Mata', href: '#' },
-            { label: 'Klinik THT', href: '#' },
-            { label: 'Klinik Neurologi', href: '#' },
-            { label: 'Klinik Kebidanan', href: '#' },
-            { label: 'Klinik Anak', href: '#' },
-            { label: 'Klinik Gizi', href: '#' },
-            { label: 'Klinik Jantung', href: '#' },
-            { label: 'Klinik Paru', href: '#' },
-            { label: 'Klinik VCT', href: '#' },
+            { label: 'Klinik Penyakit Dalam', href: routes.klinikPenyakitDalam },
+            { label: 'Klinik Bedah', href: routes.klinikBedah },
+            { label: 'Klinik Mata', href: routes.klinikMata },
+            { label: 'Klinik THT', href: routes.klinikTHT },
+            { label: 'Klinik Neurologi', href: routes.klinikNeurologi },
+            { label: 'Klinik Kebidanan', href: routes.klinikKebidanan },
+            { label: 'Klinik Anak', href: routes.klinikAnak },
+            { label: 'Klinik Gizi', href: routes.klinikGizi },
+            { label: 'Klinik Jantung', href: routes.klinikJantung },
+            { label: 'Klinik Paru', href: routes.klinikParu },
+            { label: 'Klinik VCT', href: routes.klinikVCT },
           ]
         },
         {
           label: 'Rawat Inap',
           children: [
-            { label: 'Rawat Inap Interne Wanita', href: '#' },
-            { label: 'Rawat Inap Interne Pria', href: '#' },
-            { label: 'Rawat Inap Bedah', href: '#' },
-            { label: 'Rawat Inap Mata', href: '#' },
-            { label: 'Rawat Inap THT', href: '#' },
-            { label: 'Rawat Inap Neurologi', href: '#' },
-            { label: 'Rawat Inap Kebidanan', href: '#' },
-            { label: 'Rawat Inap Anak', href: '#' },
-            { label: 'Rawat Inap Jantung', href: '#' },
-            { label: 'Rawat Inap Paru', href: '#' },
+            { label: 'Rawat Inap Interne Wanita', href: routes.rawatInapInterneWanita },
+            { label: 'Rawat Inap Interne Pria', href: routes.rawatInapInternePria },
+            { label: 'Rawat Inap Bedah', href: routes.rawatInapBedah },
+            { label: 'Rawat Inap Mata', href: routes.rawatInapMata },
+            { label: 'Rawat Inap THT', href: routes.rawatInapTHT },
+            { label: 'Rawat Inap Neurologi', href: routes.rawatInapNeurologi },
+            { label: 'Rawat Inap Kebidanan', href: routes.rawatInapKebidanan },
+            { label: 'Rawat Inap Anak', href: routes.rawatInapAnak },
+            { label: 'Rawat Inap Jantung', href: routes.rawatInapJantung },
+            { label: 'Rawat Inap Paru', href: routes.rawatInapParu },
           ]
         },
         {
           label: 'Fasilitas Umum',
           children: [
-            { label: 'Apotik/Farmasi', href: '#' },
-            { label: 'Masjid', href: '#' },
-            { label: 'Kantin', href: '#' },
-            { label: 'Parkir', href: '#' },
+            { label: 'Apotik/Farmasi', href: routes.apotik },
+            { label: 'Masjid', href: routes.masjid },
+            { label: 'Kantin', href: routes.kantin },
+            { label: 'Parkir', href: routes.parkir },
           ]
         },
         {
@@ -125,30 +125,30 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
             {
               label: 'Laboratorium',
               children: [
-                { label: 'Lab. Patologi Klinik', href: '#' },
-                { label: 'Lab. Patologi Anatomik', href: '#' },
+                { label: 'Lab. Patologi Klinik', href: routes.labPatologiKlinik },
+                { label: 'Lab. Patologi Anatomik', href: routes.labPatologiAnatomik },
               ]
             },
-            { label: 'Radiologi', href: '#' },
-            { label: 'Kamar Operasi', href: '#' },
-            { label: 'Fisiotherapi', href: '#' },
+            { label: 'Radiologi', href: routes.radiologi },
+            { label: 'Kamar Operasi', href: routes.kamarOperasi },
+            { label: 'Fisiotherapi', href: routes.fisiotherapi },
           ]
         },
         {
           label: 'Alur Pelayanan',
           children: [
-            { label: 'Rawat Jalan', href: '#' },
-            { label: 'Rawat Inap', href: '#' },
-            { label: 'ICU', href: '#' },
+            { label: 'Rawat Jalan', href: routes.alurRawatJalan },
+            { label: 'Rawat Inap', href: routes.alurRawatInap },
+            { label: 'ICU', href: routes.alurICU },
             {
               label: 'Pelayanan Penunjang',
               children: [
-                { label: 'Farmasi', href: '#' },
-                { label: 'Laboratorium', href: '#' },
-                { label: 'PONEK', href: '#' },
-                { label: 'Admission', href: '#' },
-                { label: 'Bank Darah', href: '#' },
-                { label: 'Radiologi', href: '#' },
+                { label: 'Farmasi', href: routes.alurFarmasi },
+                { label: 'Laboratorium', href: routes.alurLaboratorium },
+                { label: 'PONEK', href: routes.alurPONEK },
+                { label: 'Admission', href: routes.alurAdmission },
+                { label: 'Bank Darah', href: routes.alurBankDarah },
+                { label: 'Radiologi', href: routes.alurRadiologi },
               ]
             },
           ]
@@ -158,39 +158,39 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
     {
       label: 'Tentang Kami',
       children: [
-        { label: 'Visi, Misi dan Logo', href: '#' },
-        { label: 'Penghargaan dan Prestasi', href: '#' },
-        { label: 'Denah dan Lokasi', href: '#' },
-        { label: 'Manajemen', href: '#' },
-        { label: 'Sejarah RSUD M.Natsir', href: '#' },
-        { label: 'Profil', href: '#' },
-        { label: 'Kerja Sama', href: '#' },
+        { label: 'Visi, Misi dan Logo', href: routes.visiMisiLogo },
+        { label: 'Penghargaan dan Prestasi', href: routes.penghargaanPrestasi },
+        { label: 'Denah dan Lokasi', href: routes.denahLokasi },
+        { label: 'Manajemen', href: routes.manajemen },
+        { label: 'Sejarah RSUD M.Natsir', href: routes.sejarah },
+        { label: 'Profil', href: routes.profil },
+        { label: 'Kerja Sama', href: routes.kerjaSama },
       ]
     },
     {
       label: 'Galeri',
       children: [
-        { label: 'Video', href: '#' },
-        { label: 'Images', href: '#' },
-        { label: 'Agenda/Kegiatan', href: '#' },
-        { label: 'Arsip', href: '#' },
-        { label: 'Pengumuman', href: '#' },
+        { label: 'Video', href: routes.galeriVideo },
+        { label: 'Images', href: routes.galeriImages },
+        { label: 'Agenda/Kegiatan', href: routes.agendaKegiatan },
+        { label: 'Arsip', href: routes.arsip },
+        { label: 'Pengumuman', href: routes.pengumuman },
       ]
     },
     {
       label: 'Info Publik',
-      href: '#'
+      href: routes.infoPublik
     },
     {
       label: 'Sakip',
-      href: '#'
+      href: routes.sakip
     },
     {
       label: 'WBK dan WBBM',
       children: [
-        { label: 'Whistleblower System', href: '#' },
-        { label: 'Gratifikasi', href: '#' },
-        { label: 'Benturan Kepentingan', href: '#' },
+        { label: 'Whistleblower System', href: routes.whistleblowerSystem },
+        { label: 'Gratifikasi', href: routes.gratifikasi },
+        { label: 'Benturan Kepentingan', href: routes.benturanKepentingan },
       ]
     },
     {
@@ -209,31 +209,31 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
         {
           label: 'Media Promkes',
           children: [
-            { label: 'Leaflet', href: '#' },
-            { label: 'Banner', href: '#' },
-            { label: 'Poster/Spanduk', href: '#' },
-            { label: 'Buku Saku', href: '#' },
+            { label: 'Leaflet', href: routes.leaflet },
+            { label: 'Banner', href: routes.banner },
+            { label: 'Poster/Spanduk', href: routes.poster },
+            { label: 'Buku Saku', href: routes.bukuSaku },
           ]
         },
-        { label: 'Inovasi', href: '#' },
-        { label: 'Video Kesehatan', href: '#' },
+        { label: 'Inovasi', href: routes.inovasi },
+        { label: 'Video Kesehatan', href: routes.videoKesehatan },
       ]
     },
     {
       label: 'PPID',
       children: [
-        { label: 'Informasi Berkala', href: '#' },
-        { label: 'Informasi Setiap Saat', href: '#' },
-        { label: 'Informasi Serta Merta', href: '#' },
+        { label: 'Informasi Berkala', href: routes.informasiBerkala },
+        { label: 'Informasi Setiap Saat', href: routes.informasiSetiapSaat },
+        { label: 'Informasi Serta Merta', href: routes.informasiSertaMerta },
       ]
     }
   ];
 
-  const toggleDropdown = (label: string) => {
+  const toggleDropdown = (key: string) => {
     setOpenDropdowns(prev => 
-      prev.includes(label) 
-        ? prev.filter(item => item !== label)
-        : [...prev, label]
+      prev.includes(key) 
+        ? prev.filter(item => item !== key)
+        : [...prev, key]
     );
   };
 
@@ -251,7 +251,7 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
           </button>
           
           {/* Desktop Dropdown */}
-          <div className={`absolute left-0 top-full mt-0 w-64 bg-white rounded-lg shadow-lg border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 ${
+          <div className={`absolute left-0 top-full mt-0 w-64 bg-white rounded-lg shadow-lg border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60] ${
             level > 0 ? 'left-full top-0 mt-0 -ml-2' : ''
           }`}>
             <div className="py-2">
@@ -259,22 +259,51 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
                 <div key={child.label} className="relative group/sub">
                   {child.children ? (
                     <>
-                      <button className="w-full text-left px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors flex items-center justify-between">
+                      <div className="w-full text-left px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors flex items-center justify-between cursor-pointer">
                         <span className="text-sm">{child.label}</span>
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
-                      </button>
-                      <div className="absolute left-full top-0 w-56 bg-white rounded-lg shadow-lg border opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 z-50 ml-1">
+                      </div>
+                      {/* Third Level Dropdown */}
+                      <div className="absolute left-full top-0 w-56 bg-white rounded-lg shadow-xl border opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 z-[70] ml-1">
                         <div className="py-2">
                           {child.children?.map(grandChild => (
-                            <Link
-                              key={grandChild.label}
-                              href={grandChild.href || '#'}
-                              className="block px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors text-sm"
-                            >
-                              {grandChild.label}
-                            </Link>
+                            <div key={grandChild.label} className="relative group/third">
+                              {grandChild.children ? (
+                                <>
+                                  <div className="w-full text-left px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors flex items-center justify-between cursor-pointer">
+                                    <span className="text-sm">{grandChild.label}</span>
+                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                  </div>
+                                  {/* Fourth Level Dropdown */}
+                                  <div className="absolute left-full top-0 w-48 bg-white rounded-lg shadow-xl border opacity-0 invisible group-hover/third:opacity-100 group-hover/third:visible transition-all duration-200 z-[80] ml-1">
+                                    <div className="py-2">
+                                      {grandChild.children?.map(greatGrandChild => (
+                                        <Link
+                                          key={greatGrandChild.label}
+                                          href={greatGrandChild.href || '#'}
+                                          className="block px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors text-sm"
+                                          {...(greatGrandChild.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                                        >
+                                          {greatGrandChild.label}
+                                        </Link>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </>
+                              ) : (
+                                <Link
+                                  href={grandChild.href || '#'}
+                                  className="block px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors text-sm"
+                                  {...(grandChild.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                                >
+                                  {grandChild.label}
+                                </Link>
+                              )}
+                            </div>
                           ))}
                         </div>
                       </div>
@@ -310,14 +339,14 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
 
   const renderMobileMenuItem = (item: MenuItem, level: number = 0) => {
     const hasChildren = item.children && item.children.length > 0;
-    const isOpen = openDropdowns.includes(item.label);
+    const isOpen = openDropdowns.includes(`${item.label}-${level}`);
     
     if (hasChildren) {
       return (
-        <div key={item.label} className={`${level > 0 ? 'ml-3' : ''}`}>
+        <div key={`${item.label}-${level}`} className={`${level > 0 ? 'ml-3' : ''}`}>
           <button
             className="flex items-center justify-between w-full px-3 py-3 text-left text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-green-50 rounded-lg transition-all duration-200 font-medium group"
-            onClick={() => toggleDropdown(item.label)}
+            onClick={() => toggleDropdown(`${item.label}-${level}`)}
           >
             <span className="text-sm">{item.label}</span>
             <svg 
@@ -331,11 +360,11 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
           </button>
           
           <div className={`overflow-hidden transition-all duration-300 ${
-            isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            isOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
           }`}>
             <div className="ml-2 mt-2 space-y-1 border-l-2 border-blue-100 pl-3">
               {item.children?.map(child => (
-                <div key={child.label}>
+                <div key={`${child.label}-${level + 1}`}>
                   {renderMobileMenuItem(child, level + 1)}
                 </div>
               ))}
@@ -347,7 +376,7 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
 
     return (
       <Link
-        key={item.label}
+        key={`${item.label}-${level}`}
         href={item.href || '#'}
         className={`block px-3 py-3 text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-green-50 rounded-lg transition-all duration-200 text-sm border-l-2 border-transparent hover:border-blue-400 ${
           level > 0 ? 'ml-2' : ''
