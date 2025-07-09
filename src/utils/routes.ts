@@ -3,7 +3,6 @@
 export const routes = {
   // Main routes
   home: '/',
-  dashboard: '/dashboard',
   
   // Patient management
   patients: '/patients',
@@ -68,7 +67,6 @@ export const getRoute = (key: RouteKey, params?: string): string => {
 // Menu items untuk navigation
 export const mainMenuItems = [
   { label: 'Beranda', route: routes.home, icon: 'home' },
-  { label: 'Dashboard', route: routes.dashboard, icon: 'dashboard' },
   { label: 'Pasien', route: routes.patients, icon: 'patients' },
   { label: 'Dokter', route: routes.doctors, icon: 'doctors' },
   { label: 'Rekam Medis', route: routes.medicalRecords, icon: 'medical' },

@@ -35,8 +35,36 @@ body {
   }
 }
 
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.4), 0 0 40px rgba(236, 72, 153, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.6), 0 0 60px rgba(236, 72, 153, 0.4);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 .animate-blob {
   animation: blob 7s infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
 }
 
 .animation-delay-2000 {
@@ -48,6 +76,90 @@ body {
 }
 
 /* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scroll Indicator Styles */
+.writing-mode-vertical-rl {
+  writing-mode: vertical-rl;
+}
+
+.text-orientation-mixed {
+  text-orientation: mixed;
+}
+
+/* Enhanced Glow Effects */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+}
+
+/* Hover Effects for Scroll Dots */
+.scroll-dot {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.scroll-dot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.scroll-dot:hover::before {
+  width: 24px;
+  height: 24px;
+}
+
+/* Mouse scroll animation */
+@keyframes mouseScroll {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.mouse-scroll {
+  animation: mouseScroll 2s infinite ease-in-out;
+}
+
+/* Progress Circle Glow */
+@keyframes progressGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 25px rgba(147, 51, 234, 0.4));
+  }
+}
+
+.progress-circle {
+  animation: progressGlow 3s infinite ease-in-out;
+}
 html {
   scroll-behavior: smooth;
 }
@@ -121,4 +233,9 @@ html {
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Border utilities */
+.border-3 {
+  border-width: 3px;
 }

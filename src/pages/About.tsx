@@ -527,8 +527,7 @@ export default function About() {
                 {[
                   { name: "Tentang Kami", href: routes.about },
                   { name: "Layanan", href: routes.services },
-                  { name: "Kontak", href: routes.contact },
-                  { name: "Dashboard", href: routes.dashboard }
+                  { name: "Kontak", href: routes.contact }
                 ].map((item, index) => (
                   <motion.li 
                     key={item.name}

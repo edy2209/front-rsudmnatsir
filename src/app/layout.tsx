@@ -17,12 +17,12 @@ export default function RootLayout({
       <body className="antialiased">
         {children}
         
-        {/* Userway Accessibility Widget */}
+        {/* Userway Accessibility Widget
         <Script
           src="https://cdn.userway.org/widget.js"
           data-account="qEzV9kH8WW"
           strategy="afterInteractive"
-        />
+        /> */}
       </body>
     </html>
   );

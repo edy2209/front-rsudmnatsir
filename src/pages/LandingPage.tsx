@@ -20,11 +20,11 @@ import {
   ChevronDownIcon
 } from '@heroicons/react/24/outline';
 import { routes } from '@/utils/routes';
+import Navigation from '@/components/Navigation';
 
 export default function LandingPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeService, setActiveService] = useState(0);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
@@ -381,144 +381,7 @@ export default function LandingPage() {
         )}
       </AnimatePresence>
       {/* Navigation */}
-      <motion.nav 
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="fixed top-0 w-full bg-white/80 backdrop-blur-xl shadow-xl z-50 border-b border-white/20"
-      >
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <motion.div 
-              className="flex items-center space-x-3"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 400 }}
-            >
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 rounded-2xl flex items-center justify-center shadow-lg">
-                <SparklesIcon className="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-                  RSUD M. Natsir
-                </h1>
-                <p className="text-xs text-gray-600">Rumah Sakit Umum Daerah</p>
-              </div>
-            </motion.div>
-            
-            <div className="hidden md:flex items-center space-x-8">
-              {[
-                { href: routes.home, label: "Beranda" },
-                { href: routes.about, label: "Tentang" },
-                { href: routes.services, label: "Layanan" },
-                { href: routes.contact, label: "Kontak" }
-              ].map((item, index) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 + 0.5 }}
-                >
-                  <Link 
-                    href={item.href} 
-                    className="text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium relative group"
-                  >
-                    {item.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-green-600 transition-all duration-300 group-hover:w-full"></span>
-                  </Link>
-                </motion.div>
-              ))}
-              
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.8 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link 
-                  href={routes.dashboard} 
-                  className="bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white px-6 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300 relative overflow-hidden group"
-                >
-                  <span className="relative z-10">Dashboard</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </Link>
-              </motion.div>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <motion.button 
-              className="md:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              whileTap={{ scale: 0.95 }}
-            >
-              <div className="w-6 h-6 flex flex-col justify-center items-center space-y-1">
-                <motion.span 
-                  className="w-full h-0.5 bg-gray-600 rounded"
-                  animate={{ rotate: isMobileMenuOpen ? 45 : 0, y: isMobileMenuOpen ? 6 : 0 }}
-                ></motion.span>
-                <motion.span 
-                  className="w-full h-0.5 bg-gray-600 rounded"
-                  animate={{ opacity: isMobileMenuOpen ? 0 : 1 }}
-                ></motion.span>
-                <motion.span 
-                  className="w-full h-0.5 bg-gray-600 rounded"
-                  animate={{ rotate: isMobileMenuOpen ? -45 : 0, y: isMobileMenuOpen ? -6 : 0 }}
-                ></motion.span>
-              </div>
-            </motion.button>
-          </div>
-
-          {/* Mobile Menu */}
-          <AnimatePresence>
-            {isMobileMenuOpen && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-                className="md:hidden mt-4 bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden"
-              >
-                <div className="p-4 space-y-2">
-                  {[
-                    { href: routes.home, label: "Beranda" },
-                    { href: routes.about, label: "Tentang" },
-                    { href: routes.services, label: "Layanan" },
-                    { href: routes.contact, label: "Kontak" }
-                  ].map((item, index) => (
-                    <motion.div
-                      key={item.label}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Link 
-                        href={item.href}
-                        className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-300"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    </motion.div>
-                  ))}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.4 }}
-                  >
-                    <Link 
-                      href={routes.dashboard}
-                      className="block mx-2 mt-4 bg-gradient-to-r from-blue-600 to-green-600 text-white px-6 py-3 rounded-xl text-center font-semibold hover:shadow-lg transition-all duration-300"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Dashboard
-                    </Link>
-                  </motion.div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </motion.nav>
+      <Navigation variant="default" />
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 relative overflow-hidden" id="hero-section">
