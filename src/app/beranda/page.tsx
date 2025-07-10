@@ -16,7 +16,14 @@ import {
   ShieldCheckIcon,
   BeakerIcon,
   CpuChipIcon,
-  ChevronDownIcon
+  ChevronDownIcon,
+  CalendarDaysIcon,
+  UserCircleIcon,
+  ChatBubbleLeftIcon,
+  ScaleIcon,
+  DocumentTextIcon,
+  ClipboardDocumentCheckIcon,
+  SpeakerWaveIcon
 } from '@heroicons/react/24/outline';
 import { routes } from '@/utils/routes';
 import Navigation from '@/components/Navigation';
@@ -25,12 +32,11 @@ import Footer from '@/components/Footer';
 export default function BerandaPage() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [activeSection, setActiveSection] = useState(0);
   
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref: galleryRef, inView: galleryInView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref: newsRef, inView: newsInView } = useInView({ threshold: 0.1, triggerOnce: true });
   const { ref: servicesRef, inView: servicesInView } = useInView({ threshold: 0.1, triggerOnce: true });
-  const { ref: facilitiesRef, inView: facilitiesInView } = useInView({ threshold: 0.1, triggerOnce: true });
-  const { ref: statsRef, inView: statsInView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,31 +45,11 @@ export default function BerandaPage() {
       const scrollPercent = (scrollTop / docHeight) * 100;
       setScrollProgress(scrollPercent);
       setShowBackToTop(scrollTop > 300);
-      
-      // Determine active section based on scroll position
-      const sections = document.querySelectorAll('section');
-      let currentSection = 0;
-      
-      sections.forEach((section, index) => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-          currentSection = index;
-        }
-      });
-      
-      setActiveSection(currentSection);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const scrollToSection = (index: number) => {
-    const sections = document.querySelectorAll('section');
-    if (sections[index]) {
-      sections[index].scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -91,62 +77,6 @@ export default function BerandaPage() {
       }
     }
   };
-
-  const services = [
-    {
-      title: "Pelayanan Gawat Darurat",
-      description: "Layanan 24 jam untuk kondisi medis darurat dengan respons cepat dan tim medis berpengalaman",
-      icon: HeartIcon,
-      color: "from-red-500 to-pink-500",
-      delay: 0
-    },
-    {
-      title: "Rawat Inap",
-      description: "Fasilitas rawat inap dengan standar pelayanan tinggi dan ruangan yang nyaman",
-      icon: BuildingOffice2Icon,
-      color: "from-blue-500 to-cyan-500",
-      delay: 0.1
-    },
-    {
-      title: "Poliklinik Spesialis",
-      description: "Berbagai layanan poliklinik spesialis dengan dokter berpengalaman",
-      icon: UserGroupIcon,
-      color: "from-green-500 to-emerald-500",
-      delay: 0.2
-    },
-    {
-      title: "Laboratorium",
-      description: "Pemeriksaan laboratorium lengkap dan akurat dengan teknologi terkini",
-      icon: BeakerIcon,
-      color: "from-purple-500 to-violet-500",
-      delay: 0.3
-    },
-    {
-      title: "Radiologi",
-      description: "Pemeriksaan radiologi dengan teknologi modern dan hasil yang presisi",
-      icon: CpuChipIcon,
-      color: "from-orange-500 to-amber-500",
-      delay: 0.4
-    },
-    {
-      title: "Farmasi",
-      description: "Pelayanan obat dan konsultasi farmasi dengan apoteker berpengalaman",
-      icon: ShieldCheckIcon,
-      color: "from-teal-500 to-cyan-500",
-      delay: 0.5
-    }
-  ];
-
-  const facilities = [
-    { name: "IGD 24 Jam", icon: "🚨" },
-    { name: "Ruang Operasi Modern", icon: "🏥" },
-    { name: "ICU & NICU", icon: "💙" },
-    { name: "Laboratorium Terintegrasi", icon: "🔬" },
-    { name: "Radiologi Digital", icon: "📡" },
-    { name: "Farmasi Lengkap", icon: "💊" },
-    { name: "Ambulance Siaga", icon: "🚑" },
-    { name: "Parkir Luas", icon: "🅿️" }
-  ];
 
   const stats = [
     { number: 50, label: "Dokter Spesialis", suffix: "+" },
@@ -278,60 +208,7 @@ export default function BerandaPage() {
         )}
       </AnimatePresence>
 
-      {/* Navigation Dots */}
-      <motion.div 
-        className="fixed right-8 top-1/2 transform -translate-y-1/2 z-40"
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1, duration: 0.8 }}
-      >
-        <div className="flex flex-col space-y-4">
-          {['Hero', 'Services', 'Facilities', 'Contact'].map((section, index) => (
-            <motion.button
-              key={section}
-              onClick={() => scrollToSection(index)}
-              className={`relative w-3 h-3 rounded-full transition-all duration-300 ${
-                activeSection === index
-                  ? 'bg-blue-600 scale-150'
-                  : 'bg-gray-300 hover:bg-gray-400'
-              }`}
-              whileHover={{ scale: 1.5 }}
-              whileTap={{ scale: 0.8 }}
-              title={section}
-            >
-              {activeSection === index && (
-                <motion.div
-                  className="absolute inset-0 rounded-full bg-blue-600"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: [0, 1.5, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-              )}
-            </motion.button>
-          ))}
-        </div>
-        
-        {/* Section Labels */}
-        <div className="absolute -left-20 top-0 flex flex-col space-y-4">
-          {['Hero', 'Services', 'Facilities', 'Contact'].map((section, index) => (
-            <motion.div
-              key={section}
-              className={`text-right transition-all duration-300 ${
-                activeSection === index
-                  ? 'text-blue-600 font-semibold opacity-100'
-                  : 'text-gray-500 opacity-0'
-              }`}
-              animate={{
-                opacity: activeSection === index ? 1 : 0,
-                x: activeSection === index ? 0 : 10
-              }}
-              transition={{ duration: 0.3 }}
-            >
-              <span className="text-sm">{section}</span>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+      {/* Navigation Dots - Removed for mobile optimization */}
 
       {/* Back to Top Button */}
       <AnimatePresence>
@@ -378,6 +255,18 @@ export default function BerandaPage() {
       </AnimatePresence>
       {/* Navigation */}
       <Navigation variant="default" />
+
+      {/* Marquee Announcement */}
+      <div className="marquee-container py-3 relative overflow-hidden">
+        <SpeakerWaveIcon className="speaker-icon h-6 w-6 text-white" />
+        <div className="relative">
+          <div className="marquee-content">
+            <span className="text-sm md:text-base font-medium text-white">
+              🏥 Selamat Datang di Website RSUD Mohammad Natsir • 📍 Jl. Lintas Sumatra Simpang Rumbio, Kota Solok • 📞 Layanan 24 Jam • ✨ Melayani dengan Hati •
+            </span>
+          </div>
+        </div>
+      </div>
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 relative overflow-hidden" id="hero-section">
@@ -438,97 +327,14 @@ export default function BerandaPage() {
                 teknologi modern, dan tenaga medis profesional untuk kesehatan Anda dan keluarga.
               </p>
             </motion.div>
-            
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-16"
-              initial={{ opacity: 0, y: 40 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              {/* Primary CTA - Buat Janji Temu */}
-              <motion.div
-                whileHover={{ scale: 1.08, y: -8 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative group"
-              >
-                {/* Glowing Background */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 rounded-3xl blur opacity-60 group-hover:opacity-100 transition duration-500 animate-pulse"></div>
-                
-                <Link 
-                  href={routes.appointments}
-                  className="relative bg-white hover:bg-gray-50 text-gray-900 px-10 py-5 rounded-3xl text-xl font-bold transition-all duration-500 flex items-center gap-4 shadow-2xl border border-gray-100 min-w-[280px] justify-center"
-                >
-                  {/* Medical Cross Icon */}
-                  <motion.div
-                    className="flex items-center justify-center w-10 h-10 bg-gradient-to-r from-red-500 to-pink-500 rounded-full shadow-lg"
-                    animate={{ 
-                      rotate: [0, 5, -5, 0],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ 
-                      duration: 3, 
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    <div className="relative">
-                      <div className="w-4 h-1 bg-white rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-                      <div className="w-1 h-4 bg-white rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-                    </div>
-                  </motion.div>
-                  
-                  <div className="flex flex-col items-start">
-                    <span className="text-lg font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent">
-                      Buat Janji Temu
-                    </span>
-                    <span className="text-sm text-gray-500 font-medium">
-                      Konsultasi dengan dokter
-                    </span>
-                  </div>
-                  
-                  {/* Arrow Icon */}
-                  <motion.div
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="text-blue-600"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </motion.div>
-                </Link>
-              </motion.div>
-              
-              {/* Secondary CTA - Lihat Layanan */}
-              <motion.div
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative group"
-              >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-green-500 rounded-2xl opacity-0 group-hover:opacity-50 transition duration-300 blur"></div>
-                <Link 
-                  href={routes.services}
-                  className="relative bg-transparent border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-2xl text-lg font-bold hover:bg-blue-600 hover:text-white transition-all duration-300 hover:shadow-xl flex items-center gap-3 backdrop-blur-sm min-w-[200px] justify-center"
-                >
-                  <motion.div
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                  >
-                    <SparklesIcon className="w-6 h-6" />
-                  </motion.div>
-                  <span>Lihat Layanan</span>
-                </Link>
-              </motion.div>
-            </motion.div>
           </motion.div>
 
           {/* Stats */}
           <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
-            ref={statsRef}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16"
             variants={containerVariants}
             initial="hidden"
-            animate={statsInView ? "visible" : "hidden"}
+            animate={heroInView ? "visible" : "hidden"}
           >
             {stats.map((stat, index) => (
               <motion.div 
@@ -538,7 +344,7 @@ export default function BerandaPage() {
                 whileHover={{ scale: 1.05, y: -5 }}
               >
                 <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-2">
-                  {statsInView ? (
+                  {heroInView ? (
                     <CountUp 
                       end={stat.number} 
                       duration={2.5} 
@@ -556,344 +362,335 @@ export default function BerandaPage() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20 bg-gradient-to-br from-white via-blue-50/30 to-green-50/30 relative" id="services-section">
-        <div className="container mx-auto px-4" ref={servicesRef}>
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            animate={servicesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.h2 
-              className="text-4xl md:text-5xl font-bold text-gray-800 mb-6"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={servicesInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-                Layanan Unggulan
-              </span>
-            </motion.h2>
-            <motion.p 
-              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={servicesInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Kami menyediakan berbagai layanan kesehatan terlengkap dengan standar pelayanan internasional 
-              dan teknologi medis terdepan untuk memberikan yang terbaik bagi Anda.
-            </motion.p>
-          </motion.div>
-
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            animate={servicesInView ? "visible" : "hidden"}
-          >
-            {services.map((service, index) => {
-              const IconComponent = service.icon;
-              return (
-                <motion.div 
-                  key={index}
-                  className="group relative bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer border border-white/50"
-                  variants={itemVariants}
-                  whileHover={{ 
-                    scale: 1.05, 
-                    y: -10,
-                    transition: { type: "spring", stiffness: 300 }
-                  }}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={servicesInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: service.delay }}
-                >
-                  {/* Gradient Background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-3xl`}></div>
-                  
-                  {/* Icon */}
-                  <motion.div 
-                    className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg`}
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <IconComponent className="w-8 h-8 text-white" />
-                  </motion.div>
-                  
-                  <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-gray-900 transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors">
-                    {service.description}
-                  </p>
-                  
-                  {/* Hover Effect */}
-                  <motion.div
-                    className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    initial={{ scale: 0 }}
-                    whileHover={{ scale: 1.2 }}
-                  >
-                    <div className={`w-3 h-3 bg-gradient-to-br ${service.color} rounded-full`}></div>
-                  </motion.div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-
-          {/* Call to Action */}
-          <motion.div 
-            className="text-center mt-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={servicesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link 
-                href={routes.services}
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 text-white px-8 py-4 rounded-2xl text-lg font-bold hover:shadow-xl transition-all duration-300 group"
-              >
-                <span>Lihat Semua Layanan</span>
-                <motion.div
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  →
-                </motion.div>
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Facilities Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-blue-50/50 to-green-50/50 relative overflow-hidden" id="facilities-section">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234F46E5' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}></div>
-        </div>
-
-        <div className="container mx-auto px-4" ref={facilitiesRef}>
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            animate={facilitiesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.h2 
-              className="text-4xl md:text-5xl font-bold text-gray-800 mb-6"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={facilitiesInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-                Fasilitas Modern
-              </span>
-            </motion.h2>
-            <motion.p 
-              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={facilitiesInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Dilengkapi dengan fasilitas medis terkini dan teknologi canggih untuk mendukung 
-              pelayanan kesehatan yang optimal dan berkualitas tinggi.
-            </motion.p>
-          </motion.div>
-
-          <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
-            variants={containerVariants}
-            initial="hidden"
-            animate={facilitiesInView ? "visible" : "hidden"}
-          >
-            {facilities.map((facility, index) => (
+      {/* Main Content Section */}
+      <section className="py-20 bg-gradient-to-br from-white via-blue-50/30 to-green-50/30">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            {/* Left Column - Gallery and News */}
+            <div className="lg:col-span-8">
+              
+              {/* Hero Gallery */}
               <motion.div 
-                key={index}
-                className="group bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 text-center border border-white/50"
-                variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -8,
-                  transition: { type: "spring", stiffness: 300 }
-                }}
-                initial={{ opacity: 0, y: 30 }}
-                animate={facilitiesInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="mb-12"
+                ref={galleryRef}
+                initial={{ opacity: 0, y: 50 }}
+                animate={galleryInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8 }}
               >
-                <motion.div 
-                  className="text-4xl mb-4"
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  {facility.icon}
-                </motion.div>
-                <p className="text-gray-700 font-semibold group-hover:text-blue-600 transition-colors duration-300">
-                  {facility.name}
-                </p>
-                
-                {/* Decorative element */}
-                <motion.div
-                  className="w-12 h-1 bg-gradient-to-r from-blue-500 to-green-500 mx-auto mt-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: "3rem" }}
-                ></motion.div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Additional Features */}
-          <motion.div 
-            className="mt-16 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-green-600/10 rounded-3xl p-8 backdrop-blur-sm border border-white/20"
-            initial={{ opacity: 0, y: 40 }}
-            animate={facilitiesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="group"
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-shadow">
-                  <ClockIcon className="w-8 h-8 text-white" />
+                <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
+                  <div className="relative h-96 bg-gradient-to-r from-blue-600 to-green-600">
+                    <div className="absolute inset-0 bg-black/20"></div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <h3 className="text-3xl font-bold mb-4">Sertifikat Akreditasi</h3>
+                        <p className="text-lg opacity-90">Rumah Sakit Terakreditasi</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Thumbnail Gallery */}
+                  <div className="p-4 bg-gray-50">
+                    <div className="flex space-x-2 overflow-x-auto">
+                      {[
+                        'Sertifikat Akreditasi',
+                        'Dokter Spesialis',
+                        'Visi dan Misi',
+                        'Jenis Pelayanan',
+                        'Penghargaan IGA',
+                        'Direktur RSUD'
+                      ].map((item, index) => (
+                        <div key={index} className="flex-shrink-0 w-20 h-16 bg-gray-200 rounded-lg cursor-pointer hover:ring-2 hover:ring-blue-500 transition-all">
+                          <div className="w-full h-full bg-gradient-to-br from-blue-500 to-green-500 rounded-lg opacity-60"></div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">24/7 Service</h3>
-                <p className="text-gray-600">Layanan darurat tersedia 24 jam setiap hari</p>
               </motion.div>
 
+              {/* News Section */}
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="group"
+                ref={newsRef}
+                initial={{ opacity: 0, y: 50 }}
+                animate={newsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8 }}
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-shadow">
-                  <UserGroupIcon className="w-8 h-8 text-white" />
+                <div className="text-center mb-12">
+                  <h2 className="text-4xl font-bold text-gray-800 mb-4">
+                    <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                      Berita Utama
+                    </span>
+                  </h2>
+                  <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-green-600 mx-auto rounded-full"></div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Tim Profesional</h3>
-                <p className="text-gray-600">Dokter dan tenaga medis berpengalaman</p>
-              </motion.div>
 
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="group"
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-shadow">
-                  <ShieldCheckIcon className="w-8 h-8 text-white" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {[
+                    {
+                      title: "ODGJ Terselamatkan Dengan Inovasi Kontes Lato Lato",
+                      date: "23 Juli 2024",
+                      author: "Deswira Umar",
+                      views: "295",
+                      excerpt: "RSUD M. Natsir merupakan OPD dibawah Pemerintah Provinsi Sumatera Barat yang melaksanakan urusan wajib bidang kesehatan..."
+                    },
+                    {
+                      title: "Tangkal Hoaks Dengan Inovasi Lego",
+                      date: "22 Juli 2024", 
+                      author: "Deswira Umar",
+                      views: "274",
+                      excerpt: "Seiring dengan semakin meningkatnya angka kunjungan pasien di RSUD M Mohammad Natsir pasca pandemi Covid-19..."
+                    },
+                    {
+                      title: "Inovasi Dalang Tol Itik",
+                      date: "22 Juli 2024",
+                      author: "Deswira Umar", 
+                      views: "234",
+                      excerpt: "Dalang Tol Itik merupakan nama inovasi yang digagas oleh Lusi Meyliza, A.md.kl pada tahun 2023..."
+                    },
+                    {
+                      title: "Ada Selebelt Di RSUD M Natsir",
+                      date: "22 Juli 2024",
+                      author: "Deswira Umar",
+                      views: "248", 
+                      excerpt: "Inovasi Selebelt adalah singkatan dari Selasa Belajar, kegiatan Selasa Belajar di RSUD M. Natsir..."
+                    }
+                  ].map((news, index) => (
+                    <motion.div
+                      key={index}
+                      className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group"
+                      whileHover={{ y: -5 }}
+                    >
+                      <div className="h-48 bg-gradient-to-br from-blue-500 to-green-500 relative">
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-lg font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
+                          {news.title}
+                        </h3>
+                        <div className="flex items-center text-sm text-gray-500 mb-3 space-x-4">
+                          <span className="flex items-center">
+                            <ClockIcon className="w-4 h-4 mr-1" />
+                            {news.date}
+                          </span>
+                          <span className="flex items-center">
+                            <UserCircleIcon className="w-4 h-4 mr-1" />
+                            {news.author}
+                          </span>
+                          <span>👁️ {news.views}</span>
+                        </div>
+                        <p className="text-gray-600 text-sm line-clamp-3 mb-4">
+                          {news.excerpt}
+                        </p>
+                        <button className="text-blue-600 font-semibold text-sm hover:text-blue-700 transition-colors">
+                          Baca Selengkapnya →
+                        </button>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Standar Tinggi</h3>
-                <p className="text-gray-600">Pelayanan berstandar nasional dan internasional</p>
+
+                <div className="text-center mt-8">
+                  <motion.button
+                    className="bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Lihat Semua Berita
+                  </motion.button>
+                </div>
               </motion.div>
             </div>
-          </motion.div>
+
+            {/* Right Column - Widgets */}
+            <div className="lg:col-span-4 space-y-8">
+              
+              {/* Gubernur Widget */}
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-4">Gubernur dan Wakil</h3>
+                <div className="bg-gradient-to-br from-blue-500 to-green-500 rounded-xl h-48 flex items-center justify-center">
+                  <span className="text-white font-semibold">Foto Gubernur</span>
+                </div>
+              </div>
+
+              {/* Health Articles */}
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-6">Artikel Kesehatan</h3>
+                <div className="space-y-4">
+                  {[
+                    "Garam Belum Terbukti Atasi Covid-19",
+                    "Hati-Hati Dengan Corona, Hindari Informasi Bagalau", 
+                    "Segala Sesuatu Tentang Hernia, Ini Informasinya",
+                    "Apakah Anda Sudah Menggunakan Obat dengan Benar?",
+                    "CARA MERAWAT LUKA LECET DI RUMAH"
+                  ].map((article, index) => (
+                    <div key={index} className="border-b border-gray-100 pb-3 last:border-b-0">
+                      <h4 className="text-sm font-medium text-gray-800 hover:text-blue-600 cursor-pointer transition-colors">
+                        {article}
+                      </h4>
+                      <p className="text-xs text-gray-500 mt-1">10 June 2020</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tags and Agenda Tabs */}
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <div className="border-b border-gray-200 mb-4">
+                  <nav className="flex space-x-6">
+                    <button className="py-2 px-1 border-b-2 border-blue-600 text-blue-600 font-medium text-sm">
+                      Tags
+                    </button>
+                    <button className="py-2 px-1 text-gray-500 hover:text-gray-700 font-medium text-sm">
+                      Agenda
+                    </button>
+                  </nav>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {["Arsip", "Kesehatan", "Penyuluhan", "PENGUMUMAN", "Laporan", "Sakip", "KATA DOKTER", "Jadwal", "Berita"].map((tag, index) => (
+                    <span key={index} className="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full hover:bg-blue-200 cursor-pointer transition-colors">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Photo Album */}
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-6">Album Foto</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {[1,2,3,4].map((item, index) => (
+                    <div key={index} className="aspect-square bg-gradient-to-br from-blue-500 to-green-500 rounded-xl relative group cursor-pointer overflow-hidden">
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-white text-xs font-medium text-center p-2">
+                          Kegiatan RSUD M. Natsir
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-green-600 text-white relative overflow-hidden" id="contact-section">
-        {/* Animated Background */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-full h-full opacity-10">
-            <motion.div
-              className="absolute top-20 left-20 w-32 h-32 bg-white rounded-full"
-              animate={{ 
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3]
-              }}
-              transition={{ 
-                duration: 4, 
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            <motion.div
-              className="absolute bottom-20 right-20 w-24 h-24 bg-white rounded-full"
-              animate={{ 
-                scale: [1.2, 1, 1.2],
-                opacity: [0.2, 0.5, 0.2]
-              }}
-              transition={{ 
-                duration: 3, 
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1
-              }}
-            />
-          </div>
-        </div>
-
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <motion.div
+      {/* Information Services Section */}
+      <section className="py-20 bg-gradient-to-br from-white via-blue-50/30 to-green-50/30">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <motion.h2 
-              className="text-4xl md:text-5xl font-bold mb-6"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              Butuh Bantuan Medis?
-            </motion.h2>
-            <motion.p 
-              className="text-xl md:text-2xl mb-12 opacity-90 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              Tim medis kami siap melayani Anda 24/7 dengan pelayanan terbaik dan penanganan yang cepat
-            </motion.p>
-            
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <a 
-                  href="tel:+6281234567890" 
-                  className="inline-flex items-center gap-3 bg-white text-blue-600 px-8 py-4 rounded-2xl text-lg font-bold hover:bg-gray-50 transition-all duration-300 shadow-xl hover:shadow-2xl group"
-                >
-                  <motion.div
-                    animate={{ rotate: [0, 10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <PhoneIcon className="w-6 h-6" />
-                  </motion.div>
-                  <span>Hubungi Sekarang</span>
-                  <motion.div
-                    className="w-2 h-2 bg-green-500 rounded-full"
-                    animate={{ scale: [1, 1.5, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                </a>
-              </motion.div>
-              
-              <motion.div
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link 
-                  href={routes.contact}
-                  className="inline-flex items-center gap-3 border-2 border-white text-white px-8 py-4 rounded-2xl text-lg font-bold hover:bg-white hover:text-blue-600 transition-all duration-300 shadow-xl hover:shadow-2xl"
-                >
-                  <EnvelopeIcon className="w-6 h-6" />
-                  <span>Info Lengkap</span>
-                </Link>
-              </motion.div>
-            </motion.div>
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                Informasi
+              </span>
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-green-600 mx-auto rounded-full"></div>
           </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: "PENDAFTARAN ONLINE", icon: CalendarDaysIcon, color: "from-blue-500 to-blue-600" },
+              { title: "JADWAL DOKTER", icon: UserCircleIcon, color: "from-green-500 to-green-600" },
+              { title: "KETERSEDIAAN BED", icon: BuildingOffice2Icon, color: "from-purple-500 to-purple-600" },
+              { title: "KEPUASAN PELANGGAN", icon: HeartIcon, color: "from-pink-500 to-pink-600" },
+              { title: "KRITIK DAN SARAN", icon: ChatBubbleLeftIcon, color: "from-yellow-500 to-orange-500" },
+              { title: "PENGADUAN", icon: ScaleIcon, color: "from-red-500 to-red-600" },
+              { title: "INFORMASI BERKALA", icon: ClockIcon, color: "from-indigo-500 to-indigo-600" },
+              { title: "INFORMASI SETIAP SAAT", icon: DocumentTextIcon, color: "from-teal-500 to-teal-600" },
+              { title: "INFORMASI SERTA MERTA", icon: ClipboardDocumentCheckIcon, color: "from-cyan-500 to-cyan-600" }
+            ].map((service, index) => {
+              const IconComponent = service.icon;
+              return (
+                <motion.div
+                  key={index}
+                  className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 text-center cursor-pointer"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <motion.div 
+                    className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-shadow`}
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <IconComponent className="w-8 h-8 text-white" />
+                  </motion.div>
+                  <h3 className="text-lg font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
+                    {service.title}
+                  </h3>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Services Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 via-blue-50/50 to-green-50/50" ref={servicesRef}>
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            animate={servicesInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                Layanan Unggulan
+              </span>
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-green-600 mx-auto rounded-full"></div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { title: "HEMODIALISA", icon: "💧", description: "Pelayanan cuci darah dengan teknologi modern" },
+              { title: "FARMASI", icon: "💊", description: "Pelayanan obat dan konsultasi farmasi" },
+              { title: "LABORATORIUM", icon: "🔬", description: "Pemeriksaan laboratorium lengkap dan akurat" },
+              { title: "FISIOTERAPI", icon: "🏃‍♂️", description: "Terapi rehabilitasi medik profesional" },
+              { title: "RADIOLOGI", icon: "📡", description: "Pemeriksaan radiologi dengan teknologi digital" },
+              { title: "DAN LAINNYA", icon: "➕", description: "Berbagai layanan medis lainnya" }
+            ].map((service, index) => (
+              <motion.div
+                key={index}
+                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 text-center cursor-pointer border border-white/50"
+                whileHover={{ scale: 1.05, y: -10 }}
+                initial={{ opacity: 0, y: 50 }}
+                animate={servicesInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <motion.div 
+                  className="text-6xl mb-6"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  {service.icon}
+                </motion.div>
+                <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-blue-600 transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 group-hover:text-gray-700 transition-colors">
+                  {service.description}
+                </p>
+                
+                {/* Decorative line */}
+                <motion.div
+                  className="w-16 h-1 bg-gradient-to-r from-blue-500 to-green-500 mx-auto mt-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  initial={{ width: 0 }}
+                  whileHover={{ width: "4rem" }}
+                />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
