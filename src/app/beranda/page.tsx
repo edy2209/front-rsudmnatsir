@@ -1,21 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import CountUp from 'react-countup';
 import { 
   HeartIcon, 
   BuildingOffice2Icon, 
-  UserGroupIcon, 
   ClockIcon,
-  PhoneIcon,
-  EnvelopeIcon,
-  SparklesIcon,
-  ShieldCheckIcon,
-  BeakerIcon,
-  CpuChipIcon,
   ChevronDownIcon,
   CalendarDaysIcon,
   UserCircleIcon,
@@ -25,7 +17,6 @@ import {
   ClipboardDocumentCheckIcon,
   SpeakerWaveIcon
 } from '@heroicons/react/24/outline';
-import { routes } from '@/utils/routes';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
