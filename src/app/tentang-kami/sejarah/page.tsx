@@ -230,56 +230,66 @@ export default function SejarahPage() {
         {/* Timeline Section */}
         <div className="container mx-auto px-4 pb-16">
           <motion.div
-            className="bg-white rounded-3xl shadow-xl p-8 mb-12"
+            className="bg-white rounded-3xl shadow-xl p-4 sm:p-6 md:p-8 mb-12"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="text-center mb-12">
+            <div className="text-center mb-8 md:mb-12">
               <motion.div
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-100 to-orange-100 px-6 py-3 rounded-full mb-4"
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-100 to-orange-100 px-4 md:px-6 py-2 md:py-3 rounded-full mb-4"
                 whileHover={{ scale: 1.05 }}
               >
-                <CalendarDaysIcon className="w-6 h-6 text-amber-600" />
-                <span className="font-semibold text-amber-800">Timeline Sejarah</span>
+                <CalendarDaysIcon className="w-5 h-5 md:w-6 md:h-6 text-amber-600" />
+                <span className="font-semibold text-amber-800 text-sm md:text-base">Timeline Sejarah</span>
               </motion.div>
-              <h3 className="text-3xl font-bold text-gray-800">Perjalanan Waktu RSUD M. Natsir</h3>
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-800">Perjalanan Waktu RSUD M. Natsir</h3>
             </div>
 
             <div className="relative">
-              {/* Timeline Line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-amber-400 via-orange-500 to-red-500 rounded-full"></div>
+              {/* Timeline Line - Hidden on mobile */}
+              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-amber-400 via-orange-500 to-red-500 rounded-full"></div>
+              
+              {/* Mobile Timeline Line */}
+              <div className="md:hidden absolute left-6 top-0 h-full w-1 bg-gradient-to-b from-amber-400 via-orange-500 to-red-500 rounded-full"></div>
               
               {timelineEvents.map((event, index) => (
                 <motion.div
                   key={index}
-                  className={`relative flex items-center mb-12 ${
-                    index % 2 === 0 ? 'justify-start' : 'justify-end'
+                  className={`relative flex items-center mb-8 md:mb-12 ${
+                    index % 2 === 0 ? 'md:justify-start' : 'md:justify-end'
                   }`}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                 >
-                  {/* Timeline Node */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-amber-500 rounded-full z-10 shadow-lg">
+                  {/* Timeline Node - Desktop */}
+                  <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-amber-500 rounded-full z-10 shadow-lg">
+                    <div className="w-full h-full bg-amber-500 rounded-full animate-pulse"></div>
+                  </div>
+
+                  {/* Timeline Node - Mobile */}
+                  <div className="md:hidden absolute left-3 w-6 h-6 bg-white border-4 border-amber-500 rounded-full z-10 shadow-lg">
                     <div className="w-full h-full bg-amber-500 rounded-full animate-pulse"></div>
                   </div>
 
                   {/* Content Card */}
                   <motion.div
-                    className={`w-5/12 ${index % 2 === 0 ? 'mr-auto pr-8' : 'ml-auto pl-8'}`}
+                    className={`w-full pl-16 md:pl-0 md:w-5/12 ${
+                      index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
+                    }`}
                     whileHover={{ scale: 1.05, y: -5 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="bg-gradient-to-br from-white to-amber-50 rounded-2xl p-6 shadow-lg border border-amber-100 hover:shadow-xl transition-all duration-300">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="text-3xl">{event.icon}</div>
-                        <div>
-                          <div className="text-2xl font-bold text-amber-700">{event.year}</div>
-                          <div className="text-lg font-semibold text-gray-800">{event.title}</div>
+                    <div className="bg-gradient-to-br from-white to-amber-50 rounded-2xl p-4 md:p-6 shadow-lg border border-amber-100 hover:shadow-xl transition-all duration-300">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+                        <div className="text-2xl md:text-3xl">{event.icon}</div>
+                        <div className="min-w-0 flex-1">
+                          <div className="text-xl md:text-2xl font-bold text-amber-700">{event.year}</div>
+                          <div className="text-base md:text-lg font-semibold text-gray-800">{event.title}</div>
                         </div>
                       </div>
-                      <p className="text-gray-600 leading-relaxed">{event.description}</p>
+                      <p className="text-sm md:text-base text-gray-600 leading-relaxed">{event.description}</p>
                     </div>
                   </motion.div>
                 </motion.div>
