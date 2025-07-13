@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * Halaman Alur Farmasi - RSUD M. Natsir Solok
+ * Updated: 2025-07-13
+ * Fitur: Panduan lengkap pelayanan farmasi dengan pharmaceutical care
+ */
+
 import React, { useState } from 'react';
 import { ArrowRightIcon, CheckCircleIcon, ClockIcon, CubeIcon, DocumentTextIcon, ComputerDesktopIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import PageLayout from '@/components/PageLayout';

@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * Halaman Alur Laboratorium - RSUD M. Natsir Solok
+ * Updated: 2025-07-13
+ * Fitur: Panduan lengkap pemeriksaan laboratorium dengan berbagai kategori tes
+ */
+
 import React, { useState } from 'react';
 import { ArrowRightIcon, CheckCircleIcon, ClockIcon, BeakerIcon, DocumentTextIcon, ComputerDesktopIcon, TruckIcon } from '@heroicons/react/24/outline';
 import PageLayout from '@/components/PageLayout';

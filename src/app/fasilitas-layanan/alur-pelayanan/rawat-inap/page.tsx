@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * Halaman Alur Rawat Inap - RSUD M. Natsir Solok
+ * Updated: 2025-07-13
+ * Fitur: Panduan lengkap alur penerimaan rawat inap dengan info kelas kamar
+ */
+
 import React, { useState } from 'react';
 import { ArrowRightIcon, CheckCircleIcon, ClockIcon, HomeIcon, DocumentTextIcon, UserGroupIcon, BuildingOfficeIcon } from '@heroicons/react/24/outline';
 import PageLayout from '@/components/PageLayout';

@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * Halaman Alur Rawat Jalan - RSUD M. Natsir Solok
+ * Updated: 2025-07-13
+ * Fitur: Panduan lengkap alur pelayanan rawat jalan dengan tab navigasi
+ */
+
 import PageLayout from '@/components/PageLayout';
 import React, { useState } from 'react';
 import { 

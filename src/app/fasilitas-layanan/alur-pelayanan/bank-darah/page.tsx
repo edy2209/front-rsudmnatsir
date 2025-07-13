@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * Halaman Alur Bank Darah - RSUD M. Natsir Solok
+ * Updated: 2025-07-13
+ * Fitur: Panduan lengkap donasi dan pelayanan bank darah dengan safety protocols
+ */
+
 import React, { useState } from 'react';
 import { ArrowRightIcon, CheckCircleIcon, ClockIcon, HeartIcon, DocumentTextIcon, BeakerIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import PageLayout from '@/components/PageLayout';

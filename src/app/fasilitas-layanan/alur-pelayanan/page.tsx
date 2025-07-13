@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * Halaman Alur Pelayanan Utama - RSUD M. Natsir Solok
+ * Updated: 2025-07-13
+ * Fitur: Grid navigasi modern dengan animasi dan responsif design
+ */
+
 import PageLayout from '@/components/PageLayout';
 import Link from 'next/link';
 import { 

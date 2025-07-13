@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * Halaman Alur PONEK - RSUD M. Natsir Solok
+ * Updated: 2025-07-13
+ * Fitur: Protokol pelayanan obstetri neonatal emergensi komprehensif
+ */
+
 import React, { useState } from 'react';
 import { ArrowRightIcon, CheckCircleIcon, ClockIcon, HeartIcon, UserGroupIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import PageLayout from '@/components/PageLayout';

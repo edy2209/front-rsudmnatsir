@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * Halaman Alur Admission - RSUD M. Natsir Solok
+ * Updated: 2025-07-13
+ * Fitur: Step-by-step guide interaktif untuk proses admission rawat inap
+ */
+
 import PageLayout from '@/components/PageLayout';
 import React, { useState } from 'react';
 import { 

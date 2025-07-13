@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * Halaman Alur Radiologi - RSUD M. Natsir Solok
+ * Updated: 2025-07-13
+ * Fitur: Panduan pemeriksaan radiologi lengkap dengan berbagai modalitas
+ */
+
 import React, { useState } from 'react';
 import { ArrowRightIcon, CheckCircleIcon, ClockIcon, CameraIcon, DocumentTextIcon, ComputerDesktopIcon } from '@heroicons/react/24/outline';
 import PageLayout from '@/components/PageLayout';

@@ -1,5 +1,12 @@
 'use client';
 
+/**
+ * Halaman Klinik Paru - RSUD M. Natsir Solok
+ * Updated: 2025-07-13
+ * Fitur: Layanan klinik paru komprehensif dengan teknologi modern
+ * Added: Responsive design, interactive tabs, consultation form
+ */
+
 import PageLayout from '@/components/PageLayout';
 import { useState } from 'react';
 import { 

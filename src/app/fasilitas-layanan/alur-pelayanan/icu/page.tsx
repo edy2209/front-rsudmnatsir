@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * Halaman Alur ICU - RSUD M. Natsir Solok
+ * Updated: 2025-07-13
+ * Fitur: Panduan masuk ICU dengan info berbagai unit perawatan intensif
+ */
+
 import React, { useState } from 'react';
 import { ArrowRightIcon, CheckCircleIcon, ClockIcon, HeartIcon, DocumentTextIcon, UserGroupIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import PageLayout from '@/components/PageLayout';
