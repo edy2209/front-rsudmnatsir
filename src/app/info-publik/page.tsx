@@ -179,6 +179,14 @@ export default function InfoPublikPage() {
   const [activeCategory, setActiveCategory] = useState('semua');
   const [searchTerm, setSearchTerm] = useState('');
 
+  // Utility function untuk format angka yang konsisten
+  const formatNumber = (num: number) => {
+    if (num >= 1000) {
+      return `${(num / 1000).toFixed(1)}K`;
+    }
+    return num.toString();
+  };
+
   const filteredData = informasiPublikData.filter(item => {
     const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          item.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -408,7 +416,7 @@ export default function InfoPublikPage() {
                         </div>
                         <div className="flex items-center gap-1">
                           <ArrowDownTrayIcon className="w-4 h-4" />
-                          {item.downloads.toLocaleString()}
+                          {formatNumber(item.downloads)}
                         </div>
                       </div>
                       
@@ -468,7 +476,7 @@ export default function InfoPublikPage() {
                           </div>
                           <div className="flex items-center gap-1">
                             <ArrowDownTrayIcon className="w-4 h-4" />
-                            {item.downloads.toLocaleString()} unduhan
+                            {formatNumber(item.downloads)} unduhan
                           </div>
                         </div>
                       </div>
