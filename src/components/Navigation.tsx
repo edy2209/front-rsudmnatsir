@@ -402,23 +402,59 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${baseClasses} ${className}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Logo Section - Always visible */}
-        <div className={`flex items-center justify-between py-4 transition-all duration-300 ${isScrolled ? 'border-b border-gray-200/30' : ''}`}>
-          <Link href={routes.home} className="flex items-center space-x-4 group">
-            <div className={`${isScrolled ? 'w-12 h-12' : 'w-14 h-14'} bg-gradient-to-r from-blue-600 to-green-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105`}>
-              <span className={`text-white font-bold ${isScrolled ? 'text-xl' : 'text-2xl'} transition-all duration-300`}>R</span>
+        <div className={`flex items-center justify-between ${isScrolled ? 'py-2' : 'py-3'} transition-all duration-300 ${isScrolled ? 'border-b border-gray-200/30' : ''}`}>
+          <Link href={routes.home} className="flex items-center space-x-3 group">
+            {/* Logo - Much bigger and wider, mobile stays consistent */}
+            <div className={`${isScrolled ? 'md:w-20 md:h-16 w-28 h-20' : 'w-28 h-20'} transition-all duration-300 group-hover:scale-105 flex-shrink-0`}>
+              <img
+                src="/images/logos/logo1.webp"
+                alt="Logo RSUD M. Natsir"
+                className="w-full h-full object-contain drop-shadow-lg"
+                onError={(e) => {
+                  // Fallback ke placeholder SVG jika PNG tidak ditemukan
+                  const target = e.target as HTMLImageElement;
+                  target.src = '/images/logos/logo-rsud-placeholder.svg';
+                  target.onerror = () => {
+                    // Jika SVG jika gagal, tampilkan fallback HTML
+                    target.style.display = 'none';
+                    const fallback = target.nextElementSibling as HTMLElement;
+                    if (fallback) fallback.style.display = 'flex';
+                  };
+                }}
+              />
+              {/* Fallback untuk logo */}
+              <div className={`${isScrolled ? 'md:w-20 md:h-16 w-28 h-20' : 'w-28 h-20'} bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 hidden`}>
+                <span className={`text-white font-bold ${isScrolled ? 'md:text-2xl text-4xl' : 'text-4xl'} transition-all duration-300`}>R</span>
+              </div>
             </div>
-            <div>
-              <h1 className={`${isScrolled ? 'text-xl' : 'text-2xl'} font-bold text-gray-800 group-hover:text-blue-600 transition-all duration-300`}>RSUD M. Natsir</h1>
-              <p className={`${isScrolled ? 'text-xs' : 'text-sm'} text-gray-600 leading-tight transition-all duration-300`}>Rumah Sakit Umum Daerah</p>
+
+            {/* Text Section - Hidden on mobile, smaller text on desktop */}
+            <div className="hidden md:flex flex-1 min-w-0 flex-col">
+              <h1 className={`${isScrolled ? 'text-xs' : 'text-sm'} font-medium text-green-700 group-hover:text-green-600 transition-all duration-300 leading-tight truncate`}>
+                WEBSITE RSUD MOHAMMAD NATSIR
+              </h1>
+              <div className={`${isScrolled ? 'text-xs' : 'text-xs'} text-green-600 leading-tight transition-all duration-300 truncate`}>
+                Alamat : Jl. Simpang Rumbio, Kota Solok | Telp. (0755) 20003
+              </div>
             </div>
           </Link>
+
+          {/* Call Center - Desktop only, inline style matching address */}
+          <div className="hidden md:flex items-center space-x-1 text-green-600">
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21L8.16 10.97a14.032 14.032 0 005.869 5.869l1.585-2.064a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <span className={`${isScrolled ? 'text-xs' : 'text-xs'} transition-all duration-300`}>
+              Call Center : (0755) 20003
+            </span>
+          </div>
           
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Consistent size on mobile */}
           <button 
-            className="lg:hidden p-2 rounded-lg hover:bg-blue-50/50 transition-colors duration-200"
+            className={`md:hidden p-2 rounded-lg hover:bg-blue-50/50 transition-all duration-200 ${isScrolled ? 'md:w-8 md:h-8 w-10 h-10' : 'w-10 h-10'} flex items-center justify-center`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <div className="w-6 h-6 flex flex-col justify-center items-center">
+            <div className={`${isScrolled ? 'md:w-5 md:h-5 w-6 h-6' : 'w-6 h-6'} flex flex-col justify-center items-center transition-all duration-300`}>
               <span className={`w-full h-0.5 bg-gray-600 rounded-full mb-1.5 transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
               <span className={`w-full h-0.5 bg-gray-600 rounded-full mb-1.5 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
               <span className={`w-full h-0.5 bg-gray-600 rounded-full transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
@@ -427,14 +463,14 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
         </div>
 
         {/* Desktop Menu - Show/Hide based on scroll state */}
-        <div className={`hidden lg:block transition-all duration-300 ${showMenu ? 'max-h-20 opacity-100 py-3' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+        <div className={`hidden md:block transition-all duration-300 ${showMenu ? 'max-h-20 opacity-100 py-3' : 'max-h-0 opacity-0 overflow-hidden'}`}>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             {menuItems.map(item => renderMenuItem(item))}
           </div>
         </div>
 
         {/* Mobile Menu */}
-        <div className={`lg:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
           <div className="pt-4 pb-4 space-y-2 max-h-96 overflow-y-auto bg-white/95 backdrop-blur-md rounded-xl mt-4 border border-gray-200/50 shadow-xl mx-2">
             <div className="px-2">
               {menuItems.map(item => renderMobileMenuItem(item))}
