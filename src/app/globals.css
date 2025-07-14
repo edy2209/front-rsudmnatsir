@@ -133,6 +133,15 @@ html {
   }
 }
 
+@keyframes marquee-mobile-instant {
+  0% {
+    transform: translateX(10%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 .animate-marquee {
   animation: marquee 35s linear infinite;
 }
@@ -148,6 +157,17 @@ html {
   white-space: nowrap;
   display: inline-block;
   animation: marquee 35s linear infinite;
+}
+
+/* Mobile responsive marquee - text visible from start but same speed as desktop */
+@media (max-width: 768px) {
+  .marquee-content {
+    animation: marquee-mobile-instant 35s linear infinite;
+  }
+  
+  .animate-marquee {
+    animation: marquee-mobile-instant 35s linear infinite;
+  }
 }
 
 .speaker-icon {
