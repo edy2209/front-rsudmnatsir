@@ -260,7 +260,7 @@ export default function BerandaPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 relative overflow-hidden" id="hero-section">
+      <section className="pt-20 md:pt-32 pb-20 px-4 relative overflow-hidden" id="hero-section">
         {/* Background Animation */}
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
@@ -275,7 +275,7 @@ export default function BerandaPage() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.h1 
-              className="text-3xl md:text-7xl font-bold text-gray-800 mb-6 leading-tight"
+              className="text-5xl md:text-7xl font-bold text-gray-800 mb-6 leading-tight"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={heroInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
@@ -301,7 +301,7 @@ export default function BerandaPage() {
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <p className="text-lg md:text-3xl text-gray-600 mb-4 font-medium">
+              <p className="text-2xl md:text-3xl text-gray-600 mb-4 font-medium">
                 Melayani dengan{" "}
                 <motion.span 
                   className="text-red-500 inline-block"
@@ -313,7 +313,7 @@ export default function BerandaPage() {
                 , Mengobati dengan{" "}
                 <span className="text-blue-600 font-semibold">Profesional</span>
               </p>
-              <p className="text-sm md:text-lg text-gray-500 mb-12 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg text-gray-500 mb-12 max-w-3xl mx-auto leading-relaxed">
                 Rumah Sakit Umum Daerah terdepan dengan pelayanan kesehatan berkualitas, 
                 teknologi modern, dan tenaga medis profesional untuk kesehatan Anda dan keluarga.
               </p>
@@ -334,7 +334,7 @@ export default function BerandaPage() {
                 variants={itemVariants}
                 whileHover={{ scale: 1.05, y: -5 }}
               >
-                <div className="text-2xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-2">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-2">
                   {heroInView ? (
                     <CountUp 
                       end={stat.number} 
@@ -408,7 +408,7 @@ export default function BerandaPage() {
                 transition={{ duration: 0.8 }}
               >
                 <div className="text-center mb-12">
-                  <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-4">
+                  <h2 className="text-4xl font-bold text-gray-800 mb-4">
                     <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                       Berita Utama
                     </span>
@@ -577,7 +577,7 @@ export default function BerandaPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
               <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                 Informasi
               </span>
@@ -634,7 +634,7 @@ export default function BerandaPage() {
             animate={servicesInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
               <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                 Layanan Unggulan
               </span>
