@@ -50,12 +50,10 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
   // Add padding to body to prevent content overlap
   useEffect(() => {
     const updateBodyPadding = () => {
-      if (typeof window !== 'undefined') {
-        const navbar = document.querySelector('nav');
-        if (navbar) {
-          const navbarHeight = navbar.offsetHeight;
-          document.body.style.paddingTop = `${navbarHeight}px`;
-        }
+      const navbar = document.querySelector('nav');
+      if (navbar) {
+        const navbarHeight = navbar.offsetHeight;
+        document.body.style.paddingTop = `${navbarHeight}px`;
       }
     };
 
@@ -64,9 +62,7 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
     
     return () => {
       window.removeEventListener('resize', updateBodyPadding);
-      if (typeof window !== 'undefined') {
-        document.body.style.paddingTop = '0px';
-      }
+      document.body.style.paddingTop = '0px';
     };
   }, [isScrolled]);
 
