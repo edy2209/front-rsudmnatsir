@@ -2,8 +2,27 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "RSUD M. Natsir - Sistem Informasi Rumah Sakit",
-  description: "Sistem Informasi Manajemen Rumah Sakit Umum Daerah M. Natsir",
+  title: "RSUD M. Natsir - Rumah Sakit Umum Daerah",
+  description: "Rumah Sakit Umum Daerah M. Natsir - Melayani dengan Hati, Mengobati dengan Profesional",
+  icons: {
+    icon: [
+      {
+        url: '/images/logos/logo1.webp',
+        sizes: '32x32',
+        type: 'image/webp',
+      },
+      {
+        url: '/images/logos/logo1.webp',
+        sizes: '16x16',
+        type: 'image/webp',
+      }
+    ],
+    apple: {
+      url: '/images/logos/logo1.webp',
+      sizes: '180x180',
+      type: 'image/webp',
+    }
+  },
 };
 
 export default function RootLayout({

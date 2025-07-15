@@ -29,6 +29,21 @@ import {
   ExclamationTriangleIcon
 } from '@heroicons/react/24/outline';
 
+// Fungsi untuk format angka yang konsisten
+const formatNumber = (num: number): string => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
+
+// Fungsi untuk format tanggal yang konsisten
+const formatDate = (dateString: string): string => {
+  const date = new Date(dateString);
+  const months = [
+    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+  ];
+  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+};
+
 // Data informasi publik dummy
 const informasiPublikData = [
   {
@@ -402,13 +417,13 @@ export default function InfoPublikPage() {
                         <div className="flex items-center gap-4">
                           <div className="flex items-center gap-1">
                             <CalendarDaysIcon className="w-4 h-4" />
-                            {new Date(item.date).toLocaleDateString('id-ID')}
+                            {formatDate(item.date)}
                           </div>
                           <span>{item.size}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <ArrowDownTrayIcon className="w-4 h-4" />
-                          {item.downloads.toLocaleString()}
+                          {formatNumber(item.downloads)}
                         </div>
                       </div>
                       
@@ -456,11 +471,10 @@ export default function InfoPublikPage() {
                         <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
                           <div className="flex items-center gap-1">
                             <CalendarDaysIcon className="w-4 h-4" />
-                            {new Date(item.date).toLocaleDateString('id-ID', {
-                              day: 'numeric',
-                              month: 'long',
-                              year: 'numeric'
-                            })}
+                          <div className="flex items-center gap-1">
+                            <CalendarDaysIcon className="w-4 h-4" />
+                            {formatDate(item.date)}
+                          </div>
                           </div>
                           <div className="flex items-center gap-1">
                             <DocumentTextIcon className="w-4 h-4" />
@@ -468,7 +482,7 @@ export default function InfoPublikPage() {
                           </div>
                           <div className="flex items-center gap-1">
                             <ArrowDownTrayIcon className="w-4 h-4" />
-                            {item.downloads.toLocaleString()} unduhan
+                            {formatNumber(item.downloads)} unduhan
                           </div>
                         </div>
                       </div>
