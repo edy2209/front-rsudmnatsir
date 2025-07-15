@@ -236,6 +236,116 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
   const renderMenuItem = (item: MenuItem, level: number = 0) => {
     const hasChildren = item.children && item.children.length > 0;
     
+    // Function to get icon for menu items
+    const getMenuIcon = (label: string, level: number = 0) => {
+      const iconMap: { [key: string]: string } = {
+        // Main menu icons
+        'Fasilitas dan Layanan': '🏥',
+        'Tentang Kami': '🏢',
+        'Galeri': '📸',
+        'Info Publik': '📋',
+        'Sakip': '📊',
+        'WBK dan WBBM': '🛡️',
+        'Informasi Kesehatan': '📚',
+        'PPID': '📁',
+        
+        // Sub menu icons - Fasilitas dan Layanan
+        'Layanan Unggulan': '⭐',
+        'Rawat Jalan': '🚶‍♂️',
+        'Rawat Inap': '🛏️',
+        'Fasilitas Umum': '🏢',
+        'Pelayanan Penunjang': '⚕️',
+        'Alur Pelayanan': '🔄',
+        
+        // Rawat Jalan sub-sub menu
+        'Klinik Penyakit Dalam': '🩺',
+        'Klinik Bedah': '⚔️',
+        'Klinik Mata': '👁️',
+        'Klinik THT': '👂',
+        'Klinik Neurologi': '🧠',
+        'Klinik Kebidanan': '👶',
+        'Klinik Anak': '🧸',
+        'Klinik Gizi': '🥗',
+        'Klinik Jantung': '❤️',
+        'Klinik Paru': '🫁',
+        'Klinik VCT': '🔬',
+        
+        // Rawat Inap sub-sub menu
+        'Rawat Inap Interne Wanita': '👩‍⚕️',
+        'Rawat Inap Interne Pria': '👨‍⚕️',
+        'Rawat Inap Bedah': '🏥',
+        'Rawat Inap Mata': '👁️',
+        'Rawat Inap THT': '👂',
+        'Rawat Inap Neurologi': '🧠',
+        'Rawat Inap Kebidanan': '👶',
+        'Rawat Inap Anak': '🧸',
+        'Rawat Inap Jantung': '❤️',
+        'Rawat Inap Paru': '🫁',
+        
+        // Fasilitas Umum
+        'Apotik/Farmasi': '💊',
+        'Masjid': '🕌',
+        'Kantin': '🍽️',
+        'Parkir': '🚗',
+        
+        // Pelayanan Penunjang
+        'Laboratorium': '🔬',
+        'Radiologi': '📡',
+        'Kamar Operasi': '⚔️',
+        'Fisiotherapi': '🏃‍♂️',
+        
+        // Tentang Kami
+        'Visi, Misi dan Logo': '🎯',
+        'Penghargaan dan Prestasi': '🏆',
+        'Denah dan Lokasi': '🗺️',
+        'Manajemen': '👥',
+        'Sejarah RSUD M.Natsir': '📜',
+        'Profil': '📋',
+        'Kerja Sama': '🤝',
+        
+        // Galeri
+        'Video': '🎬',
+        'Images': '🖼️',
+        'Agenda/Kegiatan': '📅',
+        'Arsip': '📂',
+        'Pengumuman': '📢',
+        
+        // WBK dan WBBM
+        'Whistleblower System': '📞',
+        'Gratifikasi': '💰',
+        'Benturan Kepentingan': '⚖️',
+        
+        // Informasi Kesehatan
+        'Media Promkes': '📺',
+        'Inovasi': '💡',
+        'Video Kesehatan': '🎥',
+        
+        // Media Promkes sub menu
+        'Leaflet': '📄',
+        'Banner': '🎌',
+        'Poster/Spanduk': '🪧',
+        'Buku Saku': '📖',
+        
+        // PPID
+        'Informasi Berkala': '⏰',
+        'Informasi Setiap Saat': '⚡',
+        'Informasi Serta Merta': '📨',
+        
+        // Alur Pelayanan sub menu
+        'Alur Rawat Jalan': '🚶‍♂️',
+        'Alur Rawat Inap': '🛏️',
+        'ICU': '🏥',
+        'Alur Farmasi': '💊',
+        'Alur Laboratorium': '🔬',
+        'PONEK': '👶',
+        'Admission': '📝',
+        'Bank Darah': '🩸',
+        'Alur Radiologi': '📡',
+      };
+      
+      return iconMap[label] || '📍';
+    };
+    
     if (hasChildren) {
       return (
         <div key={item.label} className="relative group">
@@ -256,7 +366,10 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
                   {child.children ? (
                     <>
                       <div className="w-full text-left px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors flex items-center justify-between cursor-pointer">
-                        <span className="text-sm">{child.label}</span>
+                        <div className="flex items-center gap-3">
+                          <span className="text-lg">{getMenuIcon(child.label, level + 1)}</span>
+                          <span className="text-sm">{child.label}</span>
+                        </div>
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
@@ -269,7 +382,10 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
                               {grandChild.children ? (
                                 <>
                                   <div className="w-full text-left px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors flex items-center justify-between cursor-pointer">
-                                    <span className="text-sm">{grandChild.label}</span>
+                                    <div className="flex items-center gap-3">
+                                      <span className="text-lg">{getMenuIcon(grandChild.label, level + 2)}</span>
+                                      <span className="text-sm">{grandChild.label}</span>
+                                    </div>
                                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                     </svg>
@@ -281,10 +397,11 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
                                         <Link
                                           key={greatGrandChild.label}
                                           href={greatGrandChild.href || '#'}
-                                          className="block px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors text-sm"
+                                          className="flex items-center gap-3 px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors text-sm"
                                           {...(greatGrandChild.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                                         >
-                                          {greatGrandChild.label}
+                                          <span className="text-lg">{getMenuIcon(greatGrandChild.label, level + 3)}</span>
+                                          <span>{greatGrandChild.label}</span>
                                         </Link>
                                       ))}
                                     </div>
@@ -293,10 +410,11 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
                               ) : (
                                 <Link
                                   href={grandChild.href || '#'}
-                                  className="block px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors text-sm"
+                                  className="flex items-center gap-3 px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors text-sm"
                                   {...(grandChild.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                                 >
-                                  {grandChild.label}
+                                  <span className="text-lg">{getMenuIcon(grandChild.label, level + 2)}</span>
+                                  <span>{grandChild.label}</span>
                                 </Link>
                               )}
                             </div>
@@ -307,10 +425,11 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
                   ) : (
                     <Link
                       href={child.href || '#'}
-                      className="block px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors text-sm"
+                      className="flex items-center gap-3 px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors text-sm"
                       {...(child.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     >
-                      {child.label}
+                      <span className="text-lg">{getMenuIcon(child.label, level + 1)}</span>
+                      <span>{child.label}</span>
                     </Link>
                   )}
                 </div>
@@ -337,6 +456,116 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
     const hasChildren = item.children && item.children.length > 0;
     const isOpen = openDropdowns.includes(`${item.label}-${level}`);
     
+    // Function to get icon for menu items (reuse from desktop)
+    const getMenuIcon = (label: string, level: number = 0) => {
+      const iconMap: { [key: string]: string } = {
+        // Main menu icons
+        'Fasilitas dan Layanan': '🏥',
+        'Tentang Kami': '🏢',
+        'Galeri': '📸',
+        'Info Publik': '📋',
+        'Sakip': '📊',
+        'WBK dan WBBM': '🛡️',
+        'Informasi Kesehatan': '📚',
+        'PPID': '📁',
+        
+        // Sub menu icons - Fasilitas dan Layanan
+        'Layanan Unggulan': '⭐',
+        'Rawat Jalan': '🚶‍♂️',
+        'Rawat Inap': '🛏️',
+        'Fasilitas Umum': '🏢',
+        'Pelayanan Penunjang': '⚕️',
+        'Alur Pelayanan': '🔄',
+        
+        // Rawat Jalan sub-sub menu
+        'Klinik Penyakit Dalam': '🩺',
+        'Klinik Bedah': '⚔️',
+        'Klinik Mata': '👁️',
+        'Klinik THT': '👂',
+        'Klinik Neurologi': '🧠',
+        'Klinik Kebidanan': '👶',
+        'Klinik Anak': '🧸',
+        'Klinik Gizi': '🥗',
+        'Klinik Jantung': '❤️',
+        'Klinik Paru': '🫁',
+        'Klinik VCT': '🔬',
+        
+        // Rawat Inap sub-sub menu
+        'Rawat Inap Interne Wanita': '👩‍⚕️',
+        'Rawat Inap Interne Pria': '👨‍⚕️',
+        'Rawat Inap Bedah': '🏥',
+        'Rawat Inap Mata': '👁️',
+        'Rawat Inap THT': '👂',
+        'Rawat Inap Neurologi': '🧠',
+        'Rawat Inap Kebidanan': '👶',
+        'Rawat Inap Anak': '🧸',
+        'Rawat Inap Jantung': '❤️',
+        'Rawat Inap Paru': '🫁',
+        
+        // Fasilitas Umum
+        'Apotik/Farmasi': '💊',
+        'Masjid': '🕌',
+        'Kantin': '🍽️',
+        'Parkir': '🚗',
+        
+        // Pelayanan Penunjang
+        'Laboratorium': '🔬',
+        'Radiologi': '📡',
+        'Kamar Operasi': '⚔️',
+        'Fisiotherapi': '🏃‍♂️',
+        
+        // Tentang Kami
+        'Visi, Misi dan Logo': '🎯',
+        'Penghargaan dan Prestasi': '🏆',
+        'Denah dan Lokasi': '🗺️',
+        'Manajemen': '👥',
+        'Sejarah RSUD M.Natsir': '📜',
+        'Profil': '📋',
+        'Kerja Sama': '🤝',
+        
+        // Galeri
+        'Video': '🎬',
+        'Images': '🖼️',
+        'Agenda/Kegiatan': '📅',
+        'Arsip': '📂',
+        'Pengumuman': '📢',
+        
+        // WBK dan WBBM
+        'Whistleblower System': '📞',
+        'Gratifikasi': '💰',
+        'Benturan Kepentingan': '⚖️',
+        
+        // Informasi Kesehatan
+        'Media Promkes': '📺',
+        'Inovasi': '💡',
+        'Video Kesehatan': '🎥',
+        
+        // Media Promkes sub menu
+        'Leaflet': '📄',
+        'Banner': '🎌',
+        'Poster/Spanduk': '🪧',
+        'Buku Saku': '📖',
+        
+        // PPID
+        'Informasi Berkala': '⏰',
+        'Informasi Setiap Saat': '⚡',
+        'Informasi Serta Merta': '📨',
+        
+        // Alur Pelayanan sub menu
+        'Alur Rawat Jalan': '🚶‍♂️',
+        'Alur Rawat Inap': '🛏️',
+        'ICU': '🏥',
+        'Alur Farmasi': '💊',
+        'Alur Laboratorium': '🔬',
+        'PONEK': '👶',
+        'Admission': '📝',
+        'Bank Darah': '🩸',
+        'Alur Radiologi': '📡',
+      };
+      
+      return iconMap[label] || '📍';
+    };
+    
     if (hasChildren) {
       return (
         <div key={`${item.label}-${level}`} className={`${level > 0 ? 'ml-3' : ''}`}>
@@ -344,7 +573,11 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
             className="flex items-center justify-between w-full px-3 py-3 text-left text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-green-50 rounded-lg transition-all duration-200 font-medium group"
             onClick={() => toggleDropdown(`${item.label}-${level}`)}
           >
-            <span className="text-sm">{item.label}</span>
+            <div className="flex items-center gap-3">
+              {/* Icon hanya untuk submenu (level > 0), tidak untuk menu utama */}
+              {level > 0 && <span className="text-lg">{getMenuIcon(item.label, level)}</span>}
+              <span className="text-sm">{item.label}</span>
+            </div>
             <svg 
               className={`w-4 h-4 transition-all duration-300 ${isOpen ? 'rotate-180 text-blue-600' : 'group-hover:text-blue-600'}`}
               fill="none" 
@@ -374,13 +607,15 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
       <Link
         key={`${item.label}-${level}`}
         href={item.href || '#'}
-        className={`block px-3 py-3 text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-green-50 rounded-lg transition-all duration-200 text-sm border-l-2 border-transparent hover:border-blue-400 ${
+        className={`flex items-center gap-3 px-3 py-3 text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-green-50 rounded-lg transition-all duration-200 text-sm border-l-2 border-transparent hover:border-blue-400 ${
           level > 0 ? 'ml-2' : ''
         }`}
         onClick={() => setIsMobileMenuOpen(false)}
         {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       >
-        {item.label}
+        {/* Icon hanya untuk submenu (level > 0), tidak untuk menu utama */}
+        {level > 0 && <span className="text-lg">{getMenuIcon(item.label, level)}</span>}
+        <span>{item.label}</span>
       </Link>
     );
   };
