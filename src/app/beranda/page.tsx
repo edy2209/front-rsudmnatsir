@@ -20,14 +20,194 @@ import {
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
+// Auto Image Slider Component
+function AutoImageSlider() {
+  const [currentImage, setCurrentImage] = useState(0);
+  
+  const images = [
+    {
+      src: "/images/logos/logobaru.jpg",
+      alt: "RSUD M. Natsir"
+    },
+    {
+      src: "/images/logos/logobaru2.jpg",
+      alt: "RSUD M. Natsir Fasilitas"
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 5000); // Berganti setiap 5 detik
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  return (
+    <div className="order-2 lg:order-2 relative w-full h-[300px] lg:h-[400px] overflow-hidden rounded-xl">
+      {images.map((image, index) => (
+        <motion.div
+          key={index}
+          className="absolute inset-0"
+          initial={{ opacity: index === 0 ? 1 : 0 }}
+          animate={{ 
+            opacity: currentImage === index ? 1 : 0 
+          }}
+          transition={{ 
+            duration: 1.5, 
+            ease: "easeInOut" 
+          }}
+        >
+          <img
+            src={image.src}
+            alt={image.alt}
+            className="w-full h-full object-contain"
+          />
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+// Hero Carousel Component
+function HeroCarousel() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  const images = [
+    {
+      src: "/images/hero-image-1.jpg", // Placeholder - nanti bisa diganti dengan gambar yang sesuai
+      alt: "RSUD M. Natsir Fasilitas",
+      fallback: "bg-gradient-to-br from-blue-500 via-blue-600 to-cyan-600"
+    },
+    {
+      src: "/images/hero-image-2.jpg", // Placeholder - nanti bisa diganti dengan gambar dokter
+      alt: "Tim Dokter RSUD M. Natsir",
+      fallback: "bg-gradient-to-br from-green-500 via-emerald-600 to-teal-600"
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % images.length);
+    }, 3000); // Berganti setiap 3 detik
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div className="relative w-full h-[60vh] lg:h-[70vh] rounded-2xl overflow-hidden shadow-2xl">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentSlide}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="absolute inset-0"
+        >
+          {/* Fallback gradient background */}
+          <div className={`w-full h-full ${images[currentSlide].fallback}`}>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center text-white">
+                <div className="text-6xl mb-4">
+                  {currentSlide === 0 ? '🏥' : '👨‍⚕️'}
+                </div>
+                <h3 className="text-2xl font-bold opacity-90">
+                  {images[currentSlide].alt}
+                </h3>
+              </div>
+            </div>
+          </div>
+          
+          {/* Actual image (will show when available) */}
+          <img
+            src={images[currentSlide].src}
+            alt={images[currentSlide].alt}
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+            onLoad={(e) => {
+              const fallbackDiv = e.currentTarget.previousElementSibling as HTMLElement;
+              if (fallbackDiv) {
+                fallbackDiv.style.display = 'none';
+              }
+            }}
+          />
+          
+          {/* Overlay gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Navigation Buttons */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white/30 transition-all duration-300"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white/30 transition-all duration-300"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      {/* Indicators */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentSlide 
+                ? 'bg-white scale-110' 
+                : 'bg-white/50 hover:bg-white/70'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function BerandaPage() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [showMarquee, setShowMarquee] = useState(true);
   
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1, triggerOnce: true });
   const { ref: galleryRef, inView: galleryInView } = useInView({ threshold: 0.1, triggerOnce: true });
   const { ref: newsRef, inView: newsInView } = useInView({ threshold: 0.1, triggerOnce: true });
   const { ref: servicesRef, inView: servicesInView } = useInView({ threshold: 0.1, triggerOnce: true });
+
+  // Load marquee preference from localStorage
+  useEffect(() => {
+    const marqueePreference = localStorage.getItem('hideMarquee');
+    if (marqueePreference === 'true') {
+      setShowMarquee(false);
+    }
+  }, []);
+
+  // Save marquee preference when user closes it
+  const handleCloseMarquee = () => {
+    setShowMarquee(false);
+    localStorage.setItem('hideMarquee', 'true');
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -210,11 +390,11 @@ export default function BerandaPage() {
             exit={{ opacity: 0, scale: 0.5, y: 100 }}
             whileHover={{ 
               scale: 1.1,
-              boxShadow: "0 10px 30px rgba(59, 130, 246, 0.5)"
+              boxShadow: "0 10px 30px rgba(34, 197, 94, 0.5)"
             }}
             whileTap={{ scale: 0.9 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-40 group"
+            className="fixed bottom-8 right-8 bg-gradient-to-r from-green-600 to-green-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-40 group"
           >
             <motion.div
               animate={{ y: [0, -3, 0] }}
@@ -248,110 +428,89 @@ export default function BerandaPage() {
       <Navigation variant="default" />
 
       {/* Marquee Announcement */}
-      <div className="marquee-container py-2 md:py-3 relative overflow-hidden">
-        <SpeakerWaveIcon className="speaker-icon h-4 w-4 md:h-6 md:w-6 text-white" />
-        <div className="relative">
-          <div className="marquee-content">
-            <span className="text-xs md:text-base font-medium text-white">
-              🏥 Selamat Datang di Website RSUD Mohammad Natsir • 📍 Jl. Lintas Sumatra Simpang Rumbio, Kota Solok • 📞 Layanan 24 Jam • ✨ Melayani dengan Hati •
-            </span>
-          </div>
-        </div>
-      </div>
+      <AnimatePresence>
+        {showMarquee && (
+          <motion.div 
+            className="marquee-container py-2 md:py-3 relative overflow-hidden"
+            initial={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          >
+            <SpeakerWaveIcon className="speaker-icon h-4 w-4 md:h-6 md:w-6 text-white" />
+            <div className="relative">
+              <div className="marquee-content">
+                <span className="text-xs md:text-base font-medium text-white">
+                  🏥 Selamat Datang di Website RSUD Mohammad Natsir • 📍 Jl. Lintas Sumatra Simpang Rumbio, Kota Solok • 📞 Layanan 24 Jam • ✨ Melayani dengan Hati •
+                </span>
+              </div>
+            </div>
+            
+            {/* Close Button */}
+            <motion.button
+              onClick={handleCloseMarquee}
+              className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-200 transition-colors duration-200 z-10"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Tutup pengumuman"
+            >
+              <svg 
+                className="w-5 h-5 md:w-6 md:h-6" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M6 18L18 6M6 6l12 12" 
+                />
+              </svg>
+            </motion.button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Hero Section */}
-      <section className="pt-20 md:pt-32 pb-20 px-4 relative overflow-hidden" id="hero-section">
-        {/* Background Animation */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-          <div className="absolute top-32 right-10 w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-          <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-        </div>
+      <motion.section 
+        className={`flex items-center px-4 bg-white relative overflow-hidden ${
+          showMarquee ? 'min-h-screen' : 'min-h-screen'
+        }`}
+        id="hero-section"
+        animate={{ 
+          marginTop: showMarquee ? "0px" : "-3rem" 
+        }}
+        transition={{ duration: 0.7, ease: "easeInOut" }}
+      >
+      {/* Background Color Bulatan (Opsional) */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+        <div className="absolute top-32 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+      </div>
 
-        <div className="container mx-auto text-center" ref={heroRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <motion.h1 
-              className="text-5xl md:text-7xl font-bold text-gray-800 mb-6 leading-tight"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={heroInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-            >
-              <motion.span 
-                className="bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent inline-block"
-                animate={{ 
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                }}
-                transition={{ 
-                  duration: 5, 
-                  repeat: Infinity, 
-                  ease: "linear" 
-                }}
-                style={{ backgroundSize: "200% 200%" }}
-              >
-                RSUD M. Natsir
-              </motion.span>
-            </motion.h1>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <p className="text-2xl md:text-3xl text-gray-600 mb-4 font-medium">
-                Melayani dengan{" "}
-                <motion.span 
-                  className="text-red-500 inline-block"
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  ❤️ Hati
-                </motion.span>
-                , Mengobati dengan{" "}
-                <span className="text-blue-600 font-semibold">Profesional</span>
-              </p>
-              <p className="text-lg text-gray-500 mb-12 max-w-3xl mx-auto leading-relaxed">
-                Rumah Sakit Umum Daerah terdepan dengan pelayanan kesehatan berkualitas, 
-                teknologi modern, dan tenaga medis profesional untuk kesehatan Anda dan keluarga.
-              </p>
-            </motion.div>
-          </motion.div>
+      <div className="container mx-auto z-10">
+        <motion.div 
+          className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 items-center min-h-[70vh] lg:min-h-[80vh]"
+          animate={{ 
+            marginTop: showMarquee ? "0px" : "-2rem" 
+          }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          
+          {/* Kiri - Judul */}
+          <div className="order-1 lg:order-1 mb-4 lg:mb-0">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-green-900 mb-4 lg:mb-6 leading-tight">
+              Rumah Sakit <br /> Umum Daerah M. Natsir
+            </h1>
+          </div>
 
-          {/* Stats */}
-          <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16"
-            variants={containerVariants}
-            initial="hidden"
-            animate={heroInView ? "visible" : "hidden"}
-          >
-            {stats.map((stat, index) => (
-              <motion.div 
-                key={index} 
-                className="text-center bg-white/50 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/70 transition-all duration-300 hover:shadow-lg"
-                variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -5 }}
-              >
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-2">
-                  {heroInView ? (
-                    <CountUp 
-                      end={stat.number} 
-                      duration={2.5} 
-                      delay={index * 0.2}
-                      suffix={stat.suffix}
-                    />
-                  ) : (
-                    "0"
-                  )}
-                </div>
-                <div className="text-gray-600 font-medium">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+          {/* Kanan - Gambar Slider Auto */}
+          <AutoImageSlider />
+        </motion.div>
+      </div>
+    </motion.section>
+
 
       {/* Main Content Section */}
       <section className="py-20 bg-gradient-to-br from-white via-blue-50/30 to-green-50/30">
@@ -391,8 +550,8 @@ export default function BerandaPage() {
                         'Penghargaan IGA',
                         'Direktur RSUD'
                       ].map((item, index) => (
-                        <div key={index} className="flex-shrink-0 w-20 h-16 bg-gray-200 rounded-lg cursor-pointer hover:ring-2 hover:ring-blue-500 transition-all">
-                          <div className="w-full h-full bg-gradient-to-br from-blue-500 to-green-500 rounded-lg opacity-60"></div>
+                        <div key={index} className="flex-shrink-0 w-20 h-16 bg-gray-200 rounded-lg cursor-pointer hover:ring-2 hover:ring-green-500 transition-all">
+                          <div className="w-full h-full bg-gradient-to-br from-green-500 to-green-600 rounded-lg opacity-60"></div>
                         </div>
                       ))}
                     </div>
@@ -409,11 +568,11 @@ export default function BerandaPage() {
               >
                 <div className="text-center mb-12">
                   <h2 className="text-4xl font-bold text-gray-800 mb-4">
-                    <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">
                       Berita Utama
                     </span>
                   </h2>
-                  <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-green-600 mx-auto rounded-full"></div>
+                  <div className="w-20 h-1 bg-gradient-to-r from-green-600 to-green-700 mx-auto rounded-full"></div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -456,7 +615,7 @@ export default function BerandaPage() {
                         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
                       </div>
                       <div className="p-6">
-                        <h3 className="text-lg font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
+                        <h3 className="text-lg font-bold text-gray-800 mb-3 group-hover:text-green-600 transition-colors line-clamp-2">
                           {news.title}
                         </h3>
                         <div className="flex items-center text-sm text-gray-500 mb-3 space-x-4">
@@ -473,7 +632,7 @@ export default function BerandaPage() {
                         <p className="text-gray-600 text-sm line-clamp-3 mb-4">
                           {news.excerpt}
                         </p>
-                        <button className="text-blue-600 font-semibold text-sm hover:text-blue-700 transition-colors">
+                        <button className="text-green-600 font-semibold text-sm hover:text-green-700 transition-colors">
                           Baca Selengkapnya →
                         </button>
                       </div>
@@ -483,7 +642,7 @@ export default function BerandaPage() {
 
                 <div className="text-center mt-8">
                   <motion.button
-                    className="bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300"
+                    className="bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -516,7 +675,7 @@ export default function BerandaPage() {
                     "CARA MERAWAT LUKA LECET DI RUMAH"
                   ].map((article, index) => (
                     <div key={index} className="border-b border-gray-100 pb-3 last:border-b-0">
-                      <h4 className="text-sm font-medium text-gray-800 hover:text-blue-600 cursor-pointer transition-colors">
+                      <h4 className="text-sm font-medium text-gray-800 hover:text-green-600 cursor-pointer transition-colors">
                         {article}
                       </h4>
                       <p className="text-xs text-gray-500 mt-1">10 June 2020</p>
@@ -529,7 +688,7 @@ export default function BerandaPage() {
               <div className="bg-white rounded-2xl shadow-lg p-6">
                 <div className="border-b border-gray-200 mb-4">
                   <nav className="flex space-x-6">
-                    <button className="py-2 px-1 border-b-2 border-blue-600 text-blue-600 font-medium text-sm">
+                    <button className="py-2 px-1 border-b-2 border-green-600 text-green-600 font-medium text-sm">
                       Tags
                     </button>
                     <button className="py-2 px-1 text-gray-500 hover:text-gray-700 font-medium text-sm">
@@ -539,7 +698,7 @@ export default function BerandaPage() {
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {["Arsip", "Kesehatan", "Penyuluhan", "PENGUMUMAN", "Laporan", "Sakip", "KATA DOKTER", "Jadwal", "Berita"].map((tag, index) => (
-                    <span key={index} className="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full hover:bg-blue-200 cursor-pointer transition-colors">
+                    <span key={index} className="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full hover:bg-green-200 cursor-pointer transition-colors">
                       {tag}
                     </span>
                   ))}
@@ -578,11 +737,11 @@ export default function BerandaPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">
                 Informasi
               </span>
             </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-green-600 mx-auto rounded-full"></div>
+            <div className="w-20 h-1 bg-gradient-to-r from-green-600 to-green-700 mx-auto rounded-full"></div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -615,7 +774,7 @@ export default function BerandaPage() {
                   >
                     <IconComponent className="w-8 h-8 text-white" />
                   </motion.div>
-                  <h3 className="text-lg font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
+                  <h3 className="text-lg font-bold text-gray-800 group-hover:text-green-600 transition-colors">
                     {service.title}
                   </h3>
                 </motion.div>
@@ -635,11 +794,11 @@ export default function BerandaPage() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">
                 Layanan Unggulan
               </span>
             </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-green-600 mx-auto rounded-full"></div>
+            <div className="w-20 h-1 bg-gradient-to-r from-green-600 to-green-700 mx-auto rounded-full"></div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -666,7 +825,7 @@ export default function BerandaPage() {
                 >
                   {service.icon}
                 </motion.div>
-                <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-green-600 transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-gray-600 group-hover:text-gray-700 transition-colors">
@@ -675,7 +834,7 @@ export default function BerandaPage() {
                 
                 {/* Decorative line */}
                 <motion.div
-                  className="w-16 h-1 bg-gradient-to-r from-blue-500 to-green-500 mx-auto mt-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="w-16 h-1 bg-gradient-to-r from-green-500 to-green-600 mx-auto mt-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   initial={{ width: 0 }}
                   whileHover={{ width: "4rem" }}
                 />
