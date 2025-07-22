@@ -236,114 +236,115 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
   const renderMenuItem = (item: MenuItem, level: number = 0) => {
     const hasChildren = item.children && item.children.length > 0;
     
-    // Function to get icon for menu items
+    // Function to get icon for menu items with background colors
     const getMenuIcon = (label: string, level: number = 0) => {
-      const iconMap: { [key: string]: string } = {
+      const iconData: { [key: string]: { icon: string; bg: string } } = {
         // Main menu icons
-        'Fasilitas dan Layanan': '🏥',
-        'Tentang Kami': '🏢',
-        'Galeri': '📸',
-        'Info Publik': '📋',
-        'Sakip': '📊',
-        'WBK dan WBBM': '🛡️',
-        'Informasi Kesehatan': '📚',
-        'PPID': '📁',
+        'Fasilitas dan Layanan': { icon: '🏥', bg: 'bg-blue-100' },
+        'Tentang Kami': { icon: '🏢', bg: 'bg-green-100' },
+        'Galeri': { icon: '📸', bg: 'bg-purple-100' },
+        'Info Publik': { icon: '📋', bg: 'bg-orange-100' },
+        'Sakip': { icon: '📊', bg: 'bg-indigo-100' },
+        'WBK dan WBBM': { icon: '🛡️', bg: 'bg-red-100' },
+        'Informasi Kesehatan': { icon: '📚', bg: 'bg-yellow-100' },
+        'PPID': { icon: '📁', bg: 'bg-gray-100' },
         
         // Sub menu icons - Fasilitas dan Layanan
-        'Layanan Unggulan': '⭐',
-        'Rawat Jalan': '🚶‍♂️',
-        'Rawat Inap': '🛏️',
-        'Fasilitas Umum': '🏢',
-        'Pelayanan Penunjang': '⚕️',
-        'Alur Pelayanan': '🔄',
+        'Layanan Unggulan': { icon: '⭐', bg: 'bg-yellow-100' },
+        'Rawat Jalan': { icon: '🚶‍♂️', bg: 'bg-green-100' },
+        'Rawat Inap': { icon: '🛏️', bg: 'bg-blue-100' },
+        'Fasilitas Umum': { icon: '🏢', bg: 'bg-gray-100' },
+        'Pelayanan Penunjang': { icon: '⚕️', bg: 'bg-red-100' },
+        'Alur Pelayanan': { icon: '🔄', bg: 'bg-purple-100' },
         
         // Rawat Jalan sub-sub menu
-        'Klinik Penyakit Dalam': '🩺',
-        'Klinik Bedah': '⚔️',
-        'Klinik Mata': '👁️',
-        'Klinik THT': '👂',
-        'Klinik Neurologi': '🧠',
-        'Klinik Kebidanan': '👶',
-        'Klinik Anak': '🧸',
-        'Klinik Gizi': '🥗',
-        'Klinik Jantung': '❤️',
-        'Klinik Paru': '🫁',
-        'Klinik VCT': '🔬',
+        'Klinik Penyakit Dalam': { icon: '🩺', bg: 'bg-red-100' },
+        'Klinik Bedah': { icon: '⚔️', bg: 'bg-gray-100' },
+        'Klinik Mata': { icon: '👁️', bg: 'bg-blue-100' },
+        'Klinik THT': { icon: '👂', bg: 'bg-orange-100' },
+        'Klinik Neurologi': { icon: '🧠', bg: 'bg-pink-100' },
+        'Klinik Kebidanan': { icon: '👶', bg: 'bg-pink-100' },
+        'Klinik Anak': { icon: '🧸', bg: 'bg-yellow-100' },
+        'Klinik Gizi': { icon: '🥗', bg: 'bg-green-100' },
+        'Klinik Jantung': { icon: '❤️', bg: 'bg-red-100' },
+        'Klinik Paru': { icon: '🫁', bg: 'bg-blue-100' },
+        'Klinik VCT': { icon: '🔬', bg: 'bg-purple-100' },
         
         // Rawat Inap sub-sub menu
-        'Rawat Inap Interne Wanita': '👩‍⚕️',
-        'Rawat Inap Interne Pria': '👨‍⚕️',
-        'Rawat Inap Bedah': '🏥',
-        'Rawat Inap Mata': '👁️',
-        'Rawat Inap THT': '👂',
-        'Rawat Inap Neurologi': '🧠',
-        'Rawat Inap Kebidanan': '👶',
-        'Rawat Inap Anak': '🧸',
-        'Rawat Inap Jantung': '❤️',
-        'Rawat Inap Paru': '🫁',
+        'Rawat Inap Interne Wanita': { icon: '👩‍⚕️', bg: 'bg-pink-100' },
+        'Rawat Inap Interne Pria': { icon: '👨‍⚕️', bg: 'bg-blue-100' },
+        'Rawat Inap Bedah': { icon: '🏥', bg: 'bg-red-100' },
+        'Rawat Inap Mata': { icon: '👁️', bg: 'bg-blue-100' },
+        'Rawat Inap THT': { icon: '👂', bg: 'bg-orange-100' },
+        'Rawat Inap Neurologi': { icon: '🧠', bg: 'bg-pink-100' },
+        'Rawat Inap Kebidanan': { icon: '👶', bg: 'bg-pink-100' },
+        'Rawat Inap Anak': { icon: '🧸', bg: 'bg-yellow-100' },
+        'Rawat Inap Jantung': { icon: '❤️', bg: 'bg-red-100' },
+        'Rawat Inap Paru': { icon: '🫁', bg: 'bg-blue-100' },
         
         // Fasilitas Umum
-        'Apotik/Farmasi': '💊',
-        'Masjid': '🕌',
-        'Kantin': '🍽️',
-        'Parkir': '🚗',
+        'Apotik/Farmasi': { icon: '💊', bg: 'bg-green-100' },
+        'Masjid': { icon: '🕌', bg: 'bg-emerald-100' },
+        'Kantin': { icon: '🍽️', bg: 'bg-orange-100' },
+        'Parkir': { icon: '🚗', bg: 'bg-gray-100' },
         
         // Pelayanan Penunjang
-        'Laboratorium': '🔬',
-        'Radiologi': '📡',
-        'Kamar Operasi': '⚔️',
-        'Fisiotherapi': '🏃‍♂️',
+        'Laboratorium': { icon: '🔬', bg: 'bg-purple-100' },
+        'Radiologi': { icon: '📡', bg: 'bg-indigo-100' },
+        'Kamar Operasi': { icon: '⚔️', bg: 'bg-red-100' },
+        'Fisiotherapi': { icon: '🏃‍♂️', bg: 'bg-green-100' },
         
         // Tentang Kami
-        'Visi, Misi dan Logo': '🎯',
-        'Penghargaan dan Prestasi': '🏆',
-        'Denah dan Lokasi': '🗺️',
-        'Manajemen': '👥',
-        'Sejarah RSUD M.Natsir': '📜',
-        'Profil': '📋',
-        'Kerja Sama': '🤝',
+        'Visi, Misi dan Logo': { icon: '🎯', bg: 'bg-blue-100' },
+        'Penghargaan dan Prestasi': { icon: '🏆', bg: 'bg-yellow-100' },
+        'Denah dan Lokasi': { icon: '🗺️', bg: 'bg-green-100' },
+        'Manajemen': { icon: '👥', bg: 'bg-gray-100' },
+        'Sejarah RSUD M.Natsir': { icon: '📜', bg: 'bg-orange-100' },
+        'Profil': { icon: '📋', bg: 'bg-blue-100' },
+        'Kerja Sama': { icon: '🤝', bg: 'bg-purple-100' },
         
         // Galeri
-        'Video': '🎬',
-        'Images': '🖼️',
-        'Agenda/Kegiatan': '📅',
-        'Arsip': '📂',
-        'Pengumuman': '📢',
+        'Video': { icon: '🎬', bg: 'bg-red-100' },
+        'Images': { icon: '🖼️', bg: 'bg-blue-100' },
+        'Agenda/Kegiatan': { icon: '📅', bg: 'bg-green-100' },
+        'Arsip': { icon: '📂', bg: 'bg-gray-100' },
+        'Pengumuman': { icon: '📢', bg: 'bg-orange-100' },
         
         // WBK dan WBBM
-        'Whistleblower System': '📞',
-        'Gratifikasi': '💰',
-        'Benturan Kepentingan': '⚖️',
+        'Whistleblower System': { icon: '📞', bg: 'bg-red-100' },
+        'Gratifikasi': { icon: '💰', bg: 'bg-yellow-100' },
+        'Benturan Kepentingan': { icon: '⚖️', bg: 'bg-gray-100' },
         
         // Informasi Kesehatan
-        'Media Promkes': '📺',
-        'Inovasi': '💡',
-        'Video Kesehatan': '🎥',
+        'Media Promkes': { icon: '📺', bg: 'bg-blue-100' },
+        'Inovasi': { icon: '💡', bg: 'bg-yellow-100' },
+        'Video Kesehatan': { icon: '🎥', bg: 'bg-red-100' },
         
         // Media Promkes sub menu
-        'Leaflet': '📄',
-        'Banner': '🎌',
-        'Poster/Spanduk': '🪧',
-        'Buku Saku': '📖',
+        'Leaflet': { icon: '📄', bg: 'bg-blue-100' },
+        'Banner': { icon: '🎌', bg: 'bg-red-100' },
+        'Poster/Spanduk': { icon: '🪧', bg: 'bg-orange-100' },
+        'Buku Saku': { icon: '📖', bg: 'bg-green-100' },
         
         // PPID
-        'Informasi Berkala': '⏰',
-        'Informasi Setiap Saat': '⚡',
-        'Informasi Serta Merta': '📨',
+        'Informasi Berkala': { icon: '⏰', bg: 'bg-blue-100' },
+        'Informasi Setiap Saat': { icon: '⚡', bg: 'bg-yellow-100' },
+        'Informasi Serta Merta': { icon: '📨', bg: 'bg-red-100' },
         
         // Alur Pelayanan sub menu
-        'Alur Rawat Jalan': '🚶‍♂️',
-        'Alur Rawat Inap': '🛏️',
-        'ICU': '🏥',
-        'Alur Farmasi': '💊',
-        'Alur Laboratorium': '🔬',
-        'PONEK': '👶',
-        'Admission': '📝',
-        'Bank Darah': '🩸',
-        'Alur Radiologi': '📡',
+        'Alur Rawat Jalan': { icon: '🚶‍♂️', bg: 'bg-green-100' },
+        'Alur Rawat Inap': { icon: '🛏️', bg: 'bg-blue-100' },
+        'ICU': { icon: '🏥', bg: 'bg-red-100' },
+        'Alur Farmasi': { icon: '💊', bg: 'bg-green-100' },
+        'Alur Laboratorium': { icon: '🔬', bg: 'bg-purple-100' },
+        'PONEK': { icon: '👶', bg: 'bg-pink-100' },
+        'Admission': { icon: '📝', bg: 'bg-blue-100' },
+        'Bank Darah': { icon: '🩸', bg: 'bg-red-100' },
+        'Alur Radiologi': { icon: '📡', bg: 'bg-indigo-100' },
       };
       
-      return iconMap[label] || '📍';
+      const data = iconData[label] || { icon: '📍', bg: 'bg-gray-100' };
+      return data;
     };
     
     if (hasChildren) {
@@ -367,7 +368,9 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
                     <>
                       <div className="w-full text-left px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors flex items-center justify-between cursor-pointer">
                         <div className="flex items-center gap-3">
-                          <span className="text-lg">{getMenuIcon(child.label, level + 1)}</span>
+                          <div className={`w-8 h-8 rounded-full ${getMenuIcon(child.label, level + 1).bg} flex items-center justify-center text-sm shadow-sm`}>
+                            {getMenuIcon(child.label, level + 1).icon}
+                          </div>
                           <span className="text-sm">{child.label}</span>
                         </div>
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -375,7 +378,9 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
                         </svg>
                       </div>
                       {/* Third Level Dropdown */}
-                      <div className="absolute left-full top-0 w-56 bg-white rounded-lg shadow-xl border opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 z-[70] ml-1">
+                      <div className={`absolute left-full top-0 w-56 bg-white rounded-lg shadow-xl border opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 z-[70] ml-1 ${
+                        child.children && child.children.length > 8 ? 'max-h-80 overflow-y-auto' : ''
+                      }`}>
                         <div className="py-2">
                           {child.children?.map(grandChild => (
                             <div key={grandChild.label} className="relative group/third">
@@ -383,7 +388,9 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
                                 <>
                                   <div className="w-full text-left px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors flex items-center justify-between cursor-pointer">
                                     <div className="flex items-center gap-3">
-                                      <span className="text-lg">{getMenuIcon(grandChild.label, level + 2)}</span>
+                                      <div className={`w-8 h-8 rounded-full ${getMenuIcon(grandChild.label, level + 2).bg} flex items-center justify-center text-sm shadow-sm`}>
+                                        {getMenuIcon(grandChild.label, level + 2).icon}
+                                      </div>
                                       <span className="text-sm">{grandChild.label}</span>
                                     </div>
                                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -391,7 +398,9 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
                                     </svg>
                                   </div>
                                   {/* Fourth Level Dropdown */}
-                                  <div className="absolute left-full top-0 w-48 bg-white rounded-lg shadow-xl border opacity-0 invisible group-hover/third:opacity-100 group-hover/third:visible transition-all duration-200 z-[80] ml-1">
+                                  <div className={`absolute left-full w-48 bg-white rounded-lg shadow-xl border opacity-0 invisible group-hover/third:opacity-100 group-hover/third:visible transition-all duration-200 z-[80] ml-1 ${
+                                    child.label === 'Alur Pelayanan' && grandChild.label === 'Pelayanan Penunjang' ? '-top-32' : 'top-0'
+                                  }`}>
                                     <div className="py-2">
                                       {grandChild.children?.map(greatGrandChild => (
                                         <Link
@@ -400,7 +409,9 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
                                           className="flex items-center gap-3 px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors text-sm"
                                           {...(greatGrandChild.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                                         >
-                                          <span className="text-lg">{getMenuIcon(greatGrandChild.label, level + 3)}</span>
+                                          <div className={`w-7 h-7 rounded-full ${getMenuIcon(greatGrandChild.label, level + 3).bg} flex items-center justify-center text-xs shadow-sm`}>
+                                            {getMenuIcon(greatGrandChild.label, level + 3).icon}
+                                          </div>
                                           <span>{greatGrandChild.label}</span>
                                         </Link>
                                       ))}
@@ -413,7 +424,9 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
                                   className="flex items-center gap-3 px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors text-sm"
                                   {...(grandChild.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                                 >
-                                  <span className="text-lg">{getMenuIcon(grandChild.label, level + 2)}</span>
+                                  <div className={`w-8 h-8 rounded-full ${getMenuIcon(grandChild.label, level + 2).bg} flex items-center justify-center text-sm shadow-sm`}>
+                                    {getMenuIcon(grandChild.label, level + 2).icon}
+                                  </div>
                                   <span>{grandChild.label}</span>
                                 </Link>
                               )}
@@ -428,7 +441,9 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
                       className="flex items-center gap-3 px-4 py-2 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors text-sm"
                       {...(child.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     >
-                      <span className="text-lg">{getMenuIcon(child.label, level + 1)}</span>
+                      <div className={`w-8 h-8 rounded-full ${getMenuIcon(child.label, level + 1).bg} flex items-center justify-center text-sm shadow-sm`}>
+                        {getMenuIcon(child.label, level + 1).icon}
+                      </div>
                       <span>{child.label}</span>
                     </Link>
                   )}
@@ -456,114 +471,115 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
     const hasChildren = item.children && item.children.length > 0;
     const isOpen = openDropdowns.includes(`${item.label}-${level}`);
     
-    // Function to get icon for menu items (reuse from desktop)
+    // Function to get icon for menu items with background colors (reuse from desktop)
     const getMenuIcon = (label: string, level: number = 0) => {
-      const iconMap: { [key: string]: string } = {
+      const iconData: { [key: string]: { icon: string; bg: string } } = {
         // Main menu icons
-        'Fasilitas dan Layanan': '🏥',
-        'Tentang Kami': '🏢',
-        'Galeri': '📸',
-        'Info Publik': '📋',
-        'Sakip': '📊',
-        'WBK dan WBBM': '🛡️',
-        'Informasi Kesehatan': '📚',
-        'PPID': '📁',
+        'Fasilitas dan Layanan': { icon: '🏥', bg: 'bg-blue-100' },
+        'Tentang Kami': { icon: '🏢', bg: 'bg-green-100' },
+        'Galeri': { icon: '📸', bg: 'bg-purple-100' },
+        'Info Publik': { icon: '📋', bg: 'bg-orange-100' },
+        'Sakip': { icon: '📊', bg: 'bg-indigo-100' },
+        'WBK dan WBBM': { icon: '🛡️', bg: 'bg-red-100' },
+        'Informasi Kesehatan': { icon: '📚', bg: 'bg-yellow-100' },
+        'PPID': { icon: '📁', bg: 'bg-gray-100' },
         
         // Sub menu icons - Fasilitas dan Layanan
-        'Layanan Unggulan': '⭐',
-        'Rawat Jalan': '🚶‍♂️',
-        'Rawat Inap': '🛏️',
-        'Fasilitas Umum': '🏢',
-        'Pelayanan Penunjang': '⚕️',
-        'Alur Pelayanan': '🔄',
+        'Layanan Unggulan': { icon: '⭐', bg: 'bg-yellow-100' },
+        'Rawat Jalan': { icon: '🚶‍♂️', bg: 'bg-green-100' },
+        'Rawat Inap': { icon: '🛏️', bg: 'bg-blue-100' },
+        'Fasilitas Umum': { icon: '🏢', bg: 'bg-gray-100' },
+        'Pelayanan Penunjang': { icon: '⚕️', bg: 'bg-red-100' },
+        'Alur Pelayanan': { icon: '🔄', bg: 'bg-purple-100' },
         
         // Rawat Jalan sub-sub menu
-        'Klinik Penyakit Dalam': '🩺',
-        'Klinik Bedah': '⚔️',
-        'Klinik Mata': '👁️',
-        'Klinik THT': '👂',
-        'Klinik Neurologi': '🧠',
-        'Klinik Kebidanan': '👶',
-        'Klinik Anak': '🧸',
-        'Klinik Gizi': '🥗',
-        'Klinik Jantung': '❤️',
-        'Klinik Paru': '🫁',
-        'Klinik VCT': '🔬',
+        'Klinik Penyakit Dalam': { icon: '🩺', bg: 'bg-red-100' },
+        'Klinik Bedah': { icon: '⚔️', bg: 'bg-gray-100' },
+        'Klinik Mata': { icon: '👁️', bg: 'bg-blue-100' },
+        'Klinik THT': { icon: '👂', bg: 'bg-orange-100' },
+        'Klinik Neurologi': { icon: '🧠', bg: 'bg-pink-100' },
+        'Klinik Kebidanan': { icon: '👶', bg: 'bg-pink-100' },
+        'Klinik Anak': { icon: '🧸', bg: 'bg-yellow-100' },
+        'Klinik Gizi': { icon: '🥗', bg: 'bg-green-100' },
+        'Klinik Jantung': { icon: '❤️', bg: 'bg-red-100' },
+        'Klinik Paru': { icon: '🫁', bg: 'bg-blue-100' },
+        'Klinik VCT': { icon: '🔬', bg: 'bg-purple-100' },
         
         // Rawat Inap sub-sub menu
-        'Rawat Inap Interne Wanita': '👩‍⚕️',
-        'Rawat Inap Interne Pria': '👨‍⚕️',
-        'Rawat Inap Bedah': '🏥',
-        'Rawat Inap Mata': '👁️',
-        'Rawat Inap THT': '👂',
-        'Rawat Inap Neurologi': '🧠',
-        'Rawat Inap Kebidanan': '👶',
-        'Rawat Inap Anak': '🧸',
-        'Rawat Inap Jantung': '❤️',
-        'Rawat Inap Paru': '🫁',
+        'Rawat Inap Interne Wanita': { icon: '👩‍⚕️', bg: 'bg-pink-100' },
+        'Rawat Inap Interne Pria': { icon: '👨‍⚕️', bg: 'bg-blue-100' },
+        'Rawat Inap Bedah': { icon: '🏥', bg: 'bg-red-100' },
+        'Rawat Inap Mata': { icon: '👁️', bg: 'bg-blue-100' },
+        'Rawat Inap THT': { icon: '👂', bg: 'bg-orange-100' },
+        'Rawat Inap Neurologi': { icon: '🧠', bg: 'bg-pink-100' },
+        'Rawat Inap Kebidanan': { icon: '👶', bg: 'bg-pink-100' },
+        'Rawat Inap Anak': { icon: '🧸', bg: 'bg-yellow-100' },
+        'Rawat Inap Jantung': { icon: '❤️', bg: 'bg-red-100' },
+        'Rawat Inap Paru': { icon: '🫁', bg: 'bg-blue-100' },
         
         // Fasilitas Umum
-        'Apotik/Farmasi': '💊',
-        'Masjid': '🕌',
-        'Kantin': '🍽️',
-        'Parkir': '🚗',
+        'Apotik/Farmasi': { icon: '💊', bg: 'bg-green-100' },
+        'Masjid': { icon: '🕌', bg: 'bg-emerald-100' },
+        'Kantin': { icon: '🍽️', bg: 'bg-orange-100' },
+        'Parkir': { icon: '🚗', bg: 'bg-gray-100' },
         
         // Pelayanan Penunjang
-        'Laboratorium': '🔬',
-        'Radiologi': '📡',
-        'Kamar Operasi': '⚔️',
-        'Fisiotherapi': '🏃‍♂️',
+        'Laboratorium': { icon: '🔬', bg: 'bg-purple-100' },
+        'Radiologi': { icon: '📡', bg: 'bg-indigo-100' },
+        'Kamar Operasi': { icon: '⚔️', bg: 'bg-red-100' },
+        'Fisiotherapi': { icon: '🏃‍♂️', bg: 'bg-green-100' },
         
         // Tentang Kami
-        'Visi, Misi dan Logo': '🎯',
-        'Penghargaan dan Prestasi': '🏆',
-        'Denah dan Lokasi': '🗺️',
-        'Manajemen': '👥',
-        'Sejarah RSUD M.Natsir': '📜',
-        'Profil': '📋',
-        'Kerja Sama': '🤝',
+        'Visi, Misi dan Logo': { icon: '🎯', bg: 'bg-blue-100' },
+        'Penghargaan dan Prestasi': { icon: '🏆', bg: 'bg-yellow-100' },
+        'Denah dan Lokasi': { icon: '🗺️', bg: 'bg-green-100' },
+        'Manajemen': { icon: '👥', bg: 'bg-gray-100' },
+        'Sejarah RSUD M.Natsir': { icon: '📜', bg: 'bg-orange-100' },
+        'Profil': { icon: '📋', bg: 'bg-blue-100' },
+        'Kerja Sama': { icon: '🤝', bg: 'bg-purple-100' },
         
         // Galeri
-        'Video': '🎬',
-        'Images': '🖼️',
-        'Agenda/Kegiatan': '📅',
-        'Arsip': '📂',
-        'Pengumuman': '📢',
+        'Video': { icon: '🎬', bg: 'bg-red-100' },
+        'Images': { icon: '🖼️', bg: 'bg-blue-100' },
+        'Agenda/Kegiatan': { icon: '📅', bg: 'bg-green-100' },
+        'Arsip': { icon: '📂', bg: 'bg-gray-100' },
+        'Pengumuman': { icon: '📢', bg: 'bg-orange-100' },
         
         // WBK dan WBBM
-        'Whistleblower System': '📞',
-        'Gratifikasi': '💰',
-        'Benturan Kepentingan': '⚖️',
+        'Whistleblower System': { icon: '📞', bg: 'bg-red-100' },
+        'Gratifikasi': { icon: '💰', bg: 'bg-yellow-100' },
+        'Benturan Kepentingan': { icon: '⚖️', bg: 'bg-gray-100' },
         
         // Informasi Kesehatan
-        'Media Promkes': '📺',
-        'Inovasi': '💡',
-        'Video Kesehatan': '🎥',
+        'Media Promkes': { icon: '📺', bg: 'bg-blue-100' },
+        'Inovasi': { icon: '💡', bg: 'bg-yellow-100' },
+        'Video Kesehatan': { icon: '🎥', bg: 'bg-red-100' },
         
         // Media Promkes sub menu
-        'Leaflet': '📄',
-        'Banner': '🎌',
-        'Poster/Spanduk': '🪧',
-        'Buku Saku': '📖',
+        'Leaflet': { icon: '📄', bg: 'bg-blue-100' },
+        'Banner': { icon: '🎌', bg: 'bg-red-100' },
+        'Poster/Spanduk': { icon: '🪧', bg: 'bg-orange-100' },
+        'Buku Saku': { icon: '📖', bg: 'bg-green-100' },
         
         // PPID
-        'Informasi Berkala': '⏰',
-        'Informasi Setiap Saat': '⚡',
-        'Informasi Serta Merta': '📨',
+        'Informasi Berkala': { icon: '⏰', bg: 'bg-blue-100' },
+        'Informasi Setiap Saat': { icon: '⚡', bg: 'bg-yellow-100' },
+        'Informasi Serta Merta': { icon: '📨', bg: 'bg-red-100' },
         
         // Alur Pelayanan sub menu
-        'Alur Rawat Jalan': '🚶‍♂️',
-        'Alur Rawat Inap': '🛏️',
-        'ICU': '🏥',
-        'Alur Farmasi': '💊',
-        'Alur Laboratorium': '🔬',
-        'PONEK': '👶',
-        'Admission': '📝',
-        'Bank Darah': '🩸',
-        'Alur Radiologi': '📡',
+        'Alur Rawat Jalan': { icon: '🚶‍♂️', bg: 'bg-green-100' },
+        'Alur Rawat Inap': { icon: '🛏️', bg: 'bg-blue-100' },
+        'ICU': { icon: '🏥', bg: 'bg-red-100' },
+        'Alur Farmasi': { icon: '💊', bg: 'bg-green-100' },
+        'Alur Laboratorium': { icon: '🔬', bg: 'bg-purple-100' },
+        'PONEK': { icon: '👶', bg: 'bg-pink-100' },
+        'Admission': { icon: '📝', bg: 'bg-blue-100' },
+        'Bank Darah': { icon: '🩸', bg: 'bg-red-100' },
+        'Alur Radiologi': { icon: '📡', bg: 'bg-indigo-100' },
       };
       
-      return iconMap[label] || '📍';
+      const data = iconData[label] || { icon: '📍', bg: 'bg-gray-100' };
+      return data;
     };
     
     if (hasChildren) {
@@ -575,7 +591,11 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
           >
             <div className="flex items-center gap-3">
               {/* Icon hanya untuk submenu (level > 0), tidak untuk menu utama */}
-              {level > 0 && <span className="text-lg">{getMenuIcon(item.label, level)}</span>}
+              {level > 0 && (
+                <div className={`w-8 h-8 rounded-full ${getMenuIcon(item.label, level).bg} flex items-center justify-center text-sm shadow-sm`}>
+                  {getMenuIcon(item.label, level).icon}
+                </div>
+              )}
               <span className="text-sm">{item.label}</span>
             </div>
             <svg 
@@ -614,7 +634,11 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
         {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       >
         {/* Icon hanya untuk submenu (level > 0), tidak untuk menu utama */}
-        {level > 0 && <span className="text-lg">{getMenuIcon(item.label, level)}</span>}
+        {level > 0 && (
+          <div className={`w-8 h-8 rounded-full ${getMenuIcon(item.label, level).bg} flex items-center justify-center text-sm shadow-sm`}>
+            {getMenuIcon(item.label, level).icon}
+          </div>
+        )}
         <span>{item.label}</span>
       </Link>
     );
