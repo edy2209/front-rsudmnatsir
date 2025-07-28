@@ -244,3 +244,28 @@ html {
     line-height: 1.25rem;
   }
 }
+
+/* Userway Accessibility Widget Positioning - Force Bottom Left */
+#userway-s1,
+[data-uw-launcher],
+.userway_p5,
+#uw-launcher {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  right: auto !important;
+  top: auto !important;
+  z-index: 999999 !important;
+  transform: none !important;
+}
+
+/* For mobile devices - smaller spacing */
+@media (max-width: 768px) {
+  #userway-s1,
+  [data-uw-launcher],
+  .userway_p5,
+  #uw-launcher {
+    bottom: 15px !important;
+    left: 15px !important;
+  }
+}
