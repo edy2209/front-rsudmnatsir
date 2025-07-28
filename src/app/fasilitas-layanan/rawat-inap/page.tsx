@@ -211,7 +211,7 @@ export default function RawatInapPage() {
   return (
     <PageLayout>
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-teal-600 via-emerald-600 to-green-700 py-20 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-teal-600 via-emerald-600 to-green-700 py-20 overflow-hidden -mt-20">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="grid grid-cols-10 gap-6 h-full transform rotate-12">

@@ -126,13 +126,13 @@ export default function LayananUnggulanPage() {
             }}
             whileTap={{ scale: 0.9 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-40 group"
+            className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-40 group"
           >
             <motion.div
               animate={{ y: [0, -3, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             >
-              <ChevronUpIcon className="w-6 h-6" />
+              <ChevronUpIcon className="w-5 h-5 sm:w-6 sm:h-6" />
             </motion.div>
             
             {/* Ripple Effect */}
@@ -156,17 +156,17 @@ export default function LayananUnggulanPage() {
         )}
       </AnimatePresence>
 
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 -mt-20">
         {/* Hero Section */}
         <motion.div 
-          className="bg-gradient-to-r from-blue-600 to-green-600 text-white py-16 px-4"
+          className="bg-gradient-to-r from-blue-600 to-green-600 text-white py-12 sm:py-16 px-4"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <div className="container mx-auto text-center">
             <motion.h1 
-              className="text-4xl md:text-6xl font-bold mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 px-2"
               initial={{ scale: 0.5 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -174,7 +174,7 @@ export default function LayananUnggulanPage() {
               Sarana dan Prasarana
             </motion.h1>
             <motion.p 
-              className="text-xl opacity-90 max-w-3xl mx-auto"
+              className="text-lg sm:text-xl opacity-90 max-w-3xl mx-auto px-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -186,121 +186,123 @@ export default function LayananUnggulanPage() {
 
         {/* Article Meta */}
         <motion.div 
-          className="container mx-auto px-4 -mt-8"
+          className="container mx-auto px-4 -mt-6 sm:-mt-8"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="bg-white rounded-2xl shadow-xl p-6 mb-8">
-            <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
+          <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 mb-6 sm:mb-8">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 text-sm text-gray-600">
               <div className="flex items-center gap-2">
-                <ClockIcon className="w-5 h-5 text-blue-600" />
-                <span>Monday, 10 October 2016</span>
+                <ClockIcon className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 flex-shrink-0" />
+                <span className="text-xs sm:text-sm">Monday, 10 October 2016</span>
               </div>
               <div className="flex items-center gap-2">
-                <EyeIcon className="w-5 h-5 text-green-600" />
-                <span>5,945 views</span>
+                <EyeIcon className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 flex-shrink-0" />
+                <span className="text-xs sm:text-sm">5,945 views</span>
               </div>
               <div className="flex items-center gap-2">
-                <UserIcon className="w-5 h-5 text-purple-600" />
-                <span>Rio Bayu Sentosa</span>
+                <UserIcon className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600 flex-shrink-0" />
+                <span className="text-xs sm:text-sm">Rio Bayu Sentosa</span>
               </div>
             </div>
           </div>
         </motion.div>
 
-        <div className="container mx-auto px-4 pb-16">
+        <div className="container mx-auto px-4 pb-12 sm:pb-16">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="space-y-12"
+            className="space-y-8 sm:space-y-12"
           >
             {/* Tempat Tidur Section */}
-            <motion.section variants={itemVariants} className="bg-white rounded-3xl shadow-xl p-8">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center">
-                  <HeartIcon className="w-6 h-6 text-white" />
+            <motion.section variants={itemVariants} className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 lg:p-8">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 sm:mb-8">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <HeartIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-800">Tempat Tidur</h2>
-                  <p className="text-gray-600">Kapasitas Tempat Tidur Tahun 2014</p>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">Tempat Tidur</h2>
+                  <p className="text-sm sm:text-base text-gray-600">Kapasitas Tempat Tidur Tahun 2014</p>
                 </div>
               </div>
 
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="bg-gradient-to-r from-blue-50 to-green-50">
-                      <th className="px-4 py-3 text-left font-semibold text-gray-700 rounded-tl-xl">No</th>
-                      <th className="px-4 py-3 text-left font-semibold text-gray-700">Ruangan</th>
-                      <th className="px-4 py-3 text-center font-semibold text-gray-700">VIP/VVIP</th>
-                      <th className="px-4 py-3 text-center font-semibold text-gray-700">Kelas Utama</th>
-                      <th className="px-4 py-3 text-center font-semibold text-gray-700">Kelas I</th>
-                      <th className="px-4 py-3 text-center font-semibold text-gray-700">Kelas II</th>
-                      <th className="px-4 py-3 text-center font-semibold text-gray-700">Kelas III</th>
-                      <th className="px-4 py-3 text-center font-semibold text-gray-700 rounded-tr-xl">Jumlah</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {bedData.map((row, index) => (
-                      <motion.tr 
-                        key={row.no}
-                        className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                      >
-                        <td className="px-4 py-3 font-medium text-gray-900">{row.no}</td>
-                        <td className="px-4 py-3 text-gray-700">{row.ruangan}</td>
-                        <td className="px-4 py-3 text-center text-gray-700">{row.vip}</td>
-                        <td className="px-4 py-3 text-center text-gray-700">{row.utama}</td>
-                        <td className="px-4 py-3 text-center text-gray-700">{row.kelas1}</td>
-                        <td className="px-4 py-3 text-center text-gray-700">{row.kelas2}</td>
-                        <td className="px-4 py-3 text-center text-gray-700">{row.kelas3}</td>
-                        <td className="px-4 py-3 text-center font-bold text-blue-600">{row.jumlah}</td>
-                      </motion.tr>
-                    ))}
-                    <tr className="bg-gradient-to-r from-blue-100 to-green-100 font-bold">
-                      <td className="px-4 py-3"></td>
-                      <td className="px-4 py-3 text-gray-800">Total</td>
-                      <td className="px-4 py-3 text-center text-gray-800">18</td>
-                      <td className="px-4 py-3 text-center text-gray-800">16</td>
-                      <td className="px-4 py-3 text-center text-gray-800">26</td>
-                      <td className="px-4 py-3 text-center text-gray-800">78</td>
-                      <td className="px-4 py-3 text-center text-gray-800">89</td>
-                      <td className="px-4 py-3 text-center text-blue-600 text-lg">227</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="overflow-x-auto -mx-4 sm:mx-0">
+                <div className="inline-block min-w-full px-4 sm:px-0">
+                  <table className="w-full text-xs sm:text-sm min-w-[600px]">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-blue-50 to-green-50">
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-gray-700 rounded-tl-xl text-xs sm:text-sm">No</th>
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-gray-700 text-xs sm:text-sm">Ruangan</th>
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-center font-semibold text-gray-700 text-xs sm:text-sm">VIP/VVIP</th>
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-center font-semibold text-gray-700 text-xs sm:text-sm">Kelas Utama</th>
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-center font-semibold text-gray-700 text-xs sm:text-sm">Kelas I</th>
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-center font-semibold text-gray-700 text-xs sm:text-sm">Kelas II</th>
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-center font-semibold text-gray-700 text-xs sm:text-sm">Kelas III</th>
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-center font-semibold text-gray-700 rounded-tr-xl text-xs sm:text-sm">Jumlah</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {bedData.map((row, index) => (
+                        <motion.tr 
+                          key={row.no}
+                          className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                        >
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 font-medium text-gray-900">{row.no}</td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 text-gray-700">{row.ruangan}</td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 text-center text-gray-700">{row.vip}</td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 text-center text-gray-700">{row.utama}</td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 text-center text-gray-700">{row.kelas1}</td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 text-center text-gray-700">{row.kelas2}</td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 text-center text-gray-700">{row.kelas3}</td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 text-center font-bold text-blue-600">{row.jumlah}</td>
+                        </motion.tr>
+                      ))}
+                      <tr className="bg-gradient-to-r from-blue-100 to-green-100 font-bold">
+                        <td className="px-2 sm:px-4 py-2 sm:py-3"></td>
+                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-gray-800">Total</td>
+                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-center text-gray-800">18</td>
+                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-center text-gray-800">16</td>
+                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-center text-gray-800">26</td>
+                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-center text-gray-800">78</td>
+                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-center text-gray-800">89</td>
+                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-center text-blue-600 text-sm sm:text-lg">227</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </motion.section>
 
             {/* Gedung Section */}
-            <motion.section variants={itemVariants} className="bg-white rounded-3xl shadow-xl p-8">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center">
-                  <BuildingOffice2Icon className="w-6 h-6 text-white" />
+            <motion.section variants={itemVariants} className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 lg:p-8">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 sm:mb-8">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <BuildingOffice2Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-800">Gedung</h2>
-                  <p className="text-gray-600">Luas gedung 2,88 Ha dengan luas lahan 3,06 Ha</p>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">Gedung</h2>
+                  <p className="text-sm sm:text-base text-gray-600">Luas gedung 2,88 Ha dengan luas lahan 3,06 Ha</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 {buildings.map((building, index) => (
                   <motion.div
                     key={index}
-                    className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4 hover:shadow-md transition-all duration-300"
+                    className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg sm:rounded-xl p-3 sm:p-4 hover:shadow-md transition-all duration-300"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: index * 0.05 }}
                     whileHover={{ scale: 1.02 }}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-gray-700 font-medium">{building}</span>
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                      <span className="text-gray-700 font-medium text-xs sm:text-sm lg:text-base leading-tight">{building}</span>
                     </div>
                   </motion.div>
                 ))}
@@ -308,79 +310,81 @@ export default function LayananUnggulanPage() {
             </motion.section>
 
             {/* Sarana Prasarana Lainnya */}
-            <motion.section variants={itemVariants} className="bg-white rounded-3xl shadow-xl p-8">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center">
-                  <span className="text-white text-xl">🏥</span>
+            <motion.section variants={itemVariants} className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 lg:p-8">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 sm:mb-8">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <span className="text-white text-lg sm:text-xl">🏥</span>
                 </div>
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-800">Sarana Prasarana Lainnya</h2>
-                  <p className="text-gray-600">Fasilitas penunjang pelayanan kesehatan</p>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">Sarana Prasarana Lainnya</h2>
+                  <p className="text-sm sm:text-base text-gray-600">Fasilitas penunjang pelayanan kesehatan</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {facilities.map((facility, index) => (
                   <motion.div
                     key={index}
-                    className="flex items-center gap-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl hover:shadow-md transition-all duration-300"
+                    className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg sm:rounded-xl hover:shadow-md transition-all duration-300"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ x: 5 }}
                   >
-                    <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-                    <span className="text-gray-700 font-medium">{facility}</span>
+                    <div className="w-2 h-2 sm:w-3 sm:h-3 bg-purple-500 rounded-full flex-shrink-0"></div>
+                    <span className="text-gray-700 font-medium text-xs sm:text-sm lg:text-base leading-tight">{facility}</span>
                   </motion.div>
                 ))}
               </div>
             </motion.section>
 
             {/* Kendaraan Dinas */}
-            <motion.section variants={itemVariants} className="bg-white rounded-3xl shadow-xl p-8">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex items-center justify-center">
-                  <TruckIcon className="w-6 h-6 text-white" />
+            <motion.section variants={itemVariants} className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 lg:p-8">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 sm:mb-8">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <TruckIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-800">Kendaraan Dinas</h2>
-                  <p className="text-gray-600">Kendaraan Operasional RSUD Solok Tahun 2014</p>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">Kendaraan Dinas</h2>
+                  <p className="text-sm sm:text-base text-gray-600">Kendaraan Operasional RSUD Solok Tahun 2014</p>
                 </div>
               </div>
 
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="bg-gradient-to-r from-orange-50 to-red-50">
-                      <th className="px-4 py-3 text-left font-semibold text-gray-700 rounded-tl-xl">No</th>
-                      <th className="px-4 py-3 text-left font-semibold text-gray-700">Jenis Kendaraan</th>
-                      <th className="px-4 py-3 text-center font-semibold text-gray-700">Nomor Polisi</th>
-                      <th className="px-4 py-3 text-center font-semibold text-gray-700">Tahun</th>
-                      <th className="px-4 py-3 text-center font-semibold text-gray-700 rounded-tr-xl">Kondisi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {vehicleData.map((vehicle, index) => (
-                      <motion.tr 
-                        key={vehicle.no}
-                        className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                      >
-                        <td className="px-4 py-3 font-medium text-gray-900">{vehicle.no}</td>
-                        <td className="px-4 py-3 text-gray-700">{vehicle.jenis}</td>
-                        <td className="px-4 py-3 text-center font-mono text-gray-700">{vehicle.nopol}</td>
-                        <td className="px-4 py-3 text-center text-gray-700">{vehicle.tahun}</td>
-                        <td className="px-4 py-3 text-center">
-                          <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
-                            {vehicle.kondisi}
-                          </span>
-                        </td>
-                      </motion.tr>
-                    ))}
-                  </tbody>
-                </table>
+              <div className="overflow-x-auto -mx-4 sm:mx-0">
+                <div className="inline-block min-w-full px-4 sm:px-0">
+                  <table className="w-full text-xs sm:text-sm min-w-[600px]">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-orange-50 to-red-50">
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-gray-700 rounded-tl-xl text-xs sm:text-sm">No</th>
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-gray-700 text-xs sm:text-sm">Jenis Kendaraan</th>
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-center font-semibold text-gray-700 text-xs sm:text-sm">Nomor Polisi</th>
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-center font-semibold text-gray-700 text-xs sm:text-sm">Tahun</th>
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-center font-semibold text-gray-700 rounded-tr-xl text-xs sm:text-sm">Kondisi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {vehicleData.map((vehicle, index) => (
+                        <motion.tr 
+                          key={vehicle.no}
+                          className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                        >
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 font-medium text-gray-900">{vehicle.no}</td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 text-gray-700">{vehicle.jenis}</td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 text-center font-mono text-gray-700">{vehicle.nopol}</td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 text-center text-gray-700">{vehicle.tahun}</td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 text-center">
+                            <span className="px-2 sm:px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                              {vehicle.kondisi}
+                            </span>
+                          </td>
+                        </motion.tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </motion.section>
           </motion.div>

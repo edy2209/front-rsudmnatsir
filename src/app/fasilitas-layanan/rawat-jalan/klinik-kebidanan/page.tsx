@@ -108,7 +108,7 @@ export default function KlinikKebidananPage() {
   return (
     <PageLayout>
       {/* Hero Section dengan Tema Pink/Purple */}
-      <div className="relative min-h-screen bg-gradient-to-br from-pink-900 via-purple-800 to-indigo-900 overflow-hidden">
+      <div className="relative min-h-screen bg-gradient-to-br from-pink-900 via-purple-800 to-indigo-900 overflow-hidden -mt-20">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-gradient-to-br from-pink-700/20 to-purple-700/20"></div>

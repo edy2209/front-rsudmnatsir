@@ -117,7 +117,7 @@ export default function KlinikVCTPage() {
   return (
     <PageLayout>
       {/* Hero Section with Privacy Theme */}
-      <div className="relative bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 py-12 sm:py-16 lg:py-20 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 py-12 sm:py-16 lg:py-20 overflow-hidden -mt-20">
         {/* Privacy Pattern Background */}
         <div className="absolute inset-0 opacity-10">
           <div className="grid grid-cols-4 sm:grid-cols-6 gap-4 sm:gap-8 h-full">

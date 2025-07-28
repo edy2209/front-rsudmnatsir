@@ -148,7 +148,7 @@ export default function RawatInapTHTPage() {
     <PageLayout>
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 text-white py-16">
+        <div className="bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 text-white py-16 -mt-20">
           <div className="container mx-auto px-4">
             <div className="flex flex-col lg:flex-row items-center justify-between">
               <div className="lg:w-1/2 mb-8 lg:mb-0">

@@ -58,7 +58,7 @@ export default function KlinikTHTPage() {
   return (
     <PageLayout>
       {/* Hero Section with Sound Wave Animation */}
-      <div className="relative min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-100 overflow-hidden">
+      <div className="relative min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-100 overflow-hidden -mt-20">
         
         {/* Animated Sound Waves */}
         <div className="absolute inset-0">

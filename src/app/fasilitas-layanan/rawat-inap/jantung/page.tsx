@@ -172,7 +172,7 @@ export default function RawatInapJantungPage() {
   return (
     <PageLayout>
       {/* Hero Section - Cardiac Theme */}
-      <div className="relative bg-gradient-to-br from-red-600 via-pink-600 to-rose-700 py-20 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-red-600 via-pink-600 to-rose-700 py-20 overflow-hidden -mt-20">
         {/* Heartbeat Lines Background */}
         <div className="absolute inset-0 opacity-10">
           <svg className="w-full h-full" viewBox="0 0 800 400" fill="none">

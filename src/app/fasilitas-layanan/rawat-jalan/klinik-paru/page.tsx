@@ -112,7 +112,7 @@ export default function KlinikParuPage() {
   return (
     <PageLayout>
       {/* Hero Section with Breathing Animation */}
-      <div className="relative bg-gradient-to-br from-cyan-50 via-blue-50 to-indigo-100 py-12 sm:py-16 lg:py-20 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-cyan-50 via-blue-50 to-indigo-100 py-12 sm:py-16 lg:py-20 overflow-hidden -mt-20">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-6 sm:top-10 left-6 sm:left-10 w-12 h-12 sm:w-20 sm:h-20 bg-cyan-200/30 rounded-full animate-pulse"></div>

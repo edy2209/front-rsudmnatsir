@@ -86,7 +86,7 @@ export default function KlinikGiziPage() {
   return (
     <PageLayout>
       {/* Hero Section dengan Gradient Modern */}
-      <div className="relative min-h-screen bg-gradient-to-br from-emerald-900 via-green-800 to-teal-900 overflow-hidden">
+      <div className="relative min-h-screen bg-gradient-to-br from-emerald-900 via-green-800 to-teal-900 overflow-hidden -mt-20">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-gradient-to-br from-green-700/20 to-emerald-700/20"></div>

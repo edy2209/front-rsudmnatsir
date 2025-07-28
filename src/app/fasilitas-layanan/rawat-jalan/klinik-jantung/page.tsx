@@ -108,7 +108,7 @@ export default function KlinikJantungPage() {
   return (
     <PageLayout>
       {/* Hero Section dengan Tema Merah Jantung */}
-      <div className="relative min-h-screen bg-gradient-to-br from-red-900 via-rose-800 to-pink-900 overflow-hidden">
+      <div className="relative min-h-screen bg-gradient-to-br from-red-900 via-rose-800 to-pink-900 overflow-hidden -mt-20">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-gradient-to-br from-red-700/20 to-rose-700/20"></div>
