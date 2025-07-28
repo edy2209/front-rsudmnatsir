@@ -59,7 +59,7 @@ export default function KlinikMataPage() {
         isDark 
           ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900' 
           : 'bg-gradient-to-br from-cyan-50 via-blue-50 to-indigo-100'
-      } overflow-hidden`}>
+      } overflow-hidden -mt-20`}>
         
         {/* Animated Eye Background Elements */}
         <div className="absolute inset-0">

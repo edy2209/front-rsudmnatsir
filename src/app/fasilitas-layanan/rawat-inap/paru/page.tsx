@@ -26,7 +26,7 @@ export default function RawatInapParuPage() {
   return (
     <PageLayout>
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-cyan-900 via-blue-800 to-teal-900 text-white overflow-hidden">
+      <div className="relative bg-gradient-to-br from-cyan-900 via-blue-800 to-teal-900 text-white overflow-hidden -mt-20">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="absolute inset-0">
           <div className="w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImFpciIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDgpIi8+PGNpcmNsZSBjeD0iODAiIGN5PSI4MCIgcj0iMiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA4KSIvPjxwYXRoIGQ9Ik0yMCA1MFE1MCAzMCA4MCA1MFE1MCA3MCAyMCA1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYWlyKSIvPjwvc3ZnPg==')] opacity-30"></div>

@@ -131,7 +131,7 @@ export default function KlinikAnakPage() {
         )}
       </AnimatePresence>
 
-      <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
+      <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 -mt-20">
         {/* Hero Section */}
         <motion.div 
           className="bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 text-white py-20 px-4 relative overflow-hidden"

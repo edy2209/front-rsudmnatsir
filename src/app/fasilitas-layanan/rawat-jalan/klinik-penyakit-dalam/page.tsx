@@ -113,7 +113,7 @@ export default function KlinikPenyakitDalamPage() {
   return (
     <PageLayout>
       {/* Hero Section with Medical Pattern */}
-      <div className="relative bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-12 sm:py-16 lg:py-20 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-12 sm:py-16 lg:py-20 overflow-hidden -mt-20">
         {/* Medical Pattern Background */}
         <div className="absolute inset-0 opacity-5">
           <div className="grid grid-cols-6 sm:grid-cols-8 gap-2 sm:gap-4 h-full">

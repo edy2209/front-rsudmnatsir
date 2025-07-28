@@ -26,7 +26,7 @@ export default function RawatInapNeurologiPage() {
   return (
     <PageLayout>
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-purple-900 via-violet-800 to-indigo-900 text-white overflow-hidden">
+      <div className="relative bg-gradient-to-br from-purple-900 via-violet-800 to-indigo-900 text-white overflow-hidden -mt-20">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="absolute inset-0">
           <div className="w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9Im5ldXJvbiIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNTAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxjaXJjbGUgY3g9Ijc1IiBjeT0iNzUiIHI9IjYiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz48bGluZSB4MT0iNzUiIHkxPSI3NSIgeDI9IjEyMCIgeTI9IjMwIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4wOCkiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI3NSIgeTE9Ijc1IiB4Mj0iMzAiIHkyPSIxMjAiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjA4KSIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI25ldXJvbikiLz48L3N2Zz4=')] opacity-30"></div>

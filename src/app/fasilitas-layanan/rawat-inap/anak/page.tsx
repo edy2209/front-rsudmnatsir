@@ -137,7 +137,7 @@ export default function RawatInapAnakPage() {
   return (
     <PageLayout>
       {/* Hero Section - Kids Theme */}
-      <div className="relative bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400 py-20 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400 py-20 overflow-hidden -mt-20">
         {/* Colorful Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-20 h-20 bg-yellow-300/40 rounded-full animate-bounce"></div>

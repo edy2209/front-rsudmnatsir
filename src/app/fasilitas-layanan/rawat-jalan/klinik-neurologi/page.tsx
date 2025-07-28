@@ -59,7 +59,7 @@ export default function KlinikNeurologiPage() {
   return (
     <PageLayout>
       {/* Hero Section with Neural Network Theme */}
-      <div className="relative min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 overflow-hidden">
+      <div className="relative min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 overflow-hidden -mt-20">
         
         {/* Neural Network Background */}
         <div className="absolute inset-0">

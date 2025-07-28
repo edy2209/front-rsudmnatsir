@@ -180,7 +180,7 @@ export default function RawatJalanPage() {
   return (
     <PageLayout>
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 py-20 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 py-20 overflow-hidden -mt-20">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="grid grid-cols-8 gap-8 h-full rotate-12">
