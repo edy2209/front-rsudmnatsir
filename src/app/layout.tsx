@@ -65,6 +65,11 @@ export default function RootLayout({
                     const elements = document.querySelectorAll(selector);
                     elements.forEach(el => {
                       if (el && el.style) {
+                        // Skip large panels/modals (kontras panel biasanya besar)
+                        if (el.offsetWidth > 300 || el.offsetHeight > 300) {
+                          return; // Skip elemen besar
+                        }
+                        
                         el.style.position = 'fixed';
                         el.style.bottom = '20px';
                         el.style.left = '20px';
