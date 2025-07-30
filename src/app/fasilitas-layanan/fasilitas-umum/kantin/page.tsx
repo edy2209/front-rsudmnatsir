@@ -133,7 +133,7 @@ export default function KantinPage() {
     <PageLayout>
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50">
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-r from-orange-600 to-amber-600 text-white">
+        <div className="relative bg-gradient-to-r from-orange-600 to-amber-600 text-white -mt-20 pt-20">
           <div className="absolute inset-0 bg-black/10"></div>
           <div className="relative container mx-auto px-4 py-20">
             <div className="max-w-3xl">
