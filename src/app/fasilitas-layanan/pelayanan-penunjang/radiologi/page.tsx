@@ -178,7 +178,7 @@ export default function RadiologiPage() {
     <PageLayout>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-slate-800 via-blue-800 to-indigo-800 text-white py-16 relative overflow-hidden">
+        <div className="bg-gradient-to-r from-slate-800 via-blue-800 to-indigo-800 text-white py-16 relative overflow-hidden -mt-20 pt-20">
           {/* Animated Scanner Waves */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-20 left-20 w-32 h-1 bg-cyan-400 animate-pulse"></div>

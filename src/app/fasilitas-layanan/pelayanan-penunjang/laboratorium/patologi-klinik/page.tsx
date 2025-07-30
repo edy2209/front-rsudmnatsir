@@ -251,7 +251,7 @@ export default function LabPatologiKlinikPage() {
     <PageLayout>
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-teal-600 text-white overflow-hidden">
+        <div className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-teal-600 text-white overflow-hidden -mt-20 pt-20">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="relative container mx-auto px-4 py-20">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
