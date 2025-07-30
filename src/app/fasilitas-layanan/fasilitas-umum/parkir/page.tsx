@@ -135,7 +135,7 @@ export default function ParkirPage() {
     <PageLayout>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-50">
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-r from-slate-700 to-gray-700 text-white">
+        <div className="relative bg-gradient-to-r from-slate-700 to-gray-700 text-white -mt-20 pt-20">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="relative container mx-auto px-4 py-20">
             <div className="max-w-3xl">

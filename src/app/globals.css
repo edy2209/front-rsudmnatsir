@@ -5,18 +5,35 @@
   --foreground: #171717;
 }
 
+/* Force light mode - disable dark mode detection */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff !important;
+    --foreground: #171717 !important;
   }
 }
 
 body {
-  background: var(--background);
+  background: var(--background) !important;
+  background-color: #ffffff !important;
   color: var(--foreground);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Force white background for all main containers */
+html {
+  background-color: #ffffff !important;
+}
+
+#__next,
+[data-nextjs-scroll-focus-boundary] {
+  background-color: #ffffff !important;
+}
+
+/* Ensure no dark mode overrides */
+* {
+  color-scheme: light !important;
 }
 
 /* Custom Animations */
