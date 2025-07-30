@@ -187,7 +187,7 @@ export default function LabPatologiAnatomikPage() {
     <PageLayout>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white overflow-hidden">
+        <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white overflow-hidden -mt-20 pt-20">
           {/* Animated Background Elements */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full animate-pulse"></div>
