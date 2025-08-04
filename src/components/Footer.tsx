@@ -133,9 +133,6 @@ export default function Footer() {
           <p className="text-gray-300 text-sm">
             © {new Date().getFullYear()} RSUD M. Natsir. Semua hak dilindungi undang-undang.
           </p>
-          <p className="text-gray-400 text-xs mt-2">
-            Melayani dengan ❤️ Hati, Mengobati dengan Profesional
-          </p>
         </div>
       </div>
     </footer>
