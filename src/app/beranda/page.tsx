@@ -20,6 +20,73 @@ import {
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
+// Custom CSS for animations (inline styles)
+const customStyles = `
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s ease-out forwards;
+  }
+
+  .certificate-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .certificate-card:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  /* Custom Scrollbar */
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #1d4ed8, #1e40af);
+  }
+
+  /* Firefox scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #3b82f6 #f1f5f9;
+  }
+`;
+
 // Auto Image Slider Component
 function AutoImageSlider() {
   const [currentImage, setCurrentImage] = useState(0);
@@ -71,6 +138,7 @@ function AutoImageSlider() {
 
 // Hero Carousel Component
 function HeroCarousel() {
+
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const images = [
@@ -189,6 +257,17 @@ export default function BerandaPage() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [showMarquee, setShowMarquee] = useState(true);
+  const [currentCertificate, setCurrentCertificate] = useState(0);
+  
+  // Certificate data
+  const certificateSlides = [
+    { title: 'Akreditasi Paripurna', subtitle: 'Standar Pelayanan Kesehatan Terbaik', icon: '🏆' },
+    { title: 'ISO 9001:2015', subtitle: 'Sistem Manajemen Mutu Internasional', icon: '⭐' },
+    { title: 'KARS Terakreditasi', subtitle: 'Komisi Akreditasi Rumah Sakit', icon: '🏥' },
+    { title: 'SNARS Edisi 1', subtitle: 'Standar Nasional Akreditasi Rumah Sakit', icon: '🎖️' },
+    { title: 'Pelayanan Prima', subtitle: 'Sertifikat Pelayanan Berkualitas', icon: '🌟' },
+    { title: 'Penghargaan Mutu', subtitle: 'Excellence in Healthcare Service', icon: '🏅' }
+  ];
   
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1, triggerOnce: true });
   const { ref: galleryRef, inView: galleryInView } = useInView({ threshold: 0.1, triggerOnce: true });
@@ -208,6 +287,15 @@ export default function BerandaPage() {
     setShowMarquee(false);
     localStorage.setItem('hideMarquee', 'true');
   };
+
+  // Certificate auto-slide effect  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentCertificate((prev) => (prev + 1) % certificateSlides.length);
+    }, 4000);
+    
+    return () => clearInterval(interval);
+  }, [certificateSlides.length]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -257,7 +345,9 @@ export default function BerandaPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-hidden">
+    <>
+      <style jsx>{customStyles}</style>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-hidden">
       {/* Scroll Indicators */}
       <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
         <motion.div
@@ -520,7 +610,7 @@ export default function BerandaPage() {
             {/* Left Column - Gallery and News */}
             <div className="lg:col-span-8">
               
-              {/* Hero Gallery */}
+              {/* Sertifikat Akreditasi Section */}
               <motion.div 
                 className="mb-12"
                 ref={galleryRef}
@@ -528,32 +618,168 @@ export default function BerandaPage() {
                 animate={galleryInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8 }}
               >
-                <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-                  <div className="relative h-96 bg-gradient-to-r from-blue-600 to-green-600">
-                    <div className="absolute inset-0 bg-black/20"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center text-white">
-                        <h3 className="text-3xl font-bold mb-4">Sertifikat Akreditasi</h3>
-                        <p className="text-lg opacity-90">Rumah Sakit Terakreditasi</p>
+                {/* Section Title */}
+                <div className="text-center mb-6 sm:mb-8 px-4">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 leading-tight">
+                    <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                      Sertifikat Akreditasi
+                    </span>
+                  </h2>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-3 sm:mb-4 leading-relaxed">Rumah Sakit Terakreditasi dengan Standar Nasional</p>
+                  <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-blue-600 to-green-600 mx-auto rounded-full"></div>
+                </div>
+
+                <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl overflow-hidden">
+                  {/* Main Slider */}
+                  <div className="relative h-64 sm:h-80 md:h-96 bg-gradient-to-br from-blue-600 via-indigo-600 to-green-600 overflow-hidden">
+                    <div className="absolute inset-0 bg-black/10"></div>
+                    
+                    {/* Animated Background Pattern */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="grid grid-cols-8 gap-4 h-full transform rotate-12 scale-150">
+                        {[...Array(64)].map((_, i) => (
+                          <div 
+                            key={i} 
+                            className="bg-white rounded-lg animate-pulse"
+                            style={{
+                              animationDelay: `${i * 0.1}s`,
+                              animationDuration: '3s'
+                            }}
+                          ></div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Main Content Slider */}
+                    <AnimatePresence mode="wait">
+                      <motion.div 
+                        key={currentCertificate}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.6 }}
+                        className="relative h-full flex items-center justify-center"
+                      >
+                        <div className="text-center text-white px-4 sm:px-6">
+                          <motion.div 
+                            className="mb-4 sm:mb-6"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ delay: 0.2, duration: 0.5, type: "spring" }}
+                          >
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto mb-2 sm:mb-4 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/30 shadow-xl">
+                              <span className="text-2xl sm:text-3xl md:text-4xl">{certificateSlides[currentCertificate]?.icon}</span>
+                            </div>
+                          </motion.div>
+                          <motion.h3 
+                            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-4 leading-tight"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3, duration: 0.6 }}
+                          >
+                            {certificateSlides[currentCertificate]?.title}
+                          </motion.h3>
+                          <motion.p 
+                            className="text-sm sm:text-base md:text-lg lg:text-xl opacity-90 mb-4 sm:mb-6 leading-relaxed"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4, duration: 0.6 }}
+                          >
+                            {certificateSlides[currentCertificate]?.subtitle}
+                          </motion.p>
+                          <motion.div 
+                            className="flex justify-center gap-2 sm:gap-3 md:gap-4 flex-wrap px-2"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5, duration: 0.6 }}
+                          >
+                            <span className="bg-white/20 backdrop-blur-sm px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-xs sm:text-sm border border-white/30 font-medium">
+                              ISO 9001:2015
+                            </span>
+                            <span className="bg-white/20 backdrop-blur-sm px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-xs sm:text-sm border border-white/30 font-medium">
+                              KARS Terakreditasi
+                            </span>
+                            <span className="bg-white/20 backdrop-blur-sm px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-xs sm:text-sm border border-white/30 font-medium">
+                              SNARS Ed.1
+                            </span>
+                          </motion.div>
+                        </div>
+                      </motion.div>
+                    </AnimatePresence>
+
+                    {/* Slider Navigation Dots */}
+                    <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
+                      <div className="flex space-x-3">
+                        {certificateSlides.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => setCurrentCertificate(index)}
+                            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                              index === currentCertificate 
+                                ? 'bg-white shadow-lg scale-125' 
+                                : 'bg-white/50 hover:bg-white/80'
+                            }`}
+                          ></button>
+                        ))}
                       </div>
                     </div>
                   </div>
                   
-                  {/* Thumbnail Gallery */}
-                  <div className="p-4 bg-gray-50">
-                    <div className="flex space-x-2 overflow-x-auto">
-                      {[
-                        'Sertifikat Akreditasi',
-                        'Dokter Spesialis',
-                        'Visi dan Misi',
-                        'Jenis Pelayanan',
-                        'Penghargaan IGA',
-                        'Direktur RSUD'
-                      ].map((item, index) => (
-                        <div key={index} className="flex-shrink-0 w-20 h-16 bg-gray-200 rounded-lg cursor-pointer hover:ring-2 hover:ring-green-500 transition-all">
-                          <div className="w-full h-full bg-gradient-to-br from-green-500 to-green-600 rounded-lg opacity-60"></div>
+                  {/* Certificate Gallery Thumbnails */}
+                  <div className="p-4 sm:p-6 bg-gradient-to-r from-gray-50 to-blue-50/50">
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-800 mb-3 sm:mb-4 text-center">Galeri Sertifikat & Penghargaan</h4>
+                    
+                    {/* Scrollable Certificate Gallery */}
+                    <div className="relative">
+                      <div className="flex space-x-4 overflow-x-auto scrollbar-thin scrollbar-thumb-blue-400 scrollbar-track-gray-200 hover:scrollbar-thumb-blue-500 pb-4">
+                        {[
+                          { name: 'Akreditasi KARS', icon: '🏥', color: 'from-blue-500 to-blue-600' },
+                          { name: 'ISO 9001:2015', icon: '⭐', color: 'from-green-500 to-green-600' },
+                          { name: 'Sertifikat Pelayanan', icon: '🎖️', color: 'from-purple-500 to-purple-600' },
+                          { name: 'Penghargaan Mutu', icon: '🏆', color: 'from-yellow-500 to-yellow-600' },
+                          { name: 'Dokter Spesialis', icon: '👨‍⚕️', color: 'from-teal-500 to-teal-600' },
+                          { name: 'Fasilitas Unggulan', icon: '🔬', color: 'from-indigo-500 to-indigo-600' },
+                          { name: 'Sertifikat Mutu', icon: '📜', color: 'from-red-500 to-red-600' },
+                          { name: 'Penghargaan Nasional', icon: '🥇', color: 'from-orange-500 to-orange-600' },
+                          { name: 'Sertifikat JCI', icon: '🌟', color: 'from-pink-500 to-pink-600' },
+                          { name: 'Akreditasi Laboratorium', icon: '⚗️', color: 'from-cyan-500 to-cyan-600' },
+                          { name: 'Sertifikat Halal', icon: '☪️', color: 'from-emerald-500 to-emerald-600' },
+                          { name: 'Penghargaan Daerah', icon: '🏅', color: 'from-violet-500 to-violet-600' }
+                        ].map((item, index) => (
+                          <div 
+                            key={index} 
+                            className="group cursor-pointer transform transition-all duration-300 hover:scale-105 flex-shrink-0"
+                          >
+                            <div className={`w-32 h-20 sm:w-36 sm:h-24 md:w-40 md:h-28 bg-gradient-to-br ${item.color} rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center relative overflow-hidden border-2 border-white/20`}>
+                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
+                              
+                              {/* Certificate border pattern */}
+                              <div className="absolute inset-1 border border-white/30 rounded-md"></div>
+                              <div className="absolute inset-2 border border-white/20 rounded-sm"></div>
+                              
+                              <span className="text-xl sm:text-2xl relative z-10 transform group-hover:scale-110 transition-transform duration-300 mb-1">
+                                {item.icon}
+                              </span>
+                              
+                              {/* Certificate text overlay */}
+                              <div className="text-white text-[8px] sm:text-[9px] font-bold text-center leading-tight relative z-10 px-2">
+                                SERTIFIKAT
+                              </div>
+                            </div>
+                            <p className="text-xs text-center mt-2 text-gray-600 font-medium w-32 sm:w-36 md:w-40 break-words leading-tight">
+                              {item.name}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      {/* Scroll Indicator */}
+                      <div className="flex justify-center mt-2">
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <span className="hidden sm:inline">← Scroll untuk melihat semua sertifikat →</span>
+                          <span className="sm:hidden">← Geser untuk melihat lebih →</span>
                         </div>
-                      ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -846,6 +1072,7 @@ export default function BerandaPage() {
 
       {/* Footer */}
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }
