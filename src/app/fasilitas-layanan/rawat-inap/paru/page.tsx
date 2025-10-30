@@ -32,7 +32,7 @@ export default function RawatInapParuPage() {
           <div className="w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImFpciIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDgpIi8+PGNpcmNsZSBjeD0iODAiIGN5PSI4MCIgcj0iMiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA4KSIvPjxwYXRoIGQ9Ik0yMCA1MFE1MCAzMCA4MCA1MFE1MCA3MCAyMCA1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYWlyKSIvPjwvc3ZnPg==')] opacity-30"></div>
         </div>
         
-        <div className="relative container mx-auto px-4 py-16">
+        <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-16">
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-6">
               <div className="bg-white/10 backdrop-blur-md p-4 rounded-full animate-pulse">
@@ -66,7 +66,7 @@ export default function RawatInapParuPage() {
 
       {/* Tab Navigation */}
       <div className="bg-white shadow-lg sticky top-0 z-40">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="flex overflow-x-auto">
             {[
               { id: 'overview', label: 'Overview', icon: DocumentTextIcon },
@@ -97,7 +97,7 @@ export default function RawatInapParuPage() {
       </div>
 
       {/* Content Sections */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-8">
         {activeTab === 'overview' && (
           <div className="space-y-12">
             {/* Stats Section */}
@@ -592,7 +592,7 @@ export default function RawatInapParuPage() {
 
       {/* CTA Section */}
       <div className="bg-gradient-to-r from-cyan-900 to-teal-900 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <h2 className="text-3xl font-bold mb-4">Jaga Kesehatan Paru Anda</h2>
           <p className="text-xl mb-8 text-cyan-100">Dapatkan perawatan paru terbaik dengan teknologi respirologi terdepan</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

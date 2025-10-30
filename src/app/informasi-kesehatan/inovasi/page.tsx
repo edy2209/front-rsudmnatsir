@@ -118,7 +118,7 @@ export default function InovasiPage() {
       <div className="relative bg-gradient-to-br from-green-600 via-green-700 to-blue-800 text-white overflow-hidden -mt-20 pt-20">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-green-600/80 to-transparent"></div>
-        <div className="relative container mx-auto px-4 py-16 sm:py-20 lg:py-24">
+        <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-16 sm:py-20 lg:py-24">
           <div className="max-w-4xl">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
@@ -157,7 +157,7 @@ export default function InovasiPage() {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-12">
         {/* Filter Categories */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Kategori Inovasi</h2>

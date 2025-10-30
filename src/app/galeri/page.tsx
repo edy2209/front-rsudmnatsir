@@ -167,7 +167,7 @@ export default function GaleriPage() {
             </div>
           </div>
 
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <div className="flex justify-center items-center gap-4 mb-6">
                 <PhotoIcon className="w-16 h-16 text-indigo-300 animate-bounce" />
@@ -200,7 +200,7 @@ export default function GaleriPage() {
 
         {/* Statistics */}
         <section className="py-12 bg-white">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {statistics.map((stat, index) => (
                 <div key={index} className="text-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl hover:shadow-lg transition-all duration-300">
@@ -214,7 +214,7 @@ export default function GaleriPage() {
 
         {/* Filter Buttons */}
         <section className="py-8 bg-gray-50">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               {[
                 { id: 'all', label: 'Semua Kategori' },
@@ -302,7 +302,7 @@ export default function GaleriPage() {
 
         {/* Recent Highlights */}
         <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 Sorotan <span className="text-indigo-600">Terbaru</span>
@@ -346,7 +346,7 @@ export default function GaleriPage() {
 
         {/* CTA Section */}
         <section className="py-16 bg-gradient-to-r from-indigo-600 to-purple-700">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
             <PhotoIcon className="w-16 h-16 text-white mx-auto mb-6 animate-pulse" />
             <h2 className="text-3xl font-bold text-white mb-4">
               Ikuti Perkembangan Kami

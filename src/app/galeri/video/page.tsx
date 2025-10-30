@@ -172,7 +172,7 @@ export default function GaleriVideoPage() {
     <PageLayout>
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-purple-600 to-purple-800 text-white">
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-16 -mt-20">
           <div className="max-w-4xl mx-auto text-center">
             <VideoCameraIcon className="w-16 h-16 mx-auto mb-6 text-purple-200" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -198,7 +198,7 @@ export default function GaleriVideoPage() {
 
       {/* Search and Filter Section */}
       <div className="bg-white shadow-lg">
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-6">
           <div className="flex flex-col gap-4">
             {/* Search */}
             <div className="relative w-full">
@@ -235,7 +235,7 @@ export default function GaleriVideoPage() {
       </div>
 
       {/* Video Grid Section */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-8">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800">
             Video ({filteredVideos.length} video)
@@ -412,7 +412,7 @@ export default function GaleriVideoPage() {
 
       {/* Statistics Section */}
       <div className="bg-gray-50 py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-8">Statistik Video</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">

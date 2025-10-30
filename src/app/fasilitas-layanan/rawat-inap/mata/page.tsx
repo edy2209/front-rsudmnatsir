@@ -32,7 +32,7 @@ export default function RawatInapMataPage() {
           <div className="w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImV5ZSIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxMjAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIzIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDgpIi8+PGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iMyIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA4KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNleWUpIi8+PC9zdmc+')] opacity-30"></div>
         </div>
         
-        <div className="relative container mx-auto px-4 py-16">
+        <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-16">
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-6">
               <div className="bg-white/10 backdrop-blur-md p-4 rounded-full animate-pulse">
@@ -66,7 +66,7 @@ export default function RawatInapMataPage() {
 
       {/* Tab Navigation */}
       <div className="bg-white shadow-lg sticky top-0 z-40">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="flex overflow-x-auto">
             {[
               { id: 'overview', label: 'Overview', icon: DocumentTextIcon },
@@ -97,7 +97,7 @@ export default function RawatInapMataPage() {
       </div>
 
       {/* Content Sections */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-8">
         {activeTab === 'overview' && (
           <div className="space-y-12">
             {/* Stats Section */}
@@ -592,7 +592,7 @@ export default function RawatInapMataPage() {
 
       {/* CTA Section */}
       <div className="bg-gradient-to-r from-indigo-900 to-violet-900 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <h2 className="text-3xl font-bold mb-4">Jaga Kesehatan Mata Anda</h2>
           <p className="text-xl mb-8 text-indigo-100">Dapatkan perawatan mata terbaik dengan teknologi terdepan dan dokter spesialis berpengalaman</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

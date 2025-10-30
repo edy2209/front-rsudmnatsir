@@ -137,7 +137,7 @@ export default function ParkirPage() {
         {/* Hero Section */}
         <div className="relative bg-gradient-to-r from-slate-700 to-gray-700 text-white -mt-20 pt-20">
           <div className="absolute inset-0 bg-black/20"></div>
-          <div className="relative container mx-auto px-4 py-20">
+          <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-20">
             <div className="max-w-3xl">
               <div className="flex items-center gap-3 mb-4">
                 <TruckIcon className="h-12 w-12 text-slate-300" />
@@ -171,7 +171,7 @@ export default function ParkirPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-12">
           {/* Real-time Status */}
           <div className="bg-white rounded-xl p-8 shadow-lg mb-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Status Parkir Real-time</h2>

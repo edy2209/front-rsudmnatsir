@@ -145,7 +145,7 @@ export default function WBKWBBMPage() {
     <PageLayout>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-20">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -206,7 +206,7 @@ export default function WBKWBBMPage() {
 
       {/* WBK Definition */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -265,7 +265,7 @@ export default function WBKWBBMPage() {
 
       {/* WBK Features */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -319,7 +319,7 @@ export default function WBKWBBMPage() {
 
       {/* WBBM Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -381,7 +381,7 @@ export default function WBKWBBMPage() {
 
       {/* Menu Navigation */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -433,7 +433,7 @@ export default function WBKWBBMPage() {
 
       {/* Achievements */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -485,7 +485,7 @@ export default function WBKWBBMPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

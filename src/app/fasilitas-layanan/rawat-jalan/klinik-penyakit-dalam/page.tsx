@@ -130,7 +130,7 @@ export default function KlinikPenyakitDalamPage() {
           <div className="absolute bottom-32 left-1/4 w-16 h-16 lg:w-20 lg:h-20 bg-cyan-200/50 rounded-full animate-float delay-500"></div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <div className="mb-4 sm:mb-6">
               <PlusCircleIcon className="w-12 h-12 sm:w-16 sm:h-16 text-teal-600 mx-auto mb-4 animate-pulse" />
@@ -155,7 +155,7 @@ export default function KlinikPenyakitDalamPage() {
 
       {/* Stats with Animation */}
       <div className="py-12 sm:py-16 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center group">
@@ -172,7 +172,7 @@ export default function KlinikPenyakitDalamPage() {
 
       {/* Navigation Tabs */}
       <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-lg shadow-lg">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <nav className="flex justify-center overflow-x-auto scrollbar-hide py-3 sm:py-4 gap-2 sm:gap-4 lg:gap-8">
             {[
               { id: 'layanan', label: 'Layanan', icon: ListBulletIcon },
@@ -199,7 +199,7 @@ export default function KlinikPenyakitDalamPage() {
 
       {/* Content Sections */}
       <div className="py-12 sm:py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           
           {/* Layanan Section */}
           {activeTab === 'layanan' && (
@@ -438,7 +438,7 @@ export default function KlinikPenyakitDalamPage() {
 
       {/* Call to Action */}
       <div className="bg-gradient-to-r from-teal-600 to-emerald-600 py-12 sm:py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <HeartIcon className="w-12 h-12 sm:w-16 sm:h-16 text-white mx-auto mb-4 sm:mb-6 animate-pulse" />
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 px-4">
             Kesehatan Adalah Investasi Terbaik

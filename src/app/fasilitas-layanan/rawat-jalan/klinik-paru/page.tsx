@@ -128,7 +128,7 @@ export default function KlinikParuPage() {
           <div className="absolute top-8 left-8 sm:top-16 sm:left-16 w-32 h-32 sm:w-40 sm:h-40 lg:w-64 lg:h-64 border border-indigo-400 sm:border-2 rounded-full animate-bounce"></div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <div className="mb-4 sm:mb-6">
               <CloudIcon className="w-12 h-12 sm:w-16 sm:h-16 text-cyan-600 mx-auto mb-3 sm:mb-4 animate-bounce" />
@@ -153,7 +153,7 @@ export default function KlinikParuPage() {
 
       {/* Sticky Navigation */}
       <div className={`sticky top-0 z-40 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-lg shadow-lg' : 'bg-transparent'}`}>
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <nav className="flex flex-wrap justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-8 py-3 sm:py-4">
             {[
               { id: 'layanan', label: 'Layanan', shortLabel: 'Layanan', icon: HeartIcon },
@@ -181,7 +181,7 @@ export default function KlinikParuPage() {
 
       {/* Stats Section */}
       <div className="py-12 sm:py-16 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center group">
@@ -198,7 +198,7 @@ export default function KlinikParuPage() {
 
       {/* Content Sections */}
       <div className="py-12 sm:py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           
           {/* Layanan Section */}
           {activeTab === 'layanan' && (
@@ -382,7 +382,7 @@ export default function KlinikParuPage() {
 
       {/* Call to Action */}
       <div className="bg-gradient-to-r from-cyan-600 to-blue-600 py-12 sm:py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <SunIcon className="w-12 h-12 sm:w-16 sm:h-16 text-white mx-auto mb-4 sm:mb-6 animate-spin-slow" />
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 px-4">
             Jaga Kesehatan Paru Anda

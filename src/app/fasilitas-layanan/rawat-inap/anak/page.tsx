@@ -152,7 +152,7 @@ export default function RawatInapAnakPage() {
         <div className="absolute top-1/3 left-10 text-4xl animate-bounce delay-1200">🚂</div>
         <div className="absolute bottom-1/3 right-16 text-5xl animate-pulse delay-900">🎈</div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
           <div className="text-center max-w-4xl mx-auto text-white">
             <div className="mb-6">
               <div className="flex justify-center items-center gap-4 mb-4">
@@ -192,7 +192,7 @@ export default function RawatInapAnakPage() {
 
       {/* Navigation Tabs */}
       <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-lg shadow-lg">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <nav className="flex justify-center space-x-8 py-4">
             {[
               { id: 'fasilitas', label: 'Fasilitas Anak', icon: PlayIcon },
@@ -219,7 +219,7 @@ export default function RawatInapAnakPage() {
 
       {/* Content Sections */}
       <div className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           
           {/* Fasilitas Anak */}
           {activeTab === 'fasilitas' && (
@@ -415,7 +415,7 @@ export default function RawatInapAnakPage() {
 
       {/* Call to Action */}
       <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <div className="text-6xl mb-6">👶💖</div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Berikan Perawatan Terbaik untuk Buah Hati

@@ -92,7 +92,7 @@ export default function KlinikTHTPage() {
           </div>
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 py-20">
+        <div className="relative z-10 container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-20">
           <div className="max-w-5xl mx-auto text-center">
             
             {/* Sound Wave Icon with Animation */}
@@ -214,7 +214,7 @@ export default function KlinikTHTPage() {
 
       {/* Content Sections based on Active Tab */}
       <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-16">
           
           {/* TELINGA Section */}
           {activeTab === 'telinga' && (

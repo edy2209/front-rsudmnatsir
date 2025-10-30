@@ -204,7 +204,7 @@ export default function KlinikAnakPage() {
 
         {/* Layanan Section */}
         <motion.div 
-          className="container mx-auto px-4 -mt-12 relative z-20"
+          className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 -mt-12 relative z-20"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -254,7 +254,7 @@ export default function KlinikAnakPage() {
         </motion.div>
 
         {/* Jadwal Dokter Section */}
-        <div className="container mx-auto px-4 pb-16">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 pb-16">
           <motion.div
             className="bg-white rounded-3xl shadow-xl p-8 sm:p-12 mb-12"
             initial={{ opacity: 0, y: 50 }}

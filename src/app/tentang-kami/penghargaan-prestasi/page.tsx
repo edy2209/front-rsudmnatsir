@@ -175,9 +175,9 @@ export default function PenghargaanPrestasiPage() {
     <PageLayout>
       <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-orange-50">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-r from-yellow-600 to-orange-700 text-white py-20">
+        <section className="relative bg-gradient-to-r from-yellow-600 to-orange-700 text-white py-20 -mt-20 pt-32">
           <div className="absolute inset-0 bg-black opacity-10"></div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <div className="flex justify-center items-center gap-4 mb-6">
                 <TrophyIcon className="w-16 h-16 text-yellow-300 animate-pulse" />
@@ -191,13 +191,13 @@ export default function PenghargaanPrestasiPage() {
                 Dedikasi Kami dalam Memberikan Pelayanan Kesehatan Terbaik
               </p>
               <div className="flex flex-wrap justify-center gap-4 text-sm">
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="bg-white text-yellow-700 px-4 py-2 rounded-full font-medium">
                   Akreditasi Paripurna
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="bg-white text-yellow-700 px-4 py-2 rounded-full font-medium">
                   ISO Certified
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="bg-white text-yellow-700 px-4 py-2 rounded-full font-medium">
                   25+ Penghargaan
                 </span>
               </div>
@@ -207,7 +207,7 @@ export default function PenghargaanPrestasiPage() {
 
         {/* Statistics */}
         <section className="py-12 bg-white">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {statistics.map((stat, index) => (
                 <div key={index} className="text-center p-6 bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl">
@@ -221,7 +221,7 @@ export default function PenghargaanPrestasiPage() {
 
         {/* Achievements Overview */}
         <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 Pencapaian <span className="text-yellow-600">Utama</span>
@@ -250,7 +250,7 @@ export default function PenghargaanPrestasiPage() {
 
         {/* Awards Section */}
         <section className="py-16">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 Penghargaan & <span className="text-yellow-600">Sertifikasi</span>
@@ -356,7 +356,7 @@ export default function PenghargaanPrestasiPage() {
 
         {/* CTA Section */}
         <section className="py-16 bg-gradient-to-r from-yellow-600 to-orange-700">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
             <TrophyIcon className="w-16 h-16 text-white mx-auto mb-6 animate-pulse" />
             <h2 className="text-3xl font-bold text-white mb-4">
               Komitmen Berkelanjutan

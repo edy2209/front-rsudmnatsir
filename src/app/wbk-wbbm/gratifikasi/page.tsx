@@ -112,8 +112,8 @@ export default function GratifikasiPage() {
   return (
     <PageLayout>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 py-20">
-        <div className="container mx-auto px-4">
+      <section className="bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 py-20 -mt-20">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -150,7 +150,7 @@ export default function GratifikasiPage() {
 
       {/* Definition Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -207,7 +207,7 @@ export default function GratifikasiPage() {
 
       {/* Types of Gratification */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -264,7 +264,7 @@ export default function GratifikasiPage() {
 
       {/* Allowed vs Forbidden */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -338,7 +338,7 @@ export default function GratifikasiPage() {
 
       {/* Reporting Steps */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -383,7 +383,7 @@ export default function GratifikasiPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

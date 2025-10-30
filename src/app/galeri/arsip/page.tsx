@@ -123,7 +123,7 @@ export default function ArsipPage() {
     <PageLayout>
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-16 -mt-20">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Arsip Digital
@@ -148,7 +148,7 @@ export default function ArsipPage() {
 
       {/* Search and Filter Section */}
       <div className="bg-white shadow-lg">
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-6">
           <div className="flex flex-col lg:flex-row gap-4 items-center">
             {/* Search */}
             <div className="relative flex-grow">
@@ -195,7 +195,7 @@ export default function ArsipPage() {
       </div>
 
       {/* Results Section */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-8">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800">
             Hasil Pencarian ({filteredArsip.length} item)
@@ -269,7 +269,7 @@ export default function ArsipPage() {
 
       {/* Info Section */}
       <div className="bg-gray-50 py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">Tentang Arsip Digital</h2>
             <p className="text-gray-600 mb-8">

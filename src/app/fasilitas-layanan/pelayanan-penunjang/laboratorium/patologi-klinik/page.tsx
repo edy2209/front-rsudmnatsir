@@ -253,7 +253,7 @@ export default function LabPatologiKlinikPage() {
         {/* Hero Section */}
         <div className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-teal-600 text-white overflow-hidden -mt-20 pt-20">
           <div className="absolute inset-0 bg-black/20"></div>
-          <div className="relative container mx-auto px-4 py-20">
+          <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-20">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-8">
                 <div className="space-y-4">
@@ -314,7 +314,7 @@ export default function LabPatologiKlinikPage() {
 
         {/* Navigation Tabs */}
         <div className="bg-white shadow-lg sticky top-0 z-40">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="flex overflow-x-auto">
               {[
                 { id: 'overview', label: 'Overview', icon: DocumentTextIcon },
@@ -342,7 +342,7 @@ export default function LabPatologiKlinikPage() {
         </div>
 
         {/* Content */}
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-12">
           {/* Overview Tab */}
           {activeTab === 'overview' && (
             <div className="space-y-12">
@@ -805,7 +805,7 @@ export default function LabPatologiKlinikPage() {
 
         {/* CTA Section */}
         <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
               Butuh Pemeriksaan Laboratorium?
             </h2>

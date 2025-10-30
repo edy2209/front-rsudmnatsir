@@ -202,7 +202,7 @@ export default function AlurRawatJalanPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
           <div className="text-center max-w-4xl mx-auto text-white">
             <div className="flex justify-center items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
               <HeartIcon className="w-12 h-12 sm:w-16 sm:h-16 text-blue-300 animate-pulse" />
@@ -232,7 +232,7 @@ export default function AlurRawatJalanPage() {
 
       {/* Flow Steps */}
       <div className="py-12 sm:py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">
             Alur Pelayanan <span className="text-blue-600">Lengkap</span>
           </h2>
@@ -338,7 +338,7 @@ export default function AlurRawatJalanPage() {
 
       {/* Visual Flow Chart */}
       <div className="py-12 sm:py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8 sm:mb-12">
             Diagram Alur <span className="text-blue-600">Visual</span>
           </h2>
@@ -388,7 +388,7 @@ export default function AlurRawatJalanPage() {
 
       {/* Additional Information */}
       <div className="py-12 sm:py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8 sm:mb-12">
             Informasi <span className="text-blue-600">Penting</span>
           </h2>
@@ -416,7 +416,7 @@ export default function AlurRawatJalanPage() {
 
       {/* Available Clinics */}
       <div className="py-12 sm:py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">
             Poliklinik <span className="text-blue-600">Tersedia</span>
           </h2>
@@ -453,7 +453,7 @@ export default function AlurRawatJalanPage() {
 
       {/* Contact & Emergency */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-600 py-12 sm:py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <ShieldCheckIcon className="w-12 h-12 sm:w-16 sm:h-16 text-white mx-auto mb-4 sm:mb-6 animate-pulse" />
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 px-4">
             Butuh Bantuan Lebih Lanjut?

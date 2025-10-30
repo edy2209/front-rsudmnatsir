@@ -149,7 +149,7 @@ export default function ProfilPage() {
   return (
     <PageLayout>
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-900 py-16 sm:py-20 lg:py-24 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-900 py-16 sm:py-20 lg:py-24 overflow-hidden -mt-20">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="grid grid-cols-8 md:grid-cols-12 gap-4 h-full">
@@ -163,7 +163,7 @@ export default function ProfilPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
           <div className="text-center max-w-4xl mx-auto text-white">
             <div className="flex justify-center items-center gap-4 mb-6">
               <BuildingOfficeIcon className="w-16 h-16 sm:w-20 sm:h-20 text-blue-300 animate-bounce" />
@@ -196,7 +196,7 @@ export default function ProfilPage() {
 
       {/* Statistics Cards */}
       <div className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {profileStats.map((stat, index) => (
               <div key={index} className="group">
@@ -215,7 +215,7 @@ export default function ProfilPage() {
 
       {/* Navigation Tabs */}
       <div className={`sticky top-0 z-40 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-lg shadow-lg' : 'bg-transparent'}`}>
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <nav className="flex flex-wrap justify-center gap-4 md:gap-6 lg:gap-8 py-4">
             {[
               { id: 'profil', label: 'Profil', icon: BuildingOfficeIcon },
@@ -242,7 +242,7 @@ export default function ProfilPage() {
 
       {/* Content Sections */}
       <div className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           
           {/* Profil Section */}
           {activeTab === 'profil' && (
@@ -457,7 +457,7 @@ export default function ProfilPage() {
 
       {/* CTA Section */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-700 py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <HeartIcon className="w-16 h-16 text-white mx-auto mb-6 animate-pulse" />
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Kesehatan Anda, Prioritas Kami

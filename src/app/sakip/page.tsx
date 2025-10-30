@@ -171,7 +171,7 @@ export default function SakipPage() {
     <PageLayout>
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-blue-700 to-blue-900 text-white">
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-16 -mt-20">
           <div className="max-w-4xl mx-auto text-center">
             <ChartBarIcon className="w-16 h-16 mx-auto mb-6 text-blue-200" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -201,7 +201,7 @@ export default function SakipPage() {
 
       {/* Indikator Kinerja Utama */}
       <div className="bg-white py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Indikator Kinerja Utama 2024</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -238,7 +238,7 @@ export default function SakipPage() {
 
       {/* Menu SAKIP */}
       <div className="bg-gray-50 py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Komponen SAKIP</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -276,7 +276,7 @@ export default function SakipPage() {
 
       {/* Dokumen SAKIP */}
       <div className="bg-white py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Dokumen SAKIP</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -390,7 +390,7 @@ export default function SakipPage() {
 
       {/* Statistik SAKIP */}
       <div className="bg-blue-50 py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Capaian SAKIP 2024</h2>
           </div>
@@ -425,7 +425,7 @@ export default function SakipPage() {
 
       {/* Call to Action */}
       <div className="bg-blue-600 text-white py-12">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <h2 className="text-3xl font-bold mb-4">Transparansi & Akuntabilitas</h2>
           <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
             RSUD M Natsir berkomitmen untuk terus meningkatkan kualitas pelayanan melalui 

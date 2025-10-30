@@ -132,7 +132,7 @@ export default function KlinikVCTPage() {
           <ShieldCheckIcon className="w-72 h-72 xl:w-96 xl:h-96 text-white animate-pulse" />
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
           <div className="text-center max-w-4xl mx-auto text-white">
             <div className="mb-4 sm:mb-6">
               <div className="flex justify-center items-center gap-3 sm:gap-4 mb-4">
@@ -196,7 +196,7 @@ export default function KlinikVCTPage() {
 
       {/* Stats Section */}
       <div className="py-12 sm:py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center group">
@@ -213,7 +213,7 @@ export default function KlinikVCTPage() {
 
       {/* Navigation Tabs */}
       <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-lg shadow-lg">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <nav className="flex flex-wrap justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-8 py-3 sm:py-4">
             {[
               { id: 'layanan', label: 'Layanan VCT', shortLabel: 'Layanan', icon: ShieldCheckIcon },
@@ -241,7 +241,7 @@ export default function KlinikVCTPage() {
 
       {/* Content Sections */}
       <div className="py-12 sm:py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           
           {/* Layanan Section */}
           {activeTab === 'layanan' && (
@@ -484,7 +484,7 @@ export default function KlinikVCTPage() {
 
       {/* Call to Action */}
       <div className="bg-gradient-to-r from-purple-600 to-indigo-600 py-12 sm:py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <ShieldCheckIcon className="w-12 h-12 sm:w-16 sm:h-16 text-white mx-auto mb-4 sm:mb-6 animate-pulse" />
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 px-4">
             Ketahui Status Kesehatan Anda

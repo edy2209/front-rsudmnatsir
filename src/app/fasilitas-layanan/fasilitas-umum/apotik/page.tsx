@@ -105,7 +105,7 @@ export default function ApotikPage() {
         {/* Hero Section */}
         <div className="relative bg-gradient-to-r from-emerald-600 to-teal-600 text-white -mt-20 pt-20">
           <div className="absolute inset-0 bg-black/10"></div>
-          <div className="relative container mx-auto px-4 py-20">
+          <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-20">
             <div className="max-w-3xl">
               <div className="flex items-center gap-3 mb-4">
                 <BeakerIcon className="h-12 w-12 text-emerald-200" />
@@ -139,7 +139,7 @@ export default function ApotikPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-12">
           {/* Navigation Tabs */}
           <div className="flex flex-wrap gap-2 mb-8 bg-white p-2 rounded-xl shadow-lg">
             {tabs.map((tab) => (
@@ -300,7 +300,7 @@ export default function ApotikPage() {
 
         {/* CTA Section */}
         <div className="bg-gradient-to-r from-emerald-600 to-teal-600 py-16">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
               Butuh Konsultasi Farmasis?
             </h2>

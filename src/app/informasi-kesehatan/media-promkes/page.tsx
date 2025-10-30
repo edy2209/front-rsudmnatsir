@@ -93,7 +93,7 @@ export default function MediaPromkesPage() {
     <PageLayout>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 py-20">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -130,7 +130,7 @@ export default function MediaPromkesPage() {
 
       {/* Stats Section */}
       <section className="py-16 bg-white border-b border-gray-100">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -162,7 +162,7 @@ export default function MediaPromkesPage() {
 
       {/* Media Categories */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -241,7 +241,7 @@ export default function MediaPromkesPage() {
 
       {/* Featured Content */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -328,7 +328,7 @@ export default function MediaPromkesPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

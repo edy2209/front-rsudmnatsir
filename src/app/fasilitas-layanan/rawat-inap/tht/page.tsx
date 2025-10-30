@@ -149,7 +149,7 @@ export default function RawatInapTHTPage() {
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50">
         {/* Hero Section */}
         <div className="bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 text-white py-16 -mt-20">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="flex flex-col lg:flex-row items-center justify-between">
               <div className="lg:w-1/2 mb-8 lg:mb-0">
                 <div className="flex items-center mb-4">
@@ -191,7 +191,7 @@ export default function RawatInapTHTPage() {
 
         {/* Tab Navigation */}
         <div className="bg-white shadow-lg sticky top-0 z-40">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="flex overflow-x-auto">
               {tabMenu.map((tab) => (
                 <button
@@ -212,7 +212,7 @@ export default function RawatInapTHTPage() {
         </div>
 
         {/* Content Sections */}
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-8">
           {activeTab === 'layanan' && (
             <div className="space-y-8">
               <div className="text-center mb-12">

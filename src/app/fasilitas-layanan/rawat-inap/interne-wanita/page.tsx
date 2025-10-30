@@ -32,7 +32,7 @@ export default function RawatInapInterneWanitaPage() {
           <div className="w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZmxvd2VyIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxjaXJjbGUgY3g9IjQwIiBjeT0iNDAiIHI9IjMiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSIyIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2Zsb3dlcikiLz48L3N2Zz4=')] opacity-40"></div>
         </div>
         
-        <div className="relative container mx-auto px-4 py-16">
+        <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-16">
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-6">
               <div className="bg-white/10 backdrop-blur-md p-4 rounded-full animate-pulse">
@@ -66,7 +66,7 @@ export default function RawatInapInterneWanitaPage() {
 
       {/* Tab Navigation */}
       <div className="bg-white shadow-lg sticky top-0 z-40">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="flex overflow-x-auto">
             {[
               { id: 'overview', label: 'Overview', icon: DocumentTextIcon },
@@ -97,7 +97,7 @@ export default function RawatInapInterneWanitaPage() {
       </div>
 
       {/* Content Sections */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-8">
         {activeTab === 'overview' && (
           <div className="space-y-12">
             {/* Stats Section */}
@@ -600,7 +600,7 @@ export default function RawatInapInterneWanitaPage() {
 
       {/* CTA Section */}
       <div className="bg-gradient-to-r from-pink-900 to-purple-900 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <h2 className="text-3xl font-bold mb-4">Perawatan Kesehatan Wanita Terbaik</h2>
           <p className="text-xl mb-8 text-pink-100">Dapatkan perawatan terbaik dengan tim medis yang memahami kebutuhan khusus wanita</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

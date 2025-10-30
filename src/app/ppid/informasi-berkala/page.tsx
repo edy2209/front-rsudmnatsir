@@ -127,7 +127,7 @@ export default function InformasiBerkalaPage() {
           </div>
         </div>
 
-        <div className="relative container mx-auto px-4 py-16 sm:py-20 lg:py-24">
+        <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-16 sm:py-20 lg:py-24">
           <div className="max-w-4xl">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
@@ -166,7 +166,7 @@ export default function InformasiBerkalaPage() {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-12">
         {/* Search and Filter */}
         <div className="mb-12">
           <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">

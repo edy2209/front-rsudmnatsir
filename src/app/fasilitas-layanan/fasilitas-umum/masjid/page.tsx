@@ -111,7 +111,7 @@ export default function MasjidPage() {
         {/* Hero Section */}
         <div className="relative bg-gradient-to-r from-teal-600 to-emerald-600 text-white -mt-20 pt-20">
           <div className="absolute inset-0 bg-black/10"></div>
-          <div className="relative container mx-auto px-4 py-20">
+          <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-20">
             <div className="max-w-3xl">
               <div className="flex items-center gap-3 mb-4">
                 <BuildingLibraryIcon className="h-12 w-12 text-teal-200" />
@@ -145,7 +145,7 @@ export default function MasjidPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-12">
           {/* Current Time Display */}
           <div className="bg-white rounded-xl p-6 shadow-lg mb-8 text-center">
             <h3 className="text-lg font-medium text-gray-600 mb-2">Waktu Sekarang</h3>
