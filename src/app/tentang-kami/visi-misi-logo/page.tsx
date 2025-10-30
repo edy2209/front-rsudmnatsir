@@ -142,7 +142,7 @@ export default function VisiMisiLogoPage() {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
         {/* Hero Section */}
         <motion.div 
-          className="bg-gradient-to-r from-blue-600 to-green-600 text-white py-16 px-4 relative overflow-hidden"
+          className="bg-gradient-to-r from-blue-600 to-green-600 text-white py-16 px-4 relative overflow-hidden -mt-20"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -182,7 +182,7 @@ export default function VisiMisiLogoPage() {
 
         {/* Article Meta */}
         <motion.div 
-          className="container mx-auto px-4 -mt-8 relative z-20"
+          className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 -mt-8 relative z-20"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -205,7 +205,7 @@ export default function VisiMisiLogoPage() {
           </div>
         </motion.div>
 
-        <div className="container mx-auto px-4 pb-16">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 pb-16">
           <motion.div
             variants={containerVariants}
             initial="hidden"

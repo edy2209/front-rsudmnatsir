@@ -138,7 +138,7 @@ export default function AlurPelayananPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
           <div className="text-center max-w-4xl mx-auto text-white">
             <div className="flex justify-center items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
               <DocumentTextIcon className="w-12 h-12 sm:w-16 sm:h-16 text-blue-300 animate-pulse" />
@@ -164,7 +164,7 @@ export default function AlurPelayananPage() {
 
       {/* Keunggulan Section */}
       <div className="py-12 sm:py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {keunggulan.map((item, index) => (
               <div key={index} className="text-center group">
@@ -181,7 +181,7 @@ export default function AlurPelayananPage() {
 
       {/* Alur Pelayanan Grid */}
       <div className="py-12 sm:py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">
             Pilih <span className="text-blue-600">Alur Pelayanan</span>
           </h2>
@@ -230,7 +230,7 @@ export default function AlurPelayananPage() {
 
       {/* Contact Information */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-600 py-12 sm:py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <PhoneIcon className="w-12 h-12 sm:w-16 sm:h-16 text-white mx-auto mb-4 sm:mb-6 animate-pulse" />
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 px-4">
             Butuh Bantuan Navigasi?

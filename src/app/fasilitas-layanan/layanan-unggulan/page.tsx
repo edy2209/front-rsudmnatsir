@@ -186,7 +186,7 @@ export default function LayananUnggulanPage() {
 
         {/* Article Meta */}
         <motion.div 
-          className="container mx-auto px-4 -mt-6 sm:-mt-8"
+          className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 -mt-6 sm:-mt-8"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -209,7 +209,7 @@ export default function LayananUnggulanPage() {
           </div>
         </motion.div>
 
-        <div className="container mx-auto px-4 pb-12 sm:pb-16">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 pb-12 sm:pb-16">
           <motion.div
             variants={containerVariants}
             initial="hidden"

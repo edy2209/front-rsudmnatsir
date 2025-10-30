@@ -248,7 +248,7 @@ export default function InfoPublikPage() {
     <PageLayout>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 overflow-hidden">
+        <section className="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 overflow-hidden -mt-20 pt-32">
           <div className="absolute inset-0 bg-black opacity-10"></div>
           
           {/* Animated Background Elements */}
@@ -264,7 +264,7 @@ export default function InfoPublikPage() {
             </div>
           </div>
 
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <div className="flex justify-center items-center gap-4 mb-6">
                 <InformationCircleIcon className="w-16 h-16 text-blue-300 animate-bounce" />
@@ -281,14 +281,17 @@ export default function InfoPublikPage() {
               </p>
               
               <div className="flex flex-wrap justify-center gap-4 text-sm">
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
-                  🏛️ Transparansi
+                <span className="bg-white text-blue-600 px-4 py-2 rounded-full flex items-center gap-2 font-medium">
+                  <BuildingOfficeIcon className="w-4 h-4" />
+                  Transparansi
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
-                  📊 Akuntabilitas
+                <span className="bg-white text-blue-600 px-4 py-2 rounded-full flex items-center gap-2 font-medium">
+                  <ChartBarIcon className="w-4 h-4" />
+                  Akuntabilitas
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
-                  🔍 Keterbukaan
+                <span className="bg-white text-blue-600 px-4 py-2 rounded-full flex items-center gap-2 font-medium">
+                  <EyeIcon className="w-4 h-4" />
+                  Keterbukaan
                 </span>
               </div>
             </div>
@@ -297,7 +300,7 @@ export default function InfoPublikPage() {
 
         {/* Statistics */}
         <section className="py-12 bg-white">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {statistik.map((stat, index) => (
                 <div key={index} className="text-center p-6 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl hover:shadow-lg transition-all duration-300">
@@ -312,7 +315,7 @@ export default function InfoPublikPage() {
 
         {/* Jenis Informasi Section */}
         <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 Jenis <span className="text-blue-600">Informasi Publik</span>
@@ -348,7 +351,7 @@ export default function InfoPublikPage() {
 
         {/* Search and Filter Section */}
         <section className="py-8 bg-white shadow-lg">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="flex flex-col lg:flex-row gap-4 items-center">
               {/* Search */}
               <div className="relative flex-grow">
@@ -385,7 +388,7 @@ export default function InfoPublikPage() {
 
         {/* Content Section */}
         <section className="py-12">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             {/* Highlighted Documents */}
             {highlightedItems.length > 0 && (
               <div className="mb-12">
@@ -515,7 +518,7 @@ export default function InfoPublikPage() {
 
         {/* FAQ Section */}
         <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-gray-800 text-center mb-12">
                 Pertanyaan <span className="text-blue-600">Umum</span>
@@ -560,7 +563,7 @@ export default function InfoPublikPage() {
 
         {/* CTA Section */}
         <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-800">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
             <InformationCircleIcon className="w-16 h-16 text-white mx-auto mb-6 animate-bounce" />
             <h2 className="text-3xl font-bold text-white mb-4">
               Butuh Informasi Lebih Lanjut?

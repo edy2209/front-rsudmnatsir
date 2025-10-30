@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
+  --font-playfair: 'Playfair Display', serif;
 }
 
 /* Force light mode - disable dark mode detection */
@@ -17,8 +20,13 @@ body {
   background: var(--background) !important;
   background-color: #ffffff !important;
   color: var(--foreground);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
 }
 
 /* Force white background for all main containers */

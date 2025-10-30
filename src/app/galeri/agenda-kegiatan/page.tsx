@@ -203,7 +203,7 @@ export default function AgendaKegiatanPage() {
     <PageLayout>
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-r from-green-600 to-blue-700 text-white py-20 overflow-hidden">
+        <section className="relative bg-gradient-to-r from-green-600 to-blue-700 text-white py-20 overflow-hidden -mt-20">
           <div className="absolute inset-0 bg-black opacity-10"></div>
           
           {/* Animated Background Elements */}
@@ -219,7 +219,7 @@ export default function AgendaKegiatanPage() {
             </div>
           </div>
 
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <div className="flex justify-center items-center gap-4 mb-6">
                 <CalendarDaysIcon className="w-16 h-16 text-green-300 animate-bounce" />
@@ -252,7 +252,7 @@ export default function AgendaKegiatanPage() {
 
         {/* Statistics */}
         <section className="py-12 bg-white">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {statistics.map((stat, index) => (
                 <div key={index} className="text-center p-6 bg-gradient-to-br from-green-50 to-blue-50 rounded-xl hover:shadow-lg transition-all duration-300">
@@ -266,7 +266,7 @@ export default function AgendaKegiatanPage() {
 
         {/* Filters and Search */}
         <section className="py-8 bg-gray-50">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             {/* Search Bar */}
             <div className="mb-6">
               <div className="relative max-w-lg mx-auto">
@@ -419,7 +419,7 @@ export default function AgendaKegiatanPage() {
 
         {/* CTA Section */}
         <section className="py-16 bg-gradient-to-r from-green-600 to-blue-700">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
             <PlusIcon className="w-16 h-16 text-white mx-auto mb-6 animate-pulse" />
             <h2 className="text-3xl font-bold text-white mb-4">
               Ingin Mengadakan Event?

@@ -191,7 +191,7 @@ export default function RawatInapJantungPage() {
         <div className="absolute top-20 right-20 text-pink-200/30 text-6xl animate-pulse">💓</div>
         <div className="absolute bottom-20 left-20 text-red-200/30 text-5xl animate-bounce">🫀</div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
           <div className="text-center max-w-4xl mx-auto text-white">
             <div className="mb-6">
               <div className="flex justify-center items-center gap-4 mb-4">
@@ -231,7 +231,7 @@ export default function RawatInapJantungPage() {
 
       {/* Navigation Tabs */}
       <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-lg shadow-lg">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <nav className="flex justify-center space-x-8 py-4">
             {[
               { id: 'overview', label: 'Overview', icon: HeartIcon },
@@ -258,7 +258,7 @@ export default function RawatInapJantungPage() {
 
       {/* Content Sections */}
       <div className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           
           {/* Overview */}
           {activeTab === 'overview' && (
@@ -454,7 +454,7 @@ export default function RawatInapJantungPage() {
 
       {/* Call to Action */}
       <div className="bg-gradient-to-r from-red-600 to-pink-600 py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <div className={`text-6xl mb-6 transition-all duration-300 ${heartbeat ? 'scale-110' : 'scale-100'}`}>💓</div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Jantung Sehat, Hidup Berkualitas

@@ -129,7 +129,7 @@ export default function FasilitasUmumPage() {
           <div className="w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImZhY2lsaXR5IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PHJlY3QgeD0iNTAiIHk9IjUwIiB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZmFjaWxpdHkpIi8+PC9zdmc+')] opacity-20"></div>
         </div>
         
-        <div className="relative container mx-auto px-4 py-20">
+        <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-20">
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-6">
               <div className="bg-white/10 backdrop-blur-md p-4 rounded-full animate-pulse">
@@ -163,7 +163,7 @@ export default function FasilitasUmumPage() {
 
       {/* Statistics Section */}
       <div className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {statistik.map((stat, index) => (
               <div key={index} className="text-center group">
@@ -180,7 +180,7 @@ export default function FasilitasUmumPage() {
 
       {/* Filter Section */}
       <div className="py-8 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
               Jelajahi <span className="text-blue-600">Fasilitas</span>
@@ -220,7 +220,7 @@ export default function FasilitasUmumPage() {
 
       {/* Facilities Grid */}
       <div className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid md:grid-cols-2 gap-8">
             {filteredFasilitas.map((fasilitas, index) => (
               <div key={fasilitas.id} className="group">
@@ -293,7 +293,7 @@ export default function FasilitasUmumPage() {
 
       {/* Additional Services */}
       <div className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               Layanan <span className="text-blue-600">Tambahan</span>
@@ -322,7 +322,7 @@ export default function FasilitasUmumPage() {
 
       {/* Information Section */}
       <div className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="max-w-4xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Panduan Penggunaan */}
@@ -382,7 +382,7 @@ export default function FasilitasUmumPage() {
 
       {/* Call to Action */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-600 py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <BuildingOfficeIcon className="w-16 h-16 text-white mx-auto mb-6 animate-pulse" />
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Nikmati Kenyamanan Fasilitas Kami

@@ -22,6 +22,34 @@ import Footer from '@/components/Footer';
 
 // Custom CSS for animations (inline styles)
 const customStyles = `
+  /* Professional Font Styles */
+  .font-heading {
+    font-family: var(--font-playfair);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .font-body {
+    font-family: var(--font-poppins);
+    font-weight: 400;
+  }
+
+  .font-display {
+    font-family: var(--font-playfair);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-playfair);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  body, p, span {
+    font-family: var(--font-poppins);
+  }
+
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -261,12 +289,18 @@ export default function BerandaPage() {
   
   // Certificate data
   const certificateSlides = [
-    { title: 'Akreditasi Paripurna', subtitle: 'Standar Pelayanan Kesehatan Terbaik', icon: '🏆' },
-    { title: 'ISO 9001:2015', subtitle: 'Sistem Manajemen Mutu Internasional', icon: '⭐' },
-    { title: 'KARS Terakreditasi', subtitle: 'Komisi Akreditasi Rumah Sakit', icon: '🏥' },
-    { title: 'SNARS Edisi 1', subtitle: 'Standar Nasional Akreditasi Rumah Sakit', icon: '🎖️' },
-    { title: 'Pelayanan Prima', subtitle: 'Sertifikat Pelayanan Berkualitas', icon: '🌟' },
-    { title: 'Penghargaan Mutu', subtitle: 'Excellence in Healthcare Service', icon: '🏅' }
+    { name: 'Akreditasi KARS', icon: '🏥', img: 'https://images.unsplash.com/photo-1516841273335-e39b37888115?w=800&h=600&fit=crop' },
+    { name: 'ISO 9001:2015', icon: '⭐', img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=600&fit=crop' },
+    { name: 'Sertifikat Pelayanan', icon: '🎖️', img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop' },
+    { name: 'Penghargaan Mutu', icon: '🏆', img: 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=800&h=600&fit=crop' },
+    { name: 'Dokter Spesialis', icon: '👨‍⚕️', img: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&h=600&fit=crop' },
+    { name: 'Fasilitas Unggulan', icon: '🔬', img: 'https://images.unsplash.com/photo-1581594549595-35f6edc7b762?w=800&h=600&fit=crop' },
+    { name: 'Sertifikat Mutu', icon: '📜', img: 'https://images.unsplash.com/photo-1554224311-beee460c201f?w=800&h=600&fit=crop' },
+    { name: 'Penghargaan Nasional', icon: '🥇', img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop' },
+    { name: 'Sertifikat JCI', icon: '�', img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop' },
+    { name: 'Akreditasi Laboratorium', icon: '⚗️', img: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&h=600&fit=crop' },
+    { name: 'Sertifikat Halal', icon: '☪️', img: 'https://images.unsplash.com/photo-1579154392429-0e6b4e850ad2?w=800&h=600&fit=crop' },
+    { name: 'Penghargaan Daerah', icon: '🏅', img: 'https://images.unsplash.com/photo-1596496050755-c923e73e42e1?w=800&h=600&fit=crop' }
   ];
   
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1, triggerOnce: true });
@@ -563,7 +597,7 @@ export default function BerandaPage() {
 
       {/* Hero Section */}
       <motion.section 
-        className={`flex items-center px-4 bg-white relative overflow-hidden ${
+        className={`flex items-center px-6 sm:px-8 lg:px-12 xl:px-16 bg-white relative overflow-hidden ${
           showMarquee ? 'min-h-screen' : 'min-h-screen'
         }`}
         id="hero-section"
@@ -604,7 +638,7 @@ export default function BerandaPage() {
 
       {/* Main Content Section */}
       <section className="py-20 bg-gradient-to-br from-white via-blue-50/30 to-green-50/30">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
             {/* Left Column - Gallery and News */}
@@ -630,91 +664,79 @@ export default function BerandaPage() {
                 </div>
 
                 <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl overflow-hidden">
-                  {/* Main Slider */}
-                  <div className="relative h-64 sm:h-80 md:h-96 bg-gradient-to-br from-blue-600 via-indigo-600 to-green-600 overflow-hidden">
-                    <div className="absolute inset-0 bg-black/10"></div>
-                    
-                    {/* Animated Background Pattern */}
-                    <div className="absolute inset-0 opacity-10">
-                      <div className="grid grid-cols-8 gap-4 h-full transform rotate-12 scale-150">
-                        {[...Array(64)].map((_, i) => (
-                          <div 
-                            key={i} 
-                            className="bg-white rounded-lg animate-pulse"
-                            style={{
-                              animationDelay: `${i * 0.1}s`,
-                              animationDuration: '3s'
-                            }}
-                          ></div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Main Content Slider */}
+                  {/* Main Certificate Image Slider */}
+                  <div className="relative h-64 sm:h-80 md:h-96 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
                     <AnimatePresence mode="wait">
                       <motion.div 
                         key={currentCertificate}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.6 }}
-                        className="relative h-full flex items-center justify-center"
+                        initial={{ opacity: 0, scale: 1.1 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.7 }}
+                        className="relative h-full"
                       >
-                        <div className="text-center text-white px-4 sm:px-6">
-                          <motion.div 
-                            className="mb-4 sm:mb-6"
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ delay: 0.2, duration: 0.5, type: "spring" }}
-                          >
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto mb-2 sm:mb-4 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/30 shadow-xl">
-                              <span className="text-2xl sm:text-3xl md:text-4xl">{certificateSlides[currentCertificate]?.icon}</span>
-                            </div>
-                          </motion.div>
-                          <motion.h3 
-                            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-4 leading-tight"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
+                        <img
+                          src={certificateSlides[currentCertificate]?.img}
+                          alt={certificateSlides[currentCertificate]?.name}
+                          className="w-full h-full object-cover"
+                        />
+                        
+                        {/* Overlay gradient for better text visibility */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                        
+                        {/* Certificate Info Overlay */}
+                        <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                          <motion.div
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.3, duration: 0.6 }}
+                            className="bg-white/10 backdrop-blur-md rounded-xl p-4 sm:p-6 border border-white/20"
                           >
-                            {certificateSlides[currentCertificate]?.title}
-                          </motion.h3>
-                          <motion.p 
-                            className="text-sm sm:text-base md:text-lg lg:text-xl opacity-90 mb-4 sm:mb-6 leading-relaxed"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.4, duration: 0.6 }}
-                          >
-                            {certificateSlides[currentCertificate]?.subtitle}
-                          </motion.p>
-                          <motion.div 
-                            className="flex justify-center gap-2 sm:gap-3 md:gap-4 flex-wrap px-2"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.5, duration: 0.6 }}
-                          >
-                            <span className="bg-white/20 backdrop-blur-sm px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-xs sm:text-sm border border-white/30 font-medium">
-                              ISO 9001:2015
-                            </span>
-                            <span className="bg-white/20 backdrop-blur-sm px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-xs sm:text-sm border border-white/30 font-medium">
-                              KARS Terakreditasi
-                            </span>
-                            <span className="bg-white/20 backdrop-blur-sm px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-xs sm:text-sm border border-white/30 font-medium">
-                              SNARS Ed.1
-                            </span>
+                            <div className="flex items-center gap-3 mb-2">
+                              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                                <span className="text-xl sm:text-2xl">{certificateSlides[currentCertificate]?.icon}</span>
+                              </div>
+                              <div>
+                                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white leading-tight">
+                                  {certificateSlides[currentCertificate]?.name}
+                                </h3>
+                                <p className="text-xs sm:text-sm text-white/80">
+                                  Sertifikat Resmi RSUD M. Natsir
+                                </p>
+                              </div>
+                            </div>
                           </motion.div>
                         </div>
                       </motion.div>
                     </AnimatePresence>
 
-                    {/* Slider Navigation Dots */}
-                    <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-                      <div className="flex space-x-3">
+                    {/* Navigation Arrows */}
+                    <button
+                      onClick={() => setCurrentCertificate((prev) => (prev - 1 + certificateSlides.length) % certificateSlides.length)}
+                      className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-2 sm:p-3 rounded-full hover:bg-white/30 transition-all duration-300 z-10"
+                    >
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    
+                    <button
+                      onClick={() => setCurrentCertificate((prev) => (prev + 1) % certificateSlides.length)}
+                      className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-2 sm:p-3 rounded-full hover:bg-white/30 transition-all duration-300 z-10"
+                    >
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+
+                    {/* Slider Dots Indicator */}
+                    <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
+                      <div className="flex space-x-2">
                         {certificateSlides.map((_, index) => (
                           <button
                             key={index}
                             onClick={() => setCurrentCertificate(index)}
-                            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                               index === currentCertificate 
                                 ? 'bg-white shadow-lg scale-125' 
                                 : 'bg-white/50 hover:bg-white/80'
@@ -732,39 +754,36 @@ export default function BerandaPage() {
                     {/* Scrollable Certificate Gallery */}
                     <div className="relative">
                       <div className="flex space-x-4 overflow-x-auto scrollbar-thin scrollbar-thumb-blue-400 scrollbar-track-gray-200 hover:scrollbar-thumb-blue-500 pb-4">
-                        {[
-                          { name: 'Akreditasi KARS', icon: '🏥', color: 'from-blue-500 to-blue-600' },
-                          { name: 'ISO 9001:2015', icon: '⭐', color: 'from-green-500 to-green-600' },
-                          { name: 'Sertifikat Pelayanan', icon: '🎖️', color: 'from-purple-500 to-purple-600' },
-                          { name: 'Penghargaan Mutu', icon: '🏆', color: 'from-yellow-500 to-yellow-600' },
-                          { name: 'Dokter Spesialis', icon: '👨‍⚕️', color: 'from-teal-500 to-teal-600' },
-                          { name: 'Fasilitas Unggulan', icon: '🔬', color: 'from-indigo-500 to-indigo-600' },
-                          { name: 'Sertifikat Mutu', icon: '📜', color: 'from-red-500 to-red-600' },
-                          { name: 'Penghargaan Nasional', icon: '🥇', color: 'from-orange-500 to-orange-600' },
-                          { name: 'Sertifikat JCI', icon: '🌟', color: 'from-pink-500 to-pink-600' },
-                          { name: 'Akreditasi Laboratorium', icon: '⚗️', color: 'from-cyan-500 to-cyan-600' },
-                          { name: 'Sertifikat Halal', icon: '☪️', color: 'from-emerald-500 to-emerald-600' },
-                          { name: 'Penghargaan Daerah', icon: '🏅', color: 'from-violet-500 to-violet-600' }
-                        ].map((item, index) => (
+                        {certificateSlides.map((item, index) => (
                           <div 
                             key={index} 
-                            className="group cursor-pointer transform transition-all duration-300 hover:scale-105 flex-shrink-0"
+                            onClick={() => setCurrentCertificate(index)}
+                            className={`group cursor-pointer transform transition-all duration-300 hover:scale-105 flex-shrink-0 ${
+                              index === currentCertificate ? 'scale-105 ring-2 ring-blue-500 rounded-lg' : ''
+                            }`}
                           >
-                            <div className={`w-32 h-20 sm:w-36 sm:h-24 md:w-40 md:h-28 bg-gradient-to-br ${item.color} rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center relative overflow-hidden border-2 border-white/20`}>
-                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
+                            <div className="w-32 h-20 sm:w-36 sm:h-24 md:w-40 md:h-28 rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300 relative overflow-hidden border-2 border-white/50">
+                              {/* Thumbnail Image */}
+                              <img 
+                                src={item.img} 
+                                alt={item.name}
+                                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                              />
                               
-                              {/* Certificate border pattern */}
-                              <div className="absolute inset-1 border border-white/30 rounded-md"></div>
-                              <div className="absolute inset-2 border border-white/20 rounded-sm"></div>
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent group-hover:from-black/40 transition-all duration-300"></div>
                               
-                              <span className="text-xl sm:text-2xl relative z-10 transform group-hover:scale-110 transition-transform duration-300 mb-1">
-                                {item.icon}
-                              </span>
-                              
-                              {/* Certificate text overlay */}
-                              <div className="text-white text-[8px] sm:text-[9px] font-bold text-center leading-tight relative z-10 px-2">
-                                SERTIFIKAT
-                              </div>
+                              {/* Active Indicator */}
+                              {index === currentCertificate && (
+                                <motion.div
+                                  initial={{ scale: 0 }}
+                                  animate={{ scale: 1 }}
+                                  className="absolute top-2 right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center shadow-lg"
+                                >
+                                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                  </svg>
+                                </motion.div>
+                              )}
                             </div>
                             <p className="text-xs text-center mt-2 text-gray-600 font-medium w-32 sm:w-36 md:w-40 break-words leading-tight">
                               {item.name}
@@ -808,28 +827,32 @@ export default function BerandaPage() {
                       date: "23 Juli 2024",
                       author: "Deswira Umar",
                       views: "295",
-                      excerpt: "RSUD M. Natsir merupakan OPD dibawah Pemerintah Provinsi Sumatera Barat yang melaksanakan urusan wajib bidang kesehatan..."
+                      excerpt: "RSUD M. Natsir merupakan OPD dibawah Pemerintah Provinsi Sumatera Barat yang melaksanakan urusan wajib bidang kesehatan...",
+                      img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop"
                     },
                     {
                       title: "Tangkal Hoaks Dengan Inovasi Lego",
                       date: "22 Juli 2024", 
                       author: "Deswira Umar",
                       views: "274",
-                      excerpt: "Seiring dengan semakin meningkatnya angka kunjungan pasien di RSUD M Mohammad Natsir pasca pandemi Covid-19..."
+                      excerpt: "Seiring dengan semakin meningkatnya angka kunjungan pasien di RSUD M Mohammad Natsir pasca pandemi Covid-19...",
+                      img: "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800&h=600&fit=crop"
                     },
                     {
                       title: "Inovasi Dalang Tol Itik",
                       date: "22 Juli 2024",
                       author: "Deswira Umar", 
                       views: "234",
-                      excerpt: "Dalang Tol Itik merupakan nama inovasi yang digagas oleh Lusi Meyliza, A.md.kl pada tahun 2023..."
+                      excerpt: "Dalang Tol Itik merupakan nama inovasi yang digagas oleh Lusi Meyliza, A.md.kl pada tahun 2023...",
+                      img: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=800&h=600&fit=crop"
                     },
                     {
                       title: "Ada Selebelt Di RSUD M Natsir",
                       date: "22 Juli 2024",
                       author: "Deswira Umar",
                       views: "248", 
-                      excerpt: "Inovasi Selebelt adalah singkatan dari Selasa Belajar, kegiatan Selasa Belajar di RSUD M. Natsir..."
+                      excerpt: "Inovasi Selebelt adalah singkatan dari Selasa Belajar, kegiatan Selasa Belajar di RSUD M. Natsir...",
+                      img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=600&fit=crop"
                     }
                   ].map((news, index) => (
                     <motion.div
@@ -837,8 +860,13 @@ export default function BerandaPage() {
                       className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group"
                       whileHover={{ y: -5 }}
                     >
-                      <div className="h-48 bg-gradient-to-br from-blue-500 to-green-500 relative">
-                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                      <div className="h-48 bg-gradient-to-br from-blue-500 to-green-500 relative overflow-hidden">
+                        <img 
+                          src={news.img}
+                          alt={news.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent group-hover:from-black/30 transition-colors"></div>
                       </div>
                       <div className="p-6">
                         <h3 className="text-lg font-bold text-gray-800 mb-3 group-hover:text-green-600 transition-colors line-clamp-2">
@@ -881,14 +909,6 @@ export default function BerandaPage() {
             {/* Right Column - Widgets */}
             <div className="lg:col-span-4 space-y-8">
               
-              {/* Gubernur Widget */}
-              <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">Gubernur dan Wakil</h3>
-                <div className="bg-gradient-to-br from-blue-500 to-green-500 rounded-xl h-48 flex items-center justify-center">
-                  <span className="text-white font-semibold">Foto Gubernur</span>
-                </div>
-              </div>
-
               {/* Health Articles */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
                 <h3 className="text-xl font-bold text-gray-800 mb-6">Artikel Kesehatan</h3>
@@ -935,12 +955,22 @@ export default function BerandaPage() {
               <div className="bg-white rounded-2xl shadow-lg p-6">
                 <h3 className="text-xl font-bold text-gray-800 mb-6">Album Foto</h3>
                 <div className="grid grid-cols-2 gap-3">
-                  {[1,2,3,4].map((item, index) => (
+                  {[
+                    { img: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&h=400&fit=crop', title: 'Seminar Kesehatan' },
+                    { img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=400&fit=crop', title: 'Pelayanan Medis' },
+                    { img: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=400&h=400&fit=crop', title: 'Fasilitas Modern' },
+                    { img: 'https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=400&h=400&fit=crop', title: 'Tim Dokter' }
+                  ].map((item, index) => (
                     <div key={index} className="aspect-square bg-gradient-to-br from-blue-500 to-green-500 rounded-xl relative group cursor-pointer overflow-hidden">
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-white text-xs font-medium text-center p-2">
-                          Kegiatan RSUD M. Natsir
+                      <img 
+                        src={item.img}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-black/40 transition-colors"></div>
+                      <div className="absolute inset-0 flex items-end p-3">
+                        <span className="text-white text-xs font-semibold">
+                          {item.title}
                         </span>
                       </div>
                     </div>
@@ -954,7 +984,7 @@ export default function BerandaPage() {
 
       {/* Information Services Section */}
       <section className="py-20 bg-gradient-to-br from-white via-blue-50/30 to-green-50/30">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 50 }}
@@ -1012,7 +1042,7 @@ export default function BerandaPage() {
 
       {/* Featured Services Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 via-blue-50/50 to-green-50/50" ref={servicesRef}>
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 50 }}

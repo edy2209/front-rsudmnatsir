@@ -202,7 +202,7 @@ export default function AlurBankDarahPage() {
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-red-600 to-pink-700 text-white py-20">
           <div className="absolute inset-0 bg-black opacity-10"></div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
                 Alur Pelayanan Bank Darah
@@ -227,7 +227,7 @@ export default function AlurBankDarahPage() {
 
         {/* Statistics */}
         <section className="py-12 bg-white">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {statistics.map((stat, index) => (
                 <div key={index} className="text-center p-6 bg-gradient-to-br from-red-50 to-pink-50 rounded-xl">
@@ -241,7 +241,7 @@ export default function AlurBankDarahPage() {
 
         {/* Navigation Tabs */}
         <section className="py-8 bg-gray-50">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               {[
                 { id: 'alur', label: 'Alur Donor Darah' },
@@ -504,7 +504,7 @@ export default function AlurBankDarahPage() {
 
         {/* CTA Section */}
         <section className="py-16 bg-gradient-to-r from-red-600 to-pink-700">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
               Setetes Darah Anda, Harapan Bagi Mereka
             </h2>

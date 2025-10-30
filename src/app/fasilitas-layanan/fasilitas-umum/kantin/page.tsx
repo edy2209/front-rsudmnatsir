@@ -135,7 +135,7 @@ export default function KantinPage() {
         {/* Hero Section */}
         <div className="relative bg-gradient-to-r from-orange-600 to-amber-600 text-white -mt-20 pt-20">
           <div className="absolute inset-0 bg-black/10"></div>
-          <div className="relative container mx-auto px-4 py-20">
+          <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-20">
             <div className="max-w-3xl">
               <div className="flex items-center gap-3 mb-4">
                 <BuildingStorefrontIcon className="h-12 w-12 text-orange-200" />
@@ -169,7 +169,7 @@ export default function KantinPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-12">
           {/* Fasilitas Kantin */}
           <div className="mb-12">
             <div className="text-center mb-8">

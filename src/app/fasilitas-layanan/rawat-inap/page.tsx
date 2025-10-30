@@ -229,7 +229,7 @@ export default function RawatInapPage() {
           🛏️
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
           <div className="text-center max-w-4xl mx-auto text-white">
             <div className="mb-6">
               <HomeIcon className="w-20 h-20 text-emerald-200 mx-auto mb-4 animate-pulse" />
@@ -266,7 +266,7 @@ export default function RawatInapPage() {
 
       {/* Navigation Tabs */}
       <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-lg shadow-lg">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <nav className="flex justify-center space-x-8 py-4">
             {[
               { id: 'kamar', label: 'Ruang Perawatan', icon: HomeIcon },
@@ -293,7 +293,7 @@ export default function RawatInapPage() {
 
       {/* Content Sections */}
       <div className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           
           {/* Ruang Perawatan */}
           {activeTab === 'kamar' && (
@@ -522,7 +522,7 @@ export default function RawatInapPage() {
 
       {/* Call to Action */}
       <div className="bg-gradient-to-r from-teal-600 to-emerald-600 py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <HomeIcon className="w-16 h-16 text-white mx-auto mb-6 animate-pulse" />
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Reservasi Kamar Rawat Inap

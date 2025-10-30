@@ -152,7 +152,7 @@ export default function GaleriImagesPage() {
     <PageLayout>
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-green-600 to-green-800 text-white">
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-16 -mt-20">
           <div className="max-w-4xl mx-auto text-center">
             <PhotoIcon className="w-16 h-16 mx-auto mb-6 text-green-200" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -178,7 +178,7 @@ export default function GaleriImagesPage() {
 
       {/* Search and Filter Section */}
       <div className="bg-white shadow-lg">
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-6">
           <div className="flex flex-col lg:flex-row gap-4 items-center">
             {/* Search */}
             <div className="relative flex-grow">
@@ -213,7 +213,7 @@ export default function GaleriImagesPage() {
       </div>
 
       {/* Gallery Section */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-8">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800">
             Galeri Foto ({filteredImages.length} foto)
@@ -327,7 +327,7 @@ export default function GaleriImagesPage() {
 
       {/* Statistics Section */}
       <div className="bg-gray-50 py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">Dokumentasi Visual</h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">

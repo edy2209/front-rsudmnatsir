@@ -82,7 +82,7 @@ export default function KlinikMataPage() {
           </div>
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 py-20">
+        <div className="relative z-10 container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-20">
           <div className="max-w-5xl mx-auto text-center">
             {/* View Mode Toggle */}
             <div className="flex justify-center mb-8">
@@ -209,7 +209,7 @@ export default function KlinikMataPage() {
           ? 'bg-slate-900/80 border-slate-700' 
           : 'bg-white/90 border-gray-200'
       }`}>
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="flex items-center justify-center py-4">
             <div className={`flex space-x-1 p-1 rounded-xl ${
               isDark ? 'bg-slate-800' : 'bg-gray-100'
@@ -246,7 +246,7 @@ export default function KlinikMataPage() {
       <div className={`min-h-screen transition-all duration-500 ${
         isDark ? 'bg-slate-900' : 'bg-gray-50'
       }`}>
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-12">
           
           {/* Pemeriksaan Umum */}
           {activeService === 'umum' && (
@@ -961,7 +961,7 @@ export default function KlinikMataPage() {
             ? 'bg-gradient-to-r from-slate-800 to-slate-700' 
             : 'bg-gray-900'
         } text-white`}>
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Jaga Kesehatan Mata Anda Mulai Hari Ini
             </h2>

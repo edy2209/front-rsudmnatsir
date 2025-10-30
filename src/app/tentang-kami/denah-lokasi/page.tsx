@@ -71,7 +71,7 @@ export default function DenahLokasiPage() {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
         {/* Hero Section */}
         <motion.div 
-          className="bg-gradient-to-r from-blue-600 to-green-600 text-white py-16 px-4 relative overflow-hidden"
+          className="bg-gradient-to-r from-blue-600 to-green-600 text-white py-16 px-4 relative overflow-hidden -mt-20"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -98,7 +98,7 @@ export default function DenahLokasiPage() {
 
         {/* Google Maps Section */}
         <motion.div 
-          className="container mx-auto px-4 -mt-8 relative z-20"
+          className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 -mt-8 relative z-20"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -312,149 +312,310 @@ export default function DenahLokasiPage() {
         </motion.div>
 
         {/* Content Section */}
-        <div className="container mx-auto px-4 pb-16">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 pb-16">
           <motion.div
-            className="bg-white rounded-3xl shadow-xl p-8"
+            className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* Post Header */}
-            <div className="mb-8">
-              <h3 className="text-3xl font-bold text-gray-800 mb-4">
-                <a href="#" className="hover:text-blue-600 transition-colors">
-                  Lokasi RSUD Solok
-                </a>
-              </h3>
+            {/* Header Section with Gradient */}
+            <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 p-8 text-white relative overflow-hidden">
+              <div className="absolute inset-0 opacity-20">
+                <div className="absolute top-4 right-4 w-20 h-20 border-2 border-white rounded-full animate-pulse"></div>
+                <div className="absolute bottom-4 left-4 w-16 h-16 bg-white/20 rounded-full"></div>
+              </div>
               
-              <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600 mb-6">
-                <div className="flex items-center gap-2">
-                  <ClockIcon className="w-5 h-5 text-blue-600" />
-                  <span>Thursday, 22 September 2016</span>
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center">
+                    <MapPinIcon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold">
+                    Lokasi RSUD M. Natsir Solok
+                  </h3>
                 </div>
-                <div className="flex items-center gap-2">
-                  <EyeIcon className="w-5 h-5 text-green-600" />
-                  <span>8,178</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <UserIcon className="w-5 h-5 text-purple-600" />
-                  <span>Rio Bayu Sentosa</span>
+                
+                <div className="flex flex-wrap items-center gap-6 text-sm opacity-90">
+                  <div className="flex items-center gap-2">
+                    <ClockIcon className="w-5 h-5" />
+                    <span>Thursday, 22 September 2016</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <EyeIcon className="w-5 h-5" />
+                    <span>8,178 views</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <UserIcon className="w-5 h-5" />
+                    <span>Rio Bayu Sentosa</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Featured Image */}
-            <motion.div 
-              className="mb-8 relative group"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="relative overflow-hidden rounded-2xl shadow-lg">
-                <Image 
-                  src="http://rsudmnatsir.sumbarprov.go.id/images/2016/10/denah_lokasi.png"
-                  alt="Denah Lokasi RSUD M. Natsir"
-                  width={800}
-                  height={384}
-                  className="w-full h-96 object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
-                  <MagnifyingGlassPlusIcon className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Content */}
-            <div className="prose prose-lg max-w-none">
-              <p className="text-gray-700 leading-relaxed mb-6">
-                RSUD Solok adalah rumah sakit milik Provinsi Sumatera Barat yang terletak diwilayah administratif Kota Solok. 
-                Posisi RSUD Solok berada di kelurahan Simpang Rumbio Kecamatan Lubuk Sikarah Kota Solok.
-              </p>
-
-              {/* Gambar 01 */}
+            {/* Content Body */}
+            <div className="p-8 md:p-12">
+              {/* Featured Image with Enhanced Styling */}
               <motion.div 
-                className="mb-8"
+                className="mb-12 relative group"
+                whileHover={{ scale: 1.01 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="relative overflow-hidden rounded-2xl shadow-2xl border-4 border-blue-100">
+                  <Image 
+                    src="http://rsudmnatsir.sumbarprov.go.id/images/2016/10/denah_lokasi.png"
+                    alt="Denah Lokasi RSUD M. Natsir"
+                    width={800}
+                    height={384}
+                    className="w-full h-96 object-cover"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <div className="flex items-center gap-2 bg-blue-600/80 backdrop-blur-md rounded-lg px-4 py-2 w-fit">
+                      <PhotoIcon className="w-5 h-5" />
+                      <span className="font-semibold">Denah Lokasi Strategis</span>
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/10 transition-all duration-300 flex items-center justify-center">
+                    <MagnifyingGlassPlusIcon className="w-16 h-16 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Introduction Text with Icon */}
+              <motion.div 
+                className="mb-10 bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl p-6 border-l-4 border-blue-600"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <MapPinIcon className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-gray-800 mb-3">Tentang Lokasi Kami</h4>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      RSUD M. Natsir adalah rumah sakit milik Provinsi Sumatera Barat yang terletak di wilayah administratif Kota Solok. 
+                      Posisi RSUD M. Natsir berada di <span className="font-semibold text-blue-600">Kelurahan Simpang Rumbio, Kecamatan Lubuk Sikarah, Kota Solok</span> 
+                      dengan lokasi yang sangat strategis untuk melayani masyarakat Sumatera Barat.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Gambar 01 - Enhanced Card */}
+              <motion.div 
+                className="mb-10"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <div className="text-center mb-4">
-                  <h4 className="font-bold text-gray-800">Gambar 01</h4>
-                  <p className="text-gray-600">Peta Administratif Kota Solok</p>
-                </div>
-                <div className="flex justify-center">
-                  <div className="bg-gray-100 p-4 rounded-lg">
-                    <PhotoIcon className="w-64 h-40 text-gray-400 mx-auto" />
-                    <p className="text-center text-sm text-gray-500 mt-2">Peta Administratif Kota Solok</p>
+                <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-8 shadow-lg border border-purple-200">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
+                      <span className="text-white font-bold">01</span>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800 text-xl">Peta Administratif Kota Solok</h4>
+                      <p className="text-gray-600 text-sm">Wilayah cakupan layanan rumah sakit</p>
+                    </div>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 shadow-inner">
+                    <div className="flex justify-center">
+                      <div className="relative">
+                        <PhotoIcon className="w-80 h-52 text-gray-300 mx-auto" />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-gray-400 font-medium">Peta Administratif Kota Solok</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
 
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Posisi ini terletak diarea strategis dengan dikelilingi wilayah kota dan kabupaten sekitarnya. 
-                Sebelah utara, berbatasan dengan kabupaten solok dan tanah datar. Sebelah selatan dengan kabupaten solok dan solok selatan. 
-                Sebelah barat dengan kabupaten solok, kota sawah lunto, kabupaten sijunjung dan darmasraya.
-              </p>
-
-              {/* Gambar 02 */}
+              {/* Location Advantages */}
               <motion.div 
-                className="mb-8"
+                className="mb-10 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 border-l-4 border-green-600"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <span className="text-2xl">🗺️</span>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-gray-800 mb-3">Posisi Strategis</h4>
+                    <p className="text-gray-700 leading-relaxed text-lg mb-4">
+                      Posisi ini terletak di area strategis dengan dikelilingi wilayah kota dan kabupaten sekitarnya:
+                    </p>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="bg-white rounded-lg p-4 shadow-sm">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <span>⬆️</span>
+                          </div>
+                          <span className="font-semibold text-gray-800">Sebelah Utara</span>
+                        </div>
+                        <p className="text-gray-600 text-sm">Kabupaten Solok dan Tanah Datar</p>
+                      </div>
+                      <div className="bg-white rounded-lg p-4 shadow-sm">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                            <span>⬇️</span>
+                          </div>
+                          <span className="font-semibold text-gray-800">Sebelah Selatan</span>
+                        </div>
+                        <p className="text-gray-600 text-sm">Kabupaten Solok dan Solok Selatan</p>
+                      </div>
+                      <div className="bg-white rounded-lg p-4 shadow-sm md:col-span-2">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <span>⬅️</span>
+                          </div>
+                          <span className="font-semibold text-gray-800">Sebelah Barat</span>
+                        </div>
+                        <p className="text-gray-600 text-sm">Kabupaten Solok, Kota Sawahlunto, Kabupaten Sijunjung dan Dharmasraya</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Gambar 02 - Enhanced Card */}
+              <motion.div 
+                className="mb-10"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
-                <div className="text-center mb-4">
-                  <h4 className="font-bold text-gray-800">Gambar 02</h4>
-                  <p className="text-gray-600">Kunjungan Rawat Jalan Berdasarkan Asal Daerah</p>
-                </div>
-                <div className="flex justify-center">
-                  <div className="bg-gray-100 p-4 rounded-lg">
-                    <PhotoIcon className="w-64 h-40 text-gray-400 mx-auto" />
-                    <p className="text-center text-sm text-gray-500 mt-2">Grafik Kunjungan Rawat Jalan</p>
+                <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl p-8 shadow-lg border border-blue-200">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                      <span className="text-white font-bold">02</span>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800 text-xl">Kunjungan Rawat Jalan</h4>
+                      <p className="text-gray-600 text-sm">Berdasarkan asal daerah pasien</p>
+                    </div>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 shadow-inner">
+                    <div className="flex justify-center">
+                      <div className="relative">
+                        <PhotoIcon className="w-80 h-52 text-gray-300 mx-auto" />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-gray-400 font-medium">Grafik Kunjungan Rawat Jalan</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
 
-              <p className="text-gray-700 leading-relaxed mb-6">
-                RSUD Solok merupakan rumah sakit dengan bangunan yang memanjang dari depan ke belakang dengan akses jalan masuk dari jalan utama yang merupakan jalan dua jalur. 
-                Tepat didepan akses masuk utama langsung berhadapan dengan Instalasi Gawat Darurat. Disamping IGD berdiri Instalasi Rawat Jalan.
-              </p>
-
-              {/* Gambar 03 */}
+              {/* Building Layout Description */}
               <motion.div 
-                className="mb-8"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
+                className="mb-10 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-2xl p-6 border-l-4 border-orange-600"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
               >
-                <div className="text-center mb-4">
-                  <h4 className="font-bold text-gray-800">Gambar 03</h4>
-                  <p className="text-gray-600">Denah RSUD Solok</p>
-                </div>
-                <div className="flex justify-center">
-                  <div className="bg-gray-100 p-4 rounded-lg">
-                    <PhotoIcon className="w-64 h-40 text-gray-400 mx-auto" />
-                    <p className="text-center text-sm text-gray-500 mt-2">Denah RSUD Solok</p>
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-orange-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <span className="text-2xl">🏥</span>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-gray-800 mb-3">Tata Letak Bangunan</h4>
+                    <p className="text-gray-700 leading-relaxed text-lg">
+                      RSUD M. Natsir merupakan rumah sakit dengan bangunan yang memanjang dari depan ke belakang dengan akses jalan masuk dari jalan utama yang merupakan jalan dua jalur. 
+                      <span className="font-semibold text-orange-600"> Tepat di depan akses masuk utama langsung berhadapan dengan Instalasi Gawat Darurat (IGD)</span>. 
+                      Di samping IGD berdiri Instalasi Rawat Jalan yang memudahkan akses pasien.
+                    </p>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Gambar 04 */}
+              {/* Gambar 03 & 04 - Side by Side on Desktop */}
+              <div className="grid md:grid-cols-2 gap-6 mb-10">
+                {/* Gambar 03 */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                >
+                  <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-6 shadow-lg border border-indigo-200 h-full">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
+                        <span className="text-white font-bold">03</span>
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-800 text-lg">Denah RSUD</h4>
+                        <p className="text-gray-600 text-xs">Layout lengkap rumah sakit</p>
+                      </div>
+                    </div>
+                    <div className="bg-white rounded-xl p-4 shadow-inner">
+                      <div className="flex justify-center">
+                        <div className="relative">
+                          <PhotoIcon className="w-full h-40 text-gray-300" />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <span className="text-gray-400 text-sm font-medium">Denah RSUD Solok</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Gambar 04 */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                >
+                  <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl p-6 shadow-lg border border-teal-200 h-full">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center">
+                        <span className="text-white font-bold">04</span>
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-800 text-lg">Denah Tahun 2014</h4>
+                        <p className="text-gray-600 text-xs">Dokumentasi historis</p>
+                      </div>
+                    </div>
+                    <div className="bg-white rounded-xl p-4 shadow-inner">
+                      <div className="flex justify-center">
+                        <div className="relative">
+                          <PhotoIcon className="w-full h-40 text-gray-300" />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <span className="text-gray-400 text-sm font-medium">Denah RSUD 2014</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Call to Action */}
               <motion.div 
-                className="mb-8"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center shadow-xl"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.0 }}
+                transition={{ duration: 0.6, delay: 1.1 }}
               >
-                <div className="text-center mb-4">
-                  <h4 className="font-bold text-gray-800">Gambar 04</h4>
-                  <p className="text-gray-600">Denah RSUD Solok Tahun 2014</p>
-                </div>
-                <div className="flex justify-center">
-                  <div className="bg-gray-100 p-4 rounded-lg">
-                    <PhotoIcon className="w-64 h-40 text-gray-400 mx-auto" />
-                    <p className="text-center text-sm text-gray-500 mt-2">Denah RSUD Solok Tahun 2014</p>
-                  </div>
+                <MapPinIcon className="w-16 h-16 mx-auto mb-4 opacity-90" />
+                <h4 className="text-2xl font-bold mb-3">Butuh Petunjuk Arah?</h4>
+                <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+                  Tim customer service kami siap membantu memberikan petunjuk arah dan informasi lokasi
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <button className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg">
+                    📞 Hubungi CS
+                  </button>
+                  <button className="bg-white/20 backdrop-blur-md text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/30 transition-all duration-300 border border-white/30">
+                    🗺️ Buka di Google Maps
+                  </button>
                 </div>
               </motion.div>
             </div>

@@ -192,7 +192,7 @@ export default function LaboratoriumPage() {
             <div className="absolute bottom-40 right-10 w-8 h-8 bg-white rounded-full animate-bounce delay-500"></div>
           </div>
           
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
             <div className="flex flex-col lg:flex-row items-center justify-between">
               <div className="lg:w-1/2 mb-8 lg:mb-0">
                 <div className="flex items-center mb-6">
@@ -254,7 +254,7 @@ export default function LaboratoriumPage() {
 
         {/* Tab Navigation */}
         <div className="bg-white shadow-lg sticky top-0 z-40">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="flex overflow-x-auto">
               {tabMenu.map((tab) => (
                 <button
@@ -275,7 +275,7 @@ export default function LaboratoriumPage() {
         </div>
 
         {/* Content Sections */}
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-12">
           {activeTab === 'layanan' && (
             <div className="space-y-8">
               <div className="text-center mb-12">

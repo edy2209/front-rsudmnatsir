@@ -149,7 +149,7 @@ export default function PelayananPenunjangPage() {
           <div className="absolute bottom-40 right-10 w-12 h-12 bg-white rounded-full animate-pulse delay-500"></div>
         </div>
         
-        <div className="relative container mx-auto px-4 py-20">
+        <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-20">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -213,7 +213,7 @@ export default function PelayananPenunjangPage() {
 
       {/* Filter Section */}
       <div className="py-12 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="text-center mb-10">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
               Jelajahi <span className="text-indigo-600">Layanan Kami</span>
@@ -253,7 +253,7 @@ export default function PelayananPenunjangPage() {
 
       {/* Services Grid */}
       <div className="py-16 bg-gradient-to-br from-gray-50 to-indigo-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid lg:grid-cols-2 gap-8">
             {filteredPelayanan.map((layanan, index) => (
               <div 
@@ -359,7 +359,7 @@ export default function PelayananPenunjangPage() {
 
       {/* Technology Section */}
       <div className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
               Teknologi <span className="text-indigo-600">Unggulan</span>
@@ -388,7 +388,7 @@ export default function PelayananPenunjangPage() {
 
       {/* Information & Contact Section */}
       <div className="py-16 bg-gradient-to-br from-gray-50 to-indigo-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Panduan Pemeriksaan */}
@@ -456,7 +456,7 @@ export default function PelayananPenunjangPage() {
 
       {/* Call to Action */}
       <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <div className="max-w-4xl mx-auto">
             <BuildingOffice2Icon className="w-16 h-16 text-white mx-auto mb-6 animate-pulse" />
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">

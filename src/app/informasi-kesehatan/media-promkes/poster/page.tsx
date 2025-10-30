@@ -205,8 +205,8 @@ export default function PosterPage() {
   return (
     <PageLayout>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 py-20">
-        <div className="container mx-auto px-4">
+      <section className="bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 py-20 -mt-20">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -253,7 +253,7 @@ export default function PosterPage() {
 
       {/* Featured Posters */}
       <section className="py-16 bg-white border-b border-gray-100">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -332,7 +332,7 @@ export default function PosterPage() {
 
       {/* Category Filter */}
       <section className="py-8 bg-white border-b border-gray-100">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -370,7 +370,7 @@ export default function PosterPage() {
 
       {/* Posters Grid */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -541,7 +541,7 @@ export default function PosterPage() {
 
       {/* Stats Section */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -571,7 +571,7 @@ export default function PosterPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

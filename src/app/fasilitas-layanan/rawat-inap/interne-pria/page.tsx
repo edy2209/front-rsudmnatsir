@@ -31,7 +31,7 @@ export default function RawatInapInternePriaPage() {
           <div className="w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
         </div>
         
-        <div className="relative container mx-auto px-4 py-16">
+        <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-16">
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-6">
               <div className="bg-white/10 backdrop-blur-md p-4 rounded-full animate-bounce">
@@ -65,7 +65,7 @@ export default function RawatInapInternePriaPage() {
 
       {/* Tab Navigation */}
       <div className="bg-white shadow-lg sticky top-0 z-40">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="flex overflow-x-auto">
             {[
               { id: 'overview', label: 'Overview', icon: DocumentTextIcon },
@@ -96,7 +96,7 @@ export default function RawatInapInternePriaPage() {
       </div>
 
       {/* Content Sections */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-8">
         {activeTab === 'overview' && (
           <div className="space-y-12">
             {/* Stats Section */}
@@ -598,7 +598,7 @@ export default function RawatInapInternePriaPage() {
 
       {/* CTA Section */}
       <div className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <h2 className="text-3xl font-bold mb-4">Butuh Perawatan Penyakit Dalam?</h2>
           <p className="text-xl mb-8 text-blue-100">Konsultasikan kondisi kesehatan Anda dengan dokter spesialis kami</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

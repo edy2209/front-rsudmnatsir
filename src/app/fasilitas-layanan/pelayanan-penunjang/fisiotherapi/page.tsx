@@ -144,7 +144,7 @@ export default function FisioterapiPage() {
             <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-white rounded-full animate-ping"></div>
           </div>
           
-          <div className="relative container mx-auto px-4 py-20">
+          <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-20">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-8">
                 <div className="space-y-4">
@@ -205,7 +205,7 @@ export default function FisioterapiPage() {
 
         {/* Navigation Tabs */}
         <div className="bg-white shadow-lg sticky top-0 z-40">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="flex overflow-x-auto">
               {[
                 { id: 'overview', label: 'Overview', icon: DocumentTextIcon },
@@ -232,7 +232,7 @@ export default function FisioterapiPage() {
         </div>
 
         {/* Content */}
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-12">
           {/* Overview Tab */}
           {activeTab === 'overview' && (
             <div className="space-y-12">
@@ -566,7 +566,7 @@ export default function FisioterapiPage() {
 
         {/* CTA Section */}
         <div className="bg-gradient-to-r from-blue-600 to-green-600 text-white py-16">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
               Mulai Perjalanan Pemulihan Anda
             </h2>

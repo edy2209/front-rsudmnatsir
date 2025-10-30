@@ -103,7 +103,7 @@ export default function KlinikNeurologiPage() {
           </div>
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 py-20">
+        <div className="relative z-10 container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-20">
           <div className="max-w-5xl mx-auto text-center text-white">
             
             {/* Interactive Brain Icon */}
@@ -237,7 +237,7 @@ export default function KlinikNeurologiPage() {
 
       {/* Content Sections */}
       <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-16">
           
           {/* Condition-specific Content */}
           {activeCondition === 'stroke' && (
@@ -839,7 +839,7 @@ export default function KlinikNeurologiPage() {
 
       {/* Emergency CTA */}
       <div className="bg-red-600 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <h3 className="text-2xl font-bold mb-4">🚨 STROKE EMERGENCY</h3>
           <p className="text-lg mb-6">Golden Hour = Life Saved. Setiap menit sangat berharga!</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

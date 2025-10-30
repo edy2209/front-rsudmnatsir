@@ -124,7 +124,7 @@ export default function KlinikJantungPage() {
 
         {/* Content */}
         <div className="relative z-10 flex items-center min-h-screen">
-          <div className="container mx-auto px-4 py-20">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-20">
             <div className="max-w-4xl mx-auto text-center text-white">
               {/* Badge */}
               <div className="inline-flex items-center bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 mb-8">
@@ -198,7 +198,7 @@ export default function KlinikJantungPage() {
 
       {/* Navigation Section */}
       <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200/50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="flex items-center justify-center py-4">
             <div className="flex space-x-1 bg-gray-100 p-1 rounded-xl">
               {[
@@ -230,7 +230,7 @@ export default function KlinikJantungPage() {
         {/* Overview Section */}
         {activeSection === 'overview' && (
           <div className="py-20">
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
               <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
                   <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -350,7 +350,7 @@ export default function KlinikJantungPage() {
         {/* Layanan Section */}
         {activeSection === 'layanan' && (
           <div className="py-20">
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
               <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
                   <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -531,7 +531,7 @@ export default function KlinikJantungPage() {
         {/* Fasilitas Section */}
         {activeSection === 'fasilitas' && (
           <div className="py-20">
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
               <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
                   <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -601,7 +601,7 @@ export default function KlinikJantungPage() {
         {/* Check-up Section */}
         {activeSection === 'checkup' && (
           <div className="py-20">
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
               <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
                   <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -884,7 +884,7 @@ export default function KlinikJantungPage() {
 
       {/* Footer CTA */}
       <div className="bg-gray-900 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Jaga Kesehatan Jantung Anda Sekarang
           </h2>

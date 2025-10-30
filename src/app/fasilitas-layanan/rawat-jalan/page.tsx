@@ -190,7 +190,7 @@ export default function RawatJalanPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
           <div className="text-center max-w-4xl mx-auto text-white">
             <div className="mb-6">
               <UserGroupIcon className="w-20 h-20 text-blue-200 mx-auto mb-4 animate-pulse" />
@@ -215,7 +215,7 @@ export default function RawatJalanPage() {
 
       {/* Stats Section */}
       <div className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center group">
@@ -232,7 +232,7 @@ export default function RawatJalanPage() {
 
       {/* Klinik Grid */}
       <div className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
               Klinik <span className="text-blue-600">Spesialis</span>
@@ -301,7 +301,7 @@ export default function RawatJalanPage() {
 
       {/* Fasilitas Unggulan */}
       <div className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-6">
               Fasilitas <span className="text-blue-600">Unggulan</span>
@@ -329,7 +329,7 @@ export default function RawatJalanPage() {
 
       {/* Informasi Penting */}
       <div className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-800 mb-6">
@@ -400,7 +400,7 @@ export default function RawatJalanPage() {
 
       {/* Call to Action */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-600 py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <HeartIcon className="w-16 h-16 text-white mx-auto mb-6 animate-pulse" />
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Dapatkan Pelayanan Kesehatan Terbaik

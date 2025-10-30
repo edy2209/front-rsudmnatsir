@@ -32,7 +32,7 @@ export default function RawatInapNeurologiPage() {
           <div className="w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9Im5ldXJvbiIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNTAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxjaXJjbGUgY3g9Ijc1IiBjeT0iNzUiIHI9IjYiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz48bGluZSB4MT0iNzUiIHkxPSI3NSIgeDI9IjEyMCIgeTI9IjMwIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4wOCkiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI3NSIgeTE9Ijc1IiB4Mj0iMzAiIHkyPSIxMjAiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjA4KSIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI25ldXJvbikiLz48L3N2Zz4=')] opacity-30"></div>
         </div>
         
-        <div className="relative container mx-auto px-4 py-16">
+        <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-16">
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-6">
               <div className="bg-white/10 backdrop-blur-md p-4 rounded-full animate-pulse">
@@ -66,7 +66,7 @@ export default function RawatInapNeurologiPage() {
 
       {/* Tab Navigation */}
       <div className="bg-white shadow-lg sticky top-0 z-40">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="flex overflow-x-auto">
             {[
               { id: 'overview', label: 'Overview', icon: DocumentTextIcon },
@@ -97,7 +97,7 @@ export default function RawatInapNeurologiPage() {
       </div>
 
       {/* Content Sections */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-8">
         {activeTab === 'overview' && (
           <div className="space-y-12">
             {/* Stats Section */}
@@ -600,7 +600,7 @@ export default function RawatInapNeurologiPage() {
 
       {/* CTA Section */}
       <div className="bg-gradient-to-r from-purple-900 to-violet-900 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <h2 className="text-3xl font-bold mb-4">Deteksi Dini Gangguan Neurologis</h2>
           <p className="text-xl mb-8 text-purple-100">Konsultasikan gejala neurologis Anda dengan tim ahli saraf berpengalaman</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -164,7 +164,7 @@ export default function PengumumanPage() {
     <PageLayout>
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-orange-600 to-orange-800 text-white">
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-16 -mt-20">
           <div className="max-w-4xl mx-auto text-center">
             <SpeakerWaveIcon className="w-16 h-16 mx-auto mb-6 text-orange-200" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -190,7 +190,7 @@ export default function PengumumanPage() {
 
       {/* Search and Filter Section */}
       <div className="bg-white shadow-lg">
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-6">
           <div className="flex flex-col lg:flex-row gap-4 items-center">
             {/* Search */}
             <div className="relative flex-grow">
@@ -246,7 +246,7 @@ export default function PengumumanPage() {
       </div>
 
       {/* Content Section */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-8">
         {/* Pinned Announcements */}
         {pinnedAnnouncements.length > 0 && (
           <div className="mb-8">
@@ -389,7 +389,7 @@ export default function PengumumanPage() {
 
       {/* Statistics Section */}
       <div className="bg-gray-50 py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">Statistik Pengumuman</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
