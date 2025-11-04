@@ -193,13 +193,13 @@ export default function AlurRadiologiPage() {
                 Pemeriksaan Radiologi Komprehensif dengan Teknologi Terkini
               </p>
               <div className="flex flex-wrap justify-center gap-4 text-sm">
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="relative z-20 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
                   Teknologi Digital
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="relative z-20 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
                   Radiolog Berpengalaman
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="relative z-20 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
                   Hasil Cepat & Akurat
                 </span>
               </div>
@@ -468,13 +468,13 @@ export default function AlurRadiologiPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/appointments"
-                className="bg-white text-green-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+                className="relative z-10 bg-white text-green-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 backdrop-blur-sm border border-white/30"
               >
                 Buat Janji Pemeriksaan
               </a>
               <a
                 href="tel:0411-555-0123"
-                className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300"
+                className="relative z-10 bg-white/20 hover:bg-white/30 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 backdrop-blur-sm border border-white/30"
               >
                 Hubungi Radiologi
               </a>

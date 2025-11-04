@@ -235,14 +235,14 @@ export default function AgendaKegiatanPage() {
                 Jadwal lengkap kegiatan, seminar, dan program RSUD M. Natsir Solok
               </p>
               
-              <div className="flex flex-wrap justify-center gap-4 text-sm">
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+              <div className="flex flex-wrap justify-center gap-4 text-sm relative z-20">
+                <span className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
                   Event Berkualitas
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
                   Registrasi Online
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
                   Update Real-time
                 </span>
               </div>
@@ -427,11 +427,11 @@ export default function AgendaKegiatanPage() {
             <p className="text-green-100 mb-8 max-w-2xl mx-auto">
               Bergabunglah dengan kami dalam mengadakan kegiatan edukasi kesehatan dan pengembangan SDM
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-green-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+              <button className="bg-white text-green-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg">
                 Ajukan Proposal
               </button>
-              <button className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300">
+              <button className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 border border-white/30 shadow-lg">
                 Hubungi Event Manager
               </button>
             </div>

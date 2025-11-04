@@ -192,7 +192,7 @@ export default function AlurRawatJalanPage() {
   return (
     <PageLayout>
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 py-12 sm:py-16 lg:py-20 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 py-12 sm:py-16 lg:py-20 overflow-hidden -mt-20">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="grid grid-cols-6 md:grid-cols-8 gap-4 md:gap-8 h-full">
