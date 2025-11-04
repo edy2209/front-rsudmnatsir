@@ -171,7 +171,7 @@ export default function AlurRawatInapPage() {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20">
-          <div className="absolute inset-0 bg-black opacity-10"></div>
+          <div className="absolute inset-0 bg-white/5"></div>
           <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
@@ -181,13 +181,13 @@ export default function AlurRawatInapPage() {
                 Pelayanan Rawat Inap Berkualitas dengan Fasilitas Modern
               </p>
               <div className="flex flex-wrap justify-center gap-4 text-sm">
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="relative z-20 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
                   Perawatan 24/7
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="relative z-20 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
                   Tim Multidisiplin
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="relative z-20 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
                   Fasilitas Lengkap
                 </span>
               </div>
@@ -465,13 +465,13 @@ export default function AlurRawatInapPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/appointments"
-                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+                className="relative z-10 bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 backdrop-blur-sm border border-white/30"
               >
                 Reservasi Kamar
               </a>
               <a
                 href="tel:0411-555-0124"
-                className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300"
+                className="relative z-10 bg-white/20 hover:bg-white/30 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 backdrop-blur-sm border border-white/30"
               >
                 Hubungi Admission
               </a>

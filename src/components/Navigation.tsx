@@ -171,6 +171,7 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
         { label: 'Agenda/Kegiatan', href: routes.agendaKegiatan },
         { label: 'Arsip', href: routes.arsip },
         { label: 'Pengumuman', href: routes.pengumuman },
+        { label: 'Berita', href: '/beranda/lihatsemua' },
       ]
     },
     {
@@ -309,6 +310,7 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
         'Agenda/Kegiatan': { icon: '📅', bg: 'bg-green-100' },
         'Arsip': { icon: '📂', bg: 'bg-gray-100' },
         'Pengumuman': { icon: '📢', bg: 'bg-orange-100' },
+        'Berita': { icon: '📰', bg: 'bg-blue-100' },
         
         // WBK dan WBBM
         'Whistleblower System': { icon: '📞', bg: 'bg-red-100' },
@@ -358,7 +360,11 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
           </button>
           
           {/* Desktop Dropdown */}
-          <div className={`absolute left-0 top-full mt-0 w-64 bg-white rounded-lg shadow-lg border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60] ${
+          <div className={`absolute ${
+            item.label === 'Informasi Kesehatan' || item.label === 'PPID' || item.label === 'WBK dan WBBM'
+              ? 'right-0'
+              : 'left-0'
+          } top-full mt-0 w-64 bg-white rounded-lg shadow-lg border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60] ${
             level > 0 ? 'left-full top-0 mt-0 -ml-2' : ''
           }`}>
             <div className="py-2">
@@ -378,7 +384,11 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
                         </svg>
                       </div>
                       {/* Third Level Dropdown */}
-                      <div className={`absolute left-full top-0 w-56 bg-white rounded-lg shadow-xl border opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 z-[70] ml-1 ${
+                      <div className={`absolute ${
+                        item.label === 'Informasi Kesehatan' || item.label === 'PPID' || item.label === 'WBK dan WBBM'
+                          ? 'right-full mr-1'
+                          : 'left-full ml-1'
+                      } top-0 w-56 bg-white rounded-lg shadow-xl border opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 z-[70] ${
                         child.children && child.children.length > 8 ? 'max-h-80 overflow-y-auto' : ''
                       }`}>
                         <div className="py-2">
@@ -398,7 +408,11 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
                                     </svg>
                                   </div>
                                   {/* Fourth Level Dropdown */}
-                                  <div className={`absolute left-full w-48 bg-white rounded-lg shadow-xl border opacity-0 invisible group-hover/third:opacity-100 group-hover/third:visible transition-all duration-200 z-[80] ml-1 ${
+                                  <div className={`absolute ${
+                                    item.label === 'Informasi Kesehatan' || item.label === 'PPID' || item.label === 'WBK dan WBBM'
+                                      ? 'right-full mr-1'
+                                      : 'left-full ml-1'
+                                  } w-48 bg-white rounded-lg shadow-xl border opacity-0 invisible group-hover/third:opacity-100 group-hover/third:visible transition-all duration-200 z-[80] ${
                                     child.label === 'Alur Pelayanan' && grandChild.label === 'Pelayanan Penunjang' ? '-top-32' : 'top-0'
                                   }`}>
                                     <div className="py-2">
@@ -544,6 +558,7 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
         'Agenda/Kegiatan': { icon: '📅', bg: 'bg-green-100' },
         'Arsip': { icon: '📂', bg: 'bg-gray-100' },
         'Pengumuman': { icon: '📢', bg: 'bg-orange-100' },
+        'Berita': { icon: '📰', bg: 'bg-blue-100' },
         
         // WBK dan WBBM
         'Whistleblower System': { icon: '📞', bg: 'bg-red-100' },

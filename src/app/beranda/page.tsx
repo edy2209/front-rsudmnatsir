@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import CountUp from 'react-countup';
+import Link from 'next/link';
 import { 
   HeartIcon, 
   BuildingOffice2Icon, 
@@ -19,6 +20,9 @@ import {
 } from '@heroicons/react/24/outline';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+
+// API Configuration - Global constant
+const IMAGE_API_BASE = 'https://picsum.photos/seed';
 
 // Custom CSS for animations (inline styles)
 const customStyles = `
@@ -166,17 +170,16 @@ function AutoImageSlider() {
 
 // Hero Carousel Component
 function HeroCarousel() {
-
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const images = [
     {
-      src: "/images/hero-image-1.jpg", // Placeholder - nanti bisa diganti dengan gambar yang sesuai
+      src: `${IMAGE_API_BASE}/hospital-hero-1/1200/800`,
       alt: "RSUD M. Natsir Fasilitas",
       fallback: "bg-gradient-to-br from-blue-500 via-blue-600 to-cyan-600"
     },
     {
-      src: "/images/hero-image-2.jpg", // Placeholder - nanti bisa diganti dengan gambar dokter
+      src: `${IMAGE_API_BASE}/hospital-hero-2/1200/800`,
       alt: "Tim Dokter RSUD M. Natsir",
       fallback: "bg-gradient-to-br from-green-500 via-emerald-600 to-teal-600"
     }
@@ -289,18 +292,18 @@ export default function BerandaPage() {
   
   // Certificate data
   const certificateSlides = [
-    { name: 'Akreditasi KARS', icon: '🏥', img: 'https://images.unsplash.com/photo-1516841273335-e39b37888115?w=800&h=600&fit=crop' },
-    { name: 'ISO 9001:2015', icon: '⭐', img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=600&fit=crop' },
-    { name: 'Sertifikat Pelayanan', icon: '🎖️', img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop' },
-    { name: 'Penghargaan Mutu', icon: '🏆', img: 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=800&h=600&fit=crop' },
-    { name: 'Dokter Spesialis', icon: '👨‍⚕️', img: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&h=600&fit=crop' },
-    { name: 'Fasilitas Unggulan', icon: '🔬', img: 'https://images.unsplash.com/photo-1581594549595-35f6edc7b762?w=800&h=600&fit=crop' },
-    { name: 'Sertifikat Mutu', icon: '📜', img: 'https://images.unsplash.com/photo-1554224311-beee460c201f?w=800&h=600&fit=crop' },
-    { name: 'Penghargaan Nasional', icon: '🥇', img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop' },
-    { name: 'Sertifikat JCI', icon: '�', img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop' },
-    { name: 'Akreditasi Laboratorium', icon: '⚗️', img: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&h=600&fit=crop' },
-    { name: 'Sertifikat Halal', icon: '☪️', img: 'https://images.unsplash.com/photo-1579154392429-0e6b4e850ad2?w=800&h=600&fit=crop' },
-    { name: 'Penghargaan Daerah', icon: '🏅', img: 'https://images.unsplash.com/photo-1596496050755-c923e73e42e1?w=800&h=600&fit=crop' }
+    { name: 'Akreditasi KARS', icon: '🏥', img: `${IMAGE_API_BASE}/kars-accreditation/800/600` },
+    { name: 'ISO 9001:2015', icon: '⭐', img: `${IMAGE_API_BASE}/iso-certificate/800/600` },
+    { name: 'Sertifikat Pelayanan', icon: '🎖️', img: `${IMAGE_API_BASE}/service-certificate/800/600` },
+    { name: 'Penghargaan Mutu', icon: '🏆', img: `${IMAGE_API_BASE}/quality-award/800/600` },
+    { name: 'Dokter Spesialis', icon: '👨‍⚕️', img: `${IMAGE_API_BASE}/specialist-doctor/800/600` },
+    { name: 'Fasilitas Unggulan', icon: '🔬', img: `${IMAGE_API_BASE}/lab-facility/800/600` },
+    { name: 'Sertifikat Mutu', icon: '📜', img: `${IMAGE_API_BASE}/quality-cert/800/600` },
+    { name: 'Penghargaan Nasional', icon: '🥇', img: `${IMAGE_API_BASE}/national-award/800/600` },
+    { name: 'Sertifikat JCI', icon: '🌟', img: `${IMAGE_API_BASE}/jci-certificate/800/600` },
+    { name: 'Akreditasi Laboratorium', icon: '⚗️', img: `${IMAGE_API_BASE}/lab-accreditation/800/600` },
+    { name: 'Sertifikat Halal', icon: '☪️', img: `${IMAGE_API_BASE}/halal-certificate/800/600` },
+    { name: 'Penghargaan Daerah', icon: '🏅', img: `${IMAGE_API_BASE}/regional-award/800/600` }
   ];
   
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1, triggerOnce: true });
@@ -828,7 +831,7 @@ export default function BerandaPage() {
                       author: "Deswira Umar",
                       views: "295",
                       excerpt: "RSUD M. Natsir merupakan OPD dibawah Pemerintah Provinsi Sumatera Barat yang melaksanakan urusan wajib bidang kesehatan...",
-                      img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop"
+                      img: `${IMAGE_API_BASE}/health-innovation-1/800/600`
                     },
                     {
                       title: "Tangkal Hoaks Dengan Inovasi Lego",
@@ -836,7 +839,7 @@ export default function BerandaPage() {
                       author: "Deswira Umar",
                       views: "274",
                       excerpt: "Seiring dengan semakin meningkatnya angka kunjungan pasien di RSUD M Mohammad Natsir pasca pandemi Covid-19...",
-                      img: "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800&h=600&fit=crop"
+                      img: `${IMAGE_API_BASE}/medical-technology/800/600`
                     },
                     {
                       title: "Inovasi Dalang Tol Itik",
@@ -844,7 +847,7 @@ export default function BerandaPage() {
                       author: "Deswira Umar", 
                       views: "234",
                       excerpt: "Dalang Tol Itik merupakan nama inovasi yang digagas oleh Lusi Meyliza, A.md.kl pada tahun 2023...",
-                      img: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=800&h=600&fit=crop"
+                      img: `${IMAGE_API_BASE}/hospital-training/800/600`
                     },
                     {
                       title: "Ada Selebelt Di RSUD M Natsir",
@@ -852,7 +855,7 @@ export default function BerandaPage() {
                       author: "Deswira Umar",
                       views: "248", 
                       excerpt: "Inovasi Selebelt adalah singkatan dari Selasa Belajar, kegiatan Selasa Belajar di RSUD M. Natsir...",
-                      img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=600&fit=crop"
+                      img: `${IMAGE_API_BASE}/learning-program/800/600`
                     }
                   ].map((news, index) => (
                     <motion.div
@@ -895,13 +898,15 @@ export default function BerandaPage() {
                 </div>
 
                 <div className="text-center mt-8">
-                  <motion.button
-                    className="bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Lihat Semua Berita
-                  </motion.button>
+                  <Link href="/beranda/lihatsemua">
+                    <motion.button
+                      className="bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Lihat Semua Berita
+                    </motion.button>
+                  </Link>
                 </div>
               </motion.div>
             </div>
@@ -956,10 +961,10 @@ export default function BerandaPage() {
                 <h3 className="text-xl font-bold text-gray-800 mb-6">Album Foto</h3>
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { img: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&h=400&fit=crop', title: 'Seminar Kesehatan' },
-                    { img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=400&fit=crop', title: 'Pelayanan Medis' },
-                    { img: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=400&h=400&fit=crop', title: 'Fasilitas Modern' },
-                    { img: 'https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=400&h=400&fit=crop', title: 'Tim Dokter' }
+                    { img: `${IMAGE_API_BASE}/hospital-seminar/400/400`, title: 'Seminar Kesehatan' },
+                    { img: `${IMAGE_API_BASE}/medical-service/400/400`, title: 'Pelayanan Medis' },
+                    { img: `${IMAGE_API_BASE}/modern-facility/400/400`, title: 'Fasilitas Modern' },
+                    { img: `${IMAGE_API_BASE}/doctor-team/400/400`, title: 'Tim Dokter' }
                   ].map((item, index) => (
                     <div key={index} className="aspect-square bg-gradient-to-br from-blue-500 to-green-500 rounded-xl relative group cursor-pointer overflow-hidden">
                       <img 

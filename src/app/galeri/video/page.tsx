@@ -16,14 +16,17 @@ import {
 } from '@heroicons/react/24/outline';
 import { HandThumbUpIcon as HandThumbUpSolidIcon } from '@heroicons/react/24/solid';
 
-// Data video dummy untuk demo
+// API Base URL untuk gambar
+const IMAGE_API_BASE = 'https://picsum.photos/seed';
+
+// Data video dummy untuk demo - diperbanyak untuk testing pagination
 const videosData = [
   {
     id: 1,
     title: 'Profil RSUD M Natsir Solok 2024',
     category: 'Profil',
     duration: '5:30',
-    thumbnail: '/api/placeholder/400/225',
+    thumbnail: `${IMAGE_API_BASE}/video-profile-hospital/400/225`,
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     date: '2024-01-10',
     views: 2450,
@@ -36,7 +39,7 @@ const videosData = [
     title: 'Edukasi Cuci Tangan yang Benar',
     category: 'Edukasi',
     duration: '3:15',
-    thumbnail: '/api/placeholder/400/225',
+    thumbnail: `${IMAGE_API_BASE}/video-hand-washing/400/225`,
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     date: '2024-01-08',
     views: 1820,
@@ -49,7 +52,7 @@ const videosData = [
     title: 'Operasi Jantung Pertama di RSUD M Natsir',
     category: 'Berita',
     duration: '8:45',
-    thumbnail: '/api/placeholder/400/225',
+    thumbnail: `${IMAGE_API_BASE}/video-heart-surgery/400/225`,
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     date: '2024-01-05',
     views: 3120,
@@ -62,7 +65,7 @@ const videosData = [
     title: 'Senam Sehat untuk Lansia',
     category: 'Edukasi',
     duration: '12:20',
-    thumbnail: '/api/placeholder/400/225',
+    thumbnail: `${IMAGE_API_BASE}/video-elderly-exercise/400/225`,
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     date: '2024-01-03',
     views: 1560,
@@ -75,7 +78,7 @@ const videosData = [
     title: 'Virtual Tour Ruang ICU Modern',
     category: 'Tour',
     duration: '6:40',
-    thumbnail: '/api/placeholder/400/225',
+    thumbnail: `${IMAGE_API_BASE}/video-icu-tour/400/225`,
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     date: '2024-01-01',
     views: 2890,
@@ -88,7 +91,7 @@ const videosData = [
     title: 'Cara Deteksi Dini Kanker Payudara',
     category: 'Edukasi',
     duration: '7:25',
-    thumbnail: '/api/placeholder/400/225',
+    thumbnail: `${IMAGE_API_BASE}/video-breast-cancer/400/225`,
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     date: '2023-12-28',
     views: 4210,
@@ -101,7 +104,7 @@ const videosData = [
     title: 'Pelantikan Direksi Baru RSUD M Natsir',
     category: 'Acara',
     duration: '15:30',
-    thumbnail: '/api/placeholder/400/225',
+    thumbnail: `${IMAGE_API_BASE}/video-inauguration/400/225`,
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     date: '2023-12-25',
     views: 1740,
@@ -114,13 +117,117 @@ const videosData = [
     title: 'Tips Menjaga Kesehatan Mental',
     category: 'Edukasi',
     duration: '9:15',
-    thumbnail: '/api/placeholder/400/225',
+    thumbnail: `${IMAGE_API_BASE}/video-mental-health/400/225`,
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     date: '2023-12-20',
     views: 2680,
     likes: 198,
     description: 'Tips praktis untuk menjaga kesehatan mental di tengah kesibukan sehari-hari.',
     tags: ['mental health', 'tips', 'psikologi', 'well-being']
+  },
+  {
+    id: 9,
+    title: 'Penanganan Gawat Darurat COVID-19',
+    category: 'Edukasi',
+    duration: '10:30',
+    thumbnail: `${IMAGE_API_BASE}/video-covid-emergency/400/225`,
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    date: '2023-12-15',
+    views: 3456,
+    likes: 278,
+    description: 'Prosedur penanganan pasien gawat darurat COVID-19 di rumah sakit.',
+    tags: ['covid', 'emergency', 'protokol', 'kesehatan']
+  },
+  {
+    id: 10,
+    title: 'Operasi Bedah Caesar Modern',
+    category: 'Edukasi',
+    duration: '11:20',
+    thumbnail: `${IMAGE_API_BASE}/video-cesarean/400/225`,
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    date: '2023-12-10',
+    views: 2890,
+    likes: 234,
+    description: 'Prosedur operasi caesar dengan teknologi modern dan aman.',
+    tags: ['bedah', 'caesar', 'operasi', 'kebidanan']
+  },
+  {
+    id: 11,
+    title: 'Workshop Keperawatan Terkini',
+    category: 'Acara',
+    duration: '25:45',
+    thumbnail: `${IMAGE_API_BASE}/video-nursing-workshop/400/225`,
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    date: '2023-12-05',
+    views: 1567,
+    likes: 143,
+    description: 'Workshop keperawatan modern untuk meningkatkan kualitas layanan.',
+    tags: ['keperawatan', 'workshop', 'pelatihan', 'sdm']
+  },
+  {
+    id: 12,
+    title: 'Rehabilitasi Pasca Stroke',
+    category: 'Edukasi',
+    duration: '14:15',
+    thumbnail: `${IMAGE_API_BASE}/video-stroke-rehab/400/225`,
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    date: '2023-12-01',
+    views: 2134,
+    likes: 187,
+    description: 'Program rehabilitasi komprehensif untuk pasien pasca stroke.',
+    tags: ['stroke', 'rehabilitasi', 'fisioterapi', 'pemulihan']
+  },
+  {
+    id: 13,
+    title: 'Kunjungan Gubernur Sumbar',
+    category: 'Berita',
+    duration: '8:30',
+    thumbnail: `${IMAGE_API_BASE}/video-governor-visit/400/225`,
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    date: '2023-11-25',
+    views: 4567,
+    likes: 389,
+    description: 'Kunjungan kerja Gubernur Sumatera Barat ke RSUD M Natsir.',
+    tags: ['gubernur', 'kunjungan', 'berita', 'pemerintah']
+  },
+  {
+    id: 14,
+    title: 'Makanan Sehat untuk Penderita Diabetes',
+    category: 'Edukasi',
+    duration: '6:50',
+    thumbnail: `${IMAGE_API_BASE}/video-diabetes-food/400/225`,
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    date: '2023-11-20',
+    views: 3789,
+    likes: 312,
+    description: 'Panduan menu makanan sehat untuk penderita diabetes.',
+    tags: ['diabetes', 'nutrisi', 'diet', 'kesehatan']
+  },
+  {
+    id: 15,
+    title: 'Sistem Informasi Rumah Sakit Terbaru',
+    category: 'Profil',
+    duration: '7:40',
+    thumbnail: `${IMAGE_API_BASE}/video-hospital-system/400/225`,
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    date: '2023-11-15',
+    views: 2345,
+    likes: 198,
+    description: 'Implementasi sistem informasi rumah sakit berbasis digital.',
+    tags: ['teknologi', 'sistem', 'digital', 'inovasi']
+  },
+  {
+    id: 16,
+    title: 'Peringatan Hari Kesehatan Nasional',
+    category: 'Acara',
+    duration: '18:20',
+    thumbnail: `${IMAGE_API_BASE}/video-health-day/400/225`,
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    date: '2023-11-10',
+    views: 2678,
+    likes: 223,
+    description: 'Rangkaian acara peringatan Hari Kesehatan Nasional.',
+    tags: ['hkn', 'peringatan', 'acara', 'nasional']
   }
 ];
 
@@ -131,6 +238,8 @@ export default function GaleriVideoPage() {
   const [selectedCategory, setSelectedCategory] = useState('Semua');
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
   const [likedVideos, setLikedVideos] = useState<number[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
 
   const filteredVideos = videosData.filter(video => {
     const matchesSearch = video.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -140,6 +249,23 @@ export default function GaleriVideoPage() {
     
     return matchesSearch && matchesCategory;
   });
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredVideos.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentVideos = filteredVideos.slice(startIndex, endIndex);
+
+  // Reset to page 1 when filter changes
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    setCurrentPage(1);
+  };
+
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    setCurrentPage(1);
+  };
 
   const toggleLike = (videoId: number) => {
     if (likedVideos.includes(videoId)) {
@@ -207,7 +333,7 @@ export default function GaleriVideoPage() {
                 type="text"
                 placeholder="Cari video..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               />
             </div>
@@ -218,7 +344,7 @@ export default function GaleriVideoPage() {
                 {categories.map(category => (
                   <button
                     key={category}
-                    onClick={() => setSelectedCategory(category)}
+                    onClick={() => handleCategoryChange(category)}
                     className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors text-sm ${
                       selectedCategory === category
                         ? 'bg-purple-600 text-white'
@@ -240,10 +366,15 @@ export default function GaleriVideoPage() {
           <h2 className="text-2xl font-bold text-gray-800">
             Video ({filteredVideos.length} video)
           </h2>
+          {filteredVideos.length > 0 && (
+            <p className="text-sm text-gray-600">
+              Halaman {currentPage} dari {totalPages}
+            </p>
+          )}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-          {filteredVideos.map((video) => (
+          {currentVideos.map((video) => (
             <div key={video.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
               <div className="relative group cursor-pointer" onClick={() => openVideoModal(video)}>
                 <img
@@ -315,6 +446,63 @@ export default function GaleriVideoPage() {
             <VideoCameraIcon className="w-16 h-16 mx-auto text-gray-400 mb-4" />
             <h3 className="text-lg font-medium text-gray-600 mb-2">Tidak ada video ditemukan</h3>
             <p className="text-gray-500">Coba ubah kata kunci pencarian atau kategori</p>
+          </div>
+        )}
+
+        {/* Pagination */}
+        {filteredVideos.length > 0 && totalPages > 1 && (
+          <div className="flex justify-center items-center gap-2 mt-8">
+            <button
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className={`px-4 py-2 rounded-lg ${
+                currentPage === 1
+                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                  : 'bg-purple-600 text-white hover:bg-purple-700'
+              }`}
+            >
+              Sebelumnya
+            </button>
+            
+            <div className="flex gap-2">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                // Show first page, last page, current page, and pages around current
+                if (
+                  page === 1 ||
+                  page === totalPages ||
+                  (page >= currentPage - 1 && page <= currentPage + 1)
+                ) {
+                  return (
+                    <button
+                      key={page}
+                      onClick={() => setCurrentPage(page)}
+                      className={`w-10 h-10 rounded-lg ${
+                        currentPage === page
+                          ? 'bg-purple-600 text-white'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  );
+                } else if (page === currentPage - 2 || page === currentPage + 2) {
+                  return <span key={page} className="px-2">...</span>;
+                }
+                return null;
+              })}
+            </div>
+            
+            <button
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className={`px-4 py-2 rounded-lg ${
+                currentPage === totalPages
+                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                  : 'bg-purple-600 text-white hover:bg-purple-700'
+              }`}
+            >
+              Selanjutnya
+            </button>
           </div>
         )}
       </div>
@@ -409,26 +597,6 @@ export default function GaleriVideoPage() {
           </div>
         </div>
       )}
-
-      {/* Statistics Section */}
-      <div className="bg-gray-50 py-12">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-8">Statistik Video</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
-              {categories.slice(1).map((category) => {
-                const count = videosData.filter(video => video.category === category).length;
-                return (
-                  <div key={category} className="bg-white p-4 sm:p-6 rounded-lg shadow-sm text-center">
-                    <div className="text-xl sm:text-2xl font-bold text-purple-600 mb-2">{count}</div>
-                    <div className="text-gray-600 text-sm sm:text-base">{category}</div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </div>
     </PageLayout>
   );
 }

@@ -171,7 +171,7 @@ export default function AlurPONEKPage() {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
-          <div className="absolute inset-0 bg-black opacity-10"></div>
+          <div className="absolute inset-0 bg-white/5"></div>
           <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
@@ -181,13 +181,13 @@ export default function AlurPONEKPage() {
                 Pelayanan Obstetri Neonatal Emergensi Komprehensif
               </p>
               <div className="flex flex-wrap justify-center gap-4 text-sm">
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="relative z-20 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
                   Pelayanan 24/7
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="relative z-20 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
                   Tim Multidisiplin
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="relative z-20 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
                   Standar Internasional
                 </span>
               </div>
@@ -369,7 +369,7 @@ export default function AlurPONEKPage() {
                     <ExclamationTriangleIcon className="h-12 w-12 mx-auto mb-4" />
                     <h3 className="text-xl font-semibold mb-2">IGD PONEK</h3>
                     <p className="text-red-100 mb-4">24/7 Emergency</p>
-                    <a href="tel:119" className="bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-2 rounded-lg transition-all">
+                    <a href="tel:119" className="relative z-10 bg-white/20 hover:bg-white/30 px-6 py-2 rounded-lg transition-all backdrop-blur-sm border border-white/30">
                       119
                     </a>
                   </div>
@@ -378,7 +378,7 @@ export default function AlurPONEKPage() {
                     <HeartIcon className="h-12 w-12 mx-auto mb-4" />
                     <h3 className="text-xl font-semibold mb-2">Ambulans</h3>
                     <p className="text-blue-100 mb-4">Transportasi Darurat</p>
-                    <a href="tel:0411-123456" className="bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-2 rounded-lg transition-all">
+                    <a href="tel:0411-123456" className="relative z-10 bg-white/20 hover:bg-white/30 px-6 py-2 rounded-lg transition-all backdrop-blur-sm border border-white/30">
                       (0411) 123-456
                     </a>
                   </div>
@@ -387,7 +387,7 @@ export default function AlurPONEKPage() {
                     <UserGroupIcon className="h-12 w-12 mx-auto mb-4" />
                     <h3 className="text-xl font-semibold mb-2">Konsultasi</h3>
                     <p className="text-purple-100 mb-4">Tim Dokter Spesialis</p>
-                    <a href="tel:0411-789012" className="bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-2 rounded-lg transition-all">
+                    <a href="tel:0411-789012" className="relative z-10 bg-white/20 hover:bg-white/30 px-6 py-2 rounded-lg transition-all backdrop-blur-sm border border-white/30">
                       (0411) 789-012
                     </a>
                   </div>
@@ -422,13 +422,13 @@ export default function AlurPONEKPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="tel:119"
-                className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+                className="relative z-10 bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 backdrop-blur-sm border border-white/30"
               >
                 Hubungi IGD: 119
               </a>
               <a
                 href="/appointments"
-                className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300"
+                className="relative z-10 bg-white/20 hover:bg-white/30 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 backdrop-blur-sm border border-white/30"
               >
                 Buat Janji Konsultasi
               </a>

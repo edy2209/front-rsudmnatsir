@@ -211,13 +211,13 @@ export default function AlurBankDarahPage() {
                 Unit Transfusi Darah dengan Standar Keamanan Tinggi
               </p>
               <div className="flex flex-wrap justify-center gap-4 text-sm">
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="relative z-20 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
                   Pelayanan 24/7
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="relative z-20 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
                   Screening Lengkap
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="relative z-20 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
                   Cross Match Akurat
                 </span>
               </div>
@@ -442,7 +442,7 @@ export default function AlurBankDarahPage() {
                     <HeartIcon className="h-12 w-12 mx-auto mb-4" />
                     <h3 className="text-xl font-semibold mb-2">Bank Darah</h3>
                     <p className="text-red-100 mb-4">Unit Transfusi Darah</p>
-                    <a href="tel:0411-555-0128" className="bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-2 rounded-lg transition-all">
+                    <a href="tel:0411-555-0128" className="relative z-10 bg-white/20 hover:bg-white/30 px-6 py-2 rounded-lg transition-all backdrop-blur-sm border border-white/30">
                       (0411) 555-0128
                     </a>
                   </div>
@@ -451,7 +451,7 @@ export default function AlurBankDarahPage() {
                     <BeakerIcon className="h-12 w-12 mx-auto mb-4" />
                     <h3 className="text-xl font-semibold mb-2">Laboratorium</h3>
                     <p className="text-pink-100 mb-4">Cross Match & Screening</p>
-                    <a href="tel:0411-555-0129" className="bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-2 rounded-lg transition-all">
+                    <a href="tel:0411-555-0129" className="relative z-10 bg-white/20 hover:bg-white/30 px-6 py-2 rounded-lg transition-all backdrop-blur-sm border border-white/30">
                       (0411) 555-0129
                     </a>
                   </div>
@@ -460,7 +460,7 @@ export default function AlurBankDarahPage() {
                     <ClockIcon className="h-12 w-12 mx-auto mb-4" />
                     <h3 className="text-xl font-semibold mb-2">Mobile Unit</h3>
                     <p className="text-purple-100 mb-4">Donor Eksternal</p>
-                    <a href="tel:0411-555-0130" className="bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-2 rounded-lg transition-all">
+                    <a href="tel:0411-555-0130" className="relative z-10 bg-white/20 hover:bg-white/30 px-6 py-2 rounded-lg transition-all backdrop-blur-sm border border-white/30">
                       (0411) 555-0130
                     </a>
                   </div>
@@ -514,13 +514,13 @@ export default function AlurBankDarahPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/appointments"
-                className="bg-white text-red-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+                className="relative z-10 bg-white text-red-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 backdrop-blur-sm border border-white/30"
               >
                 Daftar Donor Darah
               </a>
               <a
                 href="tel:0411-555-0128"
-                className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300"
+                className="relative z-10 bg-white/20 hover:bg-white/30 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 backdrop-blur-sm border border-white/30"
               >
                 Hubungi Bank Darah
               </a>

@@ -207,7 +207,7 @@ export default function AlurLaboratoriumPage() {
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-purple-600 to-pink-700 text-white py-20">
-          <div className="absolute inset-0 bg-black opacity-10"></div>
+          <div className="absolute inset-0 bg-white/5"></div>
           <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
@@ -217,13 +217,13 @@ export default function AlurLaboratoriumPage() {
                 Layanan Laboratorium Terpadu dengan Teknologi Modern
               </p>
               <div className="flex flex-wrap justify-center gap-4 text-sm">
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="relative z-20 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
                   ISO 15189 Certified
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="relative z-20 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
                   Hasil Online
                 </span>
-                <span className="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                <span className="relative z-20 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
                   Quality Assured
                 </span>
               </div>
@@ -525,13 +525,13 @@ export default function AlurLaboratoriumPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/appointments"
-                className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+                className="relative z-10 bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 backdrop-blur-sm border border-white/30"
               >
                 Daftar Pemeriksaan
               </a>
               <a
                 href="tel:0411-555-0125"
-                className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300"
+                className="relative z-10 bg-white/20 hover:bg-white/30 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 backdrop-blur-sm border border-white/30"
               >
                 Hubungi Lab
               </a>
