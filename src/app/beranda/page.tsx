@@ -311,18 +311,9 @@ export default function BerandaPage() {
   const { ref: newsRef, inView: newsInView } = useInView({ threshold: 0.1, triggerOnce: true });
   const { ref: servicesRef, inView: servicesInView } = useInView({ threshold: 0.1, triggerOnce: true });
 
-  // Load marquee preference from localStorage
-  useEffect(() => {
-    const marqueePreference = localStorage.getItem('hideMarquee');
-    if (marqueePreference === 'true') {
-      setShowMarquee(false);
-    }
-  }, []);
-
-  // Save marquee preference when user closes it
+  // Handle close marquee - no localStorage (will show again on refresh)
   const handleCloseMarquee = () => {
     setShowMarquee(false);
-    localStorage.setItem('hideMarquee', 'true');
   };
 
   // Certificate auto-slide effect  
