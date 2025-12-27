@@ -316,7 +316,7 @@ export default function BerandaPage() {
     setShowMarquee(false);
   };
 
-  // Certificate auto-slide effect  
+  // Certificate auto-slide effect1
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentCertificate((prev) => (prev + 1) % certificateSlides.length);
