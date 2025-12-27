@@ -1,10 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import CountUp from 'react-countup';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
+
+// Lazy load heavy components
+const CountUp = dynamic(() => import('react-countup'), {
+  ssr: false,
+  loading: () => <span>0</span>
+});
 import { 
   HeartIcon, 
   BuildingOffice2Icon, 
@@ -24,95 +28,25 @@ import Footer from '@/components/Footer';
 // API Configuration - Global constant
 const IMAGE_API_BASE = 'https://picsum.photos/seed';
 
-// Custom CSS for animations (inline styles)
+// Minimal inline styles - most moved to globals.css for better caching
 const customStyles = `
-  /* Professional Font Styles */
-  .font-heading {
-    font-family: var(--font-playfair);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-
-  .font-body {
-    font-family: var(--font-poppins);
-    font-weight: 400;
-  }
-
-  .font-display {
-    font-family: var(--font-playfair);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-  }
-
-  h1, h2, h3 {
-    font-family: var(--font-playfair);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-
-  body, p, span {
-    font-family: var(--font-poppins);
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
-  }
-  
-  .animate-slide-in-right {
-    animation: slideInRight 0.8s ease-out forwards;
-  }
-
   .certificate-card {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
   .certificate-card:hover {
     transform: translateY(-4px) scale(1.02);
   }
-
-  /* Custom Scrollbar */
   .scrollbar-thin::-webkit-scrollbar {
     height: 6px;
   }
-
   .scrollbar-thin::-webkit-scrollbar-track {
     background: #f1f5f9;
     border-radius: 10px;
   }
-
   .scrollbar-thin::-webkit-scrollbar-thumb {
     background: linear-gradient(45deg, #3b82f6, #1d4ed8);
     border-radius: 10px;
-    transition: background 0.3s ease;
   }
-
-  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(45deg, #1d4ed8, #1e40af);
-  }
-
-  /* Firefox scrollbar */
   .scrollbar-thin {
     scrollbar-width: thin;
     scrollbar-color: #3b82f6 #f1f5f9;
@@ -134,10 +68,12 @@ function AutoImageSlider() {
     }
   ];
 
+  // Slower interval on mobile to reduce CPU usage
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 5000); // Berganti setiap 5 detik
+    }, isMobile ? 6000 : 5000); // Slower on mobile
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -145,24 +81,21 @@ function AutoImageSlider() {
   return (
     <div className="order-2 lg:order-2 relative w-full h-[300px] lg:h-[400px] overflow-hidden rounded-xl">
       {images.map((image, index) => (
-        <motion.div
+        <div
           key={index}
-          className="absolute inset-0"
-          initial={{ opacity: index === 0 ? 1 : 0 }}
-          animate={{ 
-            opacity: currentImage === index ? 1 : 0 
-          }}
-          transition={{ 
-            duration: 1.5, 
-            ease: "easeInOut" 
-          }}
+          className="absolute inset-0 transition-opacity duration-1500"
+          style={{ opacity: currentImage === index ? 1 : 0 }}
         >
           <img
             src={image.src}
             alt={image.alt}
             className="w-full h-full object-contain"
+            width={800}
+            height={600}
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchPriority={index === 0 ? "high" : "low"}
           />
-        </motion.div>
+        </div>
       ))}
     </div>
   );
@@ -171,27 +104,37 @@ function AutoImageSlider() {
 // Hero Carousel Component
 function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Check if mobile on mount
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+  
+  // Use smaller images for mobile
+  const imageSize = isMobile ? '600/400' : '1200/800';
   
   const images = [
     {
-      src: `${IMAGE_API_BASE}/hospital-hero-1/1200/800`,
+      src: `${IMAGE_API_BASE}/hospital-hero-1/${imageSize}`,
       alt: "RSUD M. Natsir Fasilitas",
       fallback: "bg-gradient-to-br from-blue-500 via-blue-600 to-cyan-600"
     },
     {
-      src: `${IMAGE_API_BASE}/hospital-hero-2/1200/800`,
+      src: `${IMAGE_API_BASE}/hospital-hero-2/${imageSize}`,
       alt: "Tim Dokter RSUD M. Natsir",
       fallback: "bg-gradient-to-br from-green-500 via-emerald-600 to-teal-600"
     }
   ];
 
+  // Slower interval on mobile
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % images.length);
-    }, 3000); // Berganti setiap 3 detik
+    }, isMobile ? 5000 : 3000);
 
     return () => clearInterval(interval);
-  }, [images.length]);
+  }, [images.length, isMobile]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % images.length);
@@ -203,34 +146,36 @@ function HeroCarousel() {
 
   return (
     <div className="relative w-full h-[60vh] lg:h-[70vh] rounded-2xl overflow-hidden shadow-2xl">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentSlide}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="absolute inset-0"
+      {/* Optimized: No AnimatePresence, use CSS transitions */}
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className="absolute inset-0 transition-opacity duration-700 ease-in-out"
+          style={{ opacity: currentSlide === index ? 1 : 0, pointerEvents: currentSlide === index ? 'auto' : 'none' }}
         >
           {/* Fallback gradient background */}
-          <div className={`w-full h-full ${images[currentSlide].fallback}`}>
+          <div className={`w-full h-full ${image.fallback}`}>
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center text-white">
                 <div className="text-6xl mb-4">
-                  {currentSlide === 0 ? '🏥' : '👨‍⚕️'}
+                  {index === 0 ? '🏥' : '👨‍⚕️'}
                 </div>
                 <h3 className="text-2xl font-bold opacity-90">
-                  {images[currentSlide].alt}
+                  {image.alt}
                 </h3>
               </div>
             </div>
           </div>
           
-          {/* Actual image (will show when available) */}
+          {/* Actual image */}
           <img
-            src={images[currentSlide].src}
-            alt={images[currentSlide].alt}
+            src={image.src}
+            alt={image.alt}
             className="w-full h-full object-cover"
+            width={1200}
+            height={800}
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchPriority={index === 0 ? "high" : "low"}
             onError={(e) => {
               e.currentTarget.style.display = 'none';
             }}
@@ -244,8 +189,8 @@ function HeroCarousel() {
           
           {/* Overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-        </motion.div>
-      </AnimatePresence>
+        </div>
+      ))}
 
       {/* Navigation Buttons */}
       <button
@@ -305,36 +250,40 @@ export default function BerandaPage() {
     { name: 'Sertifikat Halal', icon: '☪️', img: `${IMAGE_API_BASE}/halal-certificate/800/600` },
     { name: 'Penghargaan Daerah', icon: '🏅', img: `${IMAGE_API_BASE}/regional-award/800/600` }
   ];
-  
-  const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.1, triggerOnce: true });
-  const { ref: galleryRef, inView: galleryInView } = useInView({ threshold: 0.1, triggerOnce: true });
-  const { ref: newsRef, inView: newsInView } = useInView({ threshold: 0.1, triggerOnce: true });
-  const { ref: servicesRef, inView: servicesInView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   // Handle close marquee - no localStorage (will show again on refresh)
   const handleCloseMarquee = () => {
     setShowMarquee(false);
   };
 
-  // Certificate auto-slide effect1
+  // Certificate auto-slide effect - optimized with longer interval
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentCertificate((prev) => (prev + 1) % certificateSlides.length);
-    }, 4000);
+    }, 5000); // Increased from 4000 to reduce CPU usage
     
     return () => clearInterval(interval);
   }, [certificateSlides.length]);
 
+  // Optimized scroll handler with requestAnimationFrame
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      const scrollTop = window.pageYOffset;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      setScrollProgress(scrollPercent);
-      setShowBackToTop(scrollTop > 300);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollTop = window.pageYOffset;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const scrollPercent = (scrollTop / docHeight) * 100;
+          setScrollProgress(scrollPercent);
+          setShowBackToTop(scrollTop > 300);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -342,29 +291,7 @@ export default function BerandaPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring" as const,
-        stiffness: 100
-      }
-    }
-  };
-
+  // Stats data for the counter section
   const stats = [
     { number: 50, label: "Dokter Spesialis", suffix: "+" },
     { number: 200, label: "Tenaga Medis", suffix: "+" },
@@ -378,181 +305,97 @@ export default function BerandaPage() {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-hidden">
       {/* Scroll Indicators */}
       <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
-        <motion.div
-          className="h-full bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 relative"
+        <div
+          className="h-full bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 relative transition-all duration-100"
           style={{ width: `${scrollProgress}%` }}
-          initial={{ width: 0 }}
-          animate={{ width: `${scrollProgress}%` }}
-          transition={{ duration: 0.1 }}
         >
           {/* Glowing effect */}
-          <motion.div
-            className="absolute top-0 right-0 w-2 h-full bg-white opacity-50 rounded-full"
-            animate={{
-              opacity: [0.5, 1, 0.5],
-              scale: [1, 1.5, 1]
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+          <div
+            className="absolute top-0 right-0 w-2 h-full bg-white opacity-50 rounded-full animate-pulse"
           />
-        </motion.div>
+        </div>
       </div>
 
-      {/* Mouse Scroll Icon */}
-      <AnimatePresence>
+      {/* Mouse Scroll Icon - Hidden on mobile for performance */}
         {!showBackToTop && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ delay: 2, duration: 0.8 }}
-            className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40 pointer-events-none"
+          <div
+            className="hidden md:flex fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40 pointer-events-none animate-fade-in"
           >
             <div className="flex flex-col items-center space-y-3">
               {/* Mouse Icon with Scroll Wheel */}
-              <motion.div
-                animate={{
-                  y: [0, -8, 0],
-                }}
-                transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="relative"
+              <div
+                className="relative animate-bounce-slow"
               >
                 {/* Mouse Body */}
                 <div className="w-7 h-12 border-2 border-gray-500 rounded-full bg-white/10 backdrop-blur-sm flex justify-center relative">
                   {/* Scroll Wheel */}
-                  <motion.div
-                    animate={{
-                      y: [2, 10, 2],
-                      opacity: [1, 0.3, 1]
-                    }}
-                    transition={{
-                      duration: 2.5,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                    className="w-1 h-3 bg-gray-600 rounded-full mt-2"
+                  <div
+                    className="w-1 h-3 bg-gray-600 rounded-full mt-2 animate-scroll-wheel"
                   />
                 </div>
                 
                 {/* Scroll Down Arrow */}
-                <motion.div
-                  animate={{
-                    y: [0, 5, 0],
-                    opacity: [0.5, 1, 0.5]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5
-                  }}
-                  className="absolute -bottom-8 left-1/2 transform -translate-x-1/2"
+                <div
+                  className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow"
                 >
                   <ChevronDownIcon className="w-5 h-5 text-gray-600" />
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
               
               {/* Scroll Text */}
-              <motion.p
-                animate={{
-                  opacity: [0.6, 1, 0.6]
-                }}
-                transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="text-sm text-gray-600 font-medium"
+              <p
+                className="text-sm text-gray-600 font-medium animate-pulse"
               >
                 Scroll untuk lanjut
-              </motion.p>
+              </p>
               
               {/* Animated Dots */}
               <div className="flex space-x-1">
                 {[0, 1, 2].map((index) => (
-                  <motion.div
+                  <div
                     key={index}
-                    animate={{
-                      scale: [1, 1.3, 1],
-                      opacity: [0.4, 1, 0.4]
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      delay: index * 0.2
-                    }}
-                    className="w-1.5 h-1.5 bg-gray-500 rounded-full"
+                    className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-pulse"
+                    style={{ animationDelay: `${index * 200}ms` }}
                   />
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
 
       {/* Navigation Dots - Removed for mobile optimization */}
 
       {/* Back to Top Button */}
-      <AnimatePresence>
         {showBackToTop && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0.5, y: 100 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.5, y: 100 }}
-            whileHover={{ 
-              scale: 1.1,
-              boxShadow: "0 10px 30px rgba(34, 197, 94, 0.5)"
-            }}
-            whileTap={{ scale: 0.9 }}
+          <button
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 bg-gradient-to-r from-green-600 to-green-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-40 group"
+            className="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-gradient-to-r from-green-600 to-green-700 text-white p-3 md:p-4 rounded-full shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 z-40 group"
           >
-            <motion.div
-              animate={{ y: [0, -3, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="text-xl font-bold"
-            >
+            <div className="text-lg md:text-xl font-bold">
               ↑
-            </motion.div>
+            </div>
             
-            {/* Ripple Effect */}
-            <motion.div
-              className="absolute inset-0 rounded-full bg-white opacity-20"
-              initial={{ scale: 0 }}
-              animate={{ scale: [0, 1.5, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
+            {/* Ripple Effect - Hidden on mobile */}
+            <div
+              className="absolute inset-0 rounded-full bg-white opacity-20 animate-ping hidden md:block"
             />
             
             {/* Tooltip */}
-            <motion.div
+            <div
               className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              initial={{ opacity: 0, y: 10 }}
-              whileHover={{ opacity: 1, y: 0 }}
             >
               Kembali ke atas
               <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
-            </motion.div>
-          </motion.button>
+            </div>
+          </button>
         )}
-      </AnimatePresence>
       {/* Navigation */}
       <Navigation variant="default" />
 
-      {/* Marquee Announcement */}
-      <AnimatePresence>
+      {/* Marquee Announcement - positioned below fixed navbar */}
         {showMarquee && (
-          <motion.div 
-            className="marquee-container py-2 md:py-3 relative overflow-hidden"
-            initial={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
+          <div 
+            className="marquee-container py-2 md:py-3 relative overflow-hidden transition-all duration-500 mt-14 md:mt-20"
           >
             <SpeakerWaveIcon className="speaker-icon h-4 w-4 md:h-6 md:w-6 text-white" />
             <div className="relative">
@@ -564,11 +407,9 @@ export default function BerandaPage() {
             </div>
             
             {/* Close Button */}
-            <motion.button
+            <button
               onClick={handleCloseMarquee}
-              className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-200 transition-colors duration-200 z-10"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-200 hover:scale-110 active:scale-90 transition-all duration-200 z-10"
               aria-label="Tutup pengumuman"
             >
               <svg 
@@ -584,36 +425,28 @@ export default function BerandaPage() {
                   d="M6 18L18 6M6 6l12 12" 
                 />
               </svg>
-            </motion.button>
-          </motion.div>
+            </button>
+          </div>
         )}
-      </AnimatePresence>
 
       {/* Hero Section */}
-      <motion.section 
-        className={`flex items-center px-6 sm:px-8 lg:px-12 xl:px-16 bg-white relative overflow-hidden ${
-          showMarquee ? 'min-h-screen' : 'min-h-screen'
+      <section 
+        className={`flex items-center px-6 sm:px-8 lg:px-12 xl:px-16 bg-white relative overflow-hidden transition-all duration-700 ${
+          showMarquee ? 'min-h-screen' : 'min-h-screen -mt-12'
         }`}
         id="hero-section"
-        animate={{ 
-          marginTop: showMarquee ? "0px" : "-3rem" 
-        }}
-        transition={{ duration: 0.7, ease: "easeInOut" }}
       >
-      {/* Background Color Bulatan (Opsional) */}
-      <div className="absolute inset-0 -z-10">
+      {/* Background Color Bulatan - Hidden on mobile for performance */}
+      <div className="absolute inset-0 -z-10 hidden md:block">
         <div className="absolute top-20 left-10 w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
         <div className="absolute top-32 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
         <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
 
       <div className="container mx-auto z-10">
-        <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 items-center min-h-[70vh] lg:min-h-[80vh]"
-          animate={{ 
-            marginTop: showMarquee ? "0px" : "-2rem" 
-          }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+        <div 
+          className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 items-center min-h-[70vh] lg:min-h-[80vh] transition-all duration-500"
+          style={{ marginTop: showMarquee ? "0px" : "-2rem" }}
         >
           
           {/* Kiri - Judul */}
@@ -625,9 +458,9 @@ export default function BerandaPage() {
 
           {/* Kanan - Gambar Slider Auto */}
           <AutoImageSlider />
-        </motion.div>
+        </div>
       </div>
-    </motion.section>
+    </section>
 
 
       {/* Main Content Section */}
@@ -639,13 +472,7 @@ export default function BerandaPage() {
             <div className="lg:col-span-8">
               
               {/* Sertifikat Akreditasi Section */}
-              <motion.div 
-                className="mb-12"
-                ref={galleryRef}
-                initial={{ opacity: 0, y: 50 }}
-                animate={galleryInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8 }}
-              >
+              <div className="mb-12">
                 {/* Section Title */}
                 <div className="text-center mb-6 sm:mb-8 px-4">
                   <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 leading-tight">
@@ -660,14 +487,10 @@ export default function BerandaPage() {
                 <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl overflow-hidden">
                   {/* Main Certificate Image Slider */}
                   <div className="relative h-64 sm:h-80 md:h-96 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
-                    <AnimatePresence mode="wait">
-                      <motion.div 
+                      <div 
                         key={currentCertificate}
-                        initial={{ opacity: 0, scale: 1.1 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        transition={{ duration: 0.7 }}
-                        className="relative h-full"
+                        className="relative h-full transition-opacity duration-700"
+                        style={{ opacity: 1 }}
                       >
                         <img
                           src={certificateSlides[currentCertificate]?.img}
@@ -680,11 +503,8 @@ export default function BerandaPage() {
                         
                         {/* Certificate Info Overlay */}
                         <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-                          <motion.div
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.3, duration: 0.6 }}
-                            className="bg-white/10 backdrop-blur-md rounded-xl p-4 sm:p-6 border border-white/20"
+                          <div
+                            className="bg-white/10 backdrop-blur-md rounded-xl p-4 sm:p-6 border border-white/20 animate-fade-in-up"
                           >
                             <div className="flex items-center gap-3 mb-2">
                               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
@@ -699,10 +519,9 @@ export default function BerandaPage() {
                                 </p>
                               </div>
                             </div>
-                          </motion.div>
+                          </div>
                         </div>
-                      </motion.div>
-                    </AnimatePresence>
+                      </div>
 
                     {/* Navigation Arrows */}
                     <button
@@ -768,15 +587,13 @@ export default function BerandaPage() {
                               
                               {/* Active Indicator */}
                               {index === currentCertificate && (
-                                <motion.div
-                                  initial={{ scale: 0 }}
-                                  animate={{ scale: 1 }}
-                                  className="absolute top-2 right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center shadow-lg"
+                                <div
+                                  className="absolute top-2 right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center shadow-lg animate-scale-in"
                                 >
                                   <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                   </svg>
-                                </motion.div>
+                                </div>
                               )}
                             </div>
                             <p className="text-xs text-center mt-2 text-gray-600 font-medium w-32 sm:w-36 md:w-40 break-words leading-tight">
@@ -796,15 +613,10 @@ export default function BerandaPage() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* News Section */}
-              <motion.div
-                ref={newsRef}
-                initial={{ opacity: 0, y: 50 }}
-                animate={newsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8 }}
-              >
+              <div>
                 <div className="text-center mb-12">
                   <h2 className="text-4xl font-bold text-gray-800 mb-4">
                     <span className="bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">
@@ -849,16 +661,18 @@ export default function BerandaPage() {
                       img: `${IMAGE_API_BASE}/learning-program/800/600`
                     }
                   ].map((news, index) => (
-                    <motion.div
+                    <div
                       key={index}
-                      className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group"
-                      whileHover={{ y: -5 }}
+                      className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group"
                     >
                       <div className="h-48 bg-gradient-to-br from-blue-500 to-green-500 relative overflow-hidden">
                         <img 
                           src={news.img}
                           alt={news.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          width={800}
+                          height={600}
+                          loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent group-hover:from-black/30 transition-colors"></div>
                       </div>
@@ -884,22 +698,21 @@ export default function BerandaPage() {
                           Baca Selengkapnya →
                         </button>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
 
                 <div className="text-center mt-8">
                   <Link href="/beranda/lihatsemua">
-                    <motion.button
-                      className="bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                    <button
+                      className="bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-3 rounded-2xl font-semibold hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300"
                     >
                       Lihat Semua Berita
-                    </motion.button>
+                    </button>
                   </Link>
                 </div>
-              </motion.div>
+              </div>
+
             </div>
 
             {/* Right Column - Widgets */}
@@ -962,6 +775,9 @@ export default function BerandaPage() {
                         src={item.img}
                         alt={item.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        width={400}
+                        height={400}
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-black/40 transition-colors"></div>
                       <div className="absolute inset-0 flex items-end p-3">
@@ -981,20 +797,14 @@ export default function BerandaPage() {
       {/* Information Services Section */}
       <section className="py-20 bg-gradient-to-br from-white via-blue-50/30 to-green-50/30">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
               <span className="bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">
                 Informasi
               </span>
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-green-600 to-green-700 mx-auto rounded-full"></div>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -1010,26 +820,19 @@ export default function BerandaPage() {
             ].map((service, index) => {
               const IconComponent = service.icon;
               return (
-                <motion.div
+                <div
                   key={index}
-                  className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 text-center cursor-pointer"
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
+                  className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-2 transition-all duration-300 text-center cursor-pointer"
                 >
-                  <motion.div 
-                    className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-shadow`}
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
+                  <div 
+                    className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:rotate-12 transition-all duration-300`}
                   >
                     <IconComponent className="w-8 h-8 text-white" />
-                  </motion.div>
+                  </div>
                   <h3 className="text-lg font-bold text-gray-800 group-hover:text-green-600 transition-colors">
                     {service.title}
                   </h3>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -1037,21 +840,16 @@ export default function BerandaPage() {
       </section>
 
       {/* Featured Services Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-blue-50/50 to-green-50/50" ref={servicesRef}>
+      <section className="py-20 bg-gradient-to-br from-gray-50 via-blue-50/50 to-green-50/50">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            animate={servicesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
+          <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
               <span className="bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">
                 Layanan Unggulan
               </span>
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-green-600 to-green-700 mx-auto rounded-full"></div>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
@@ -1062,21 +860,15 @@ export default function BerandaPage() {
               { title: "RADIOLOGI", icon: "📡", description: "Pemeriksaan radiologi dengan teknologi digital" },
               { title: "DAN LAINNYA", icon: "➕", description: "Berbagai layanan medis lainnya" }
             ].map((service, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 text-center cursor-pointer border border-white/50"
-                whileHover={{ scale: 1.05, y: -10 }}
-                initial={{ opacity: 0, y: 50 }}
-                animate={servicesInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-3 transition-all duration-500 text-center cursor-pointer border border-white/50"
               >
-                <motion.div 
-                  className="text-6xl mb-6"
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                <div 
+                  className="text-6xl mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300"
                 >
                   {service.icon}
-                </motion.div>
+                </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-green-600 transition-colors">
                   {service.title}
                 </h3>
@@ -1085,12 +877,10 @@ export default function BerandaPage() {
                 </p>
                 
                 {/* Decorative line */}
-                <motion.div
-                  className="w-16 h-1 bg-gradient-to-r from-green-500 to-green-600 mx-auto mt-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: "4rem" }}
+                <div
+                  className="w-0 group-hover:w-16 h-1 bg-gradient-to-r from-green-500 to-green-600 mx-auto mt-4 rounded-full transition-all duration-300"
                 />
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

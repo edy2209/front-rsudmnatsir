@@ -34,66 +34,64 @@ export default function RootLayout({
   return (
     <html lang="id">
       <head>
-        {/* Optimized Google Fonts - only essential weights */}
+        {/* Preconnect untuk external resources - improve Speed Index */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://picsum.photos" />
+        
+        {/* Preload critical fonts for faster text rendering */}
+        <link
+          rel="preload"
+          as="style"
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap"
+        />
+        
+        {/* Preload hero images untuk improve LCP */}
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/images/logos/logobaru.jpg"
+          fetchPriority="high"
+        />
+        
+        {/* DNS prefetch for faster external resource loading */}
+        <link rel="dns-prefetch" href="https://picsum.photos" />
       </head>
       <body className="antialiased">
-        {/* Async load fonts to prevent blocking */}
-        <Script 
-          id="load-fonts"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap';
-                document.head.appendChild(link);
-              })();
-            `
-          }}
-        />
 
         {children}
 
-        {/* Userway Accessibility Widget - Lazy load */}
-        <Script
+        {/* Userway - Defer untuk improve TBT */}
+        {/* <Script
           src="https://cdn.userway.org/widget.js"
           data-account="qEzV9kH8WW"
           strategy="lazyOnload"
-        />
+        /> */}
 
-        {/* CSS override for Userway position - Mobile Only */}
-        <style dangerouslySetInnerHTML={{
+        {/* Userway CSS - Disabled for performance testing */}
+        {/* <style dangerouslySetInnerHTML={{
           __html: `
-            /* Mobile positioning only - tengah vertikal, mepet kanan */
             @media (max-width: 768px) {
               #userway-s1,
-              [data-uw-launcher],
-              .userway_p5,
-              .uai,
-              .uai-launcher,
-              [id*="userway"],
-              [class*="userway"] {
+              [data-uw-launcher] {
                 position: fixed !important;
                 top: 50% !important;
                 right: 5px !important;
-                bottom: auto !important;
-                left: auto !important;
                 transform: translateY(-50%) !important;
                 z-index: 999999 !important;
-                pointer-events: auto !important;
-                cursor: pointer !important;
               }
             }
           `
-        }} />
+        }} /> */}
 
-        {/* Position override script - Mobile Only */}
-        <Script
+        {/* Userway positioning - Disabled */}
+        {/* <Script
           id="userway-position-fix"
-          strategy="lazyOnload"
+          strategy="idle"
           dangerouslySetInnerHTML={{
             __html: `
               function forceUserwayPosition() {
@@ -178,7 +176,7 @@ export default function RootLayout({
               });
             `
           }}
-        />
+        /> */}
       </body>
     </html>
   );

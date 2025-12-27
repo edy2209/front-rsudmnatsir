@@ -150,7 +150,7 @@ export default function WhistleblowerSystemPage() {
   return (
     <PageLayout>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 py-20 -mt-20">
+      <section className="bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 py-20 -mt-20 overflow-hidden">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -223,7 +223,7 @@ export default function WhistleblowerSystemPage() {
             
             <motion.div 
               variants={itemVariants}
-              className="relative"
+              className="relative overflow-hidden"
             >
               <div className="bg-gradient-to-br from-indigo-100 to-blue-100 rounded-3xl p-8 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-200 rounded-full -mr-16 -mt-16 opacity-50"></div>

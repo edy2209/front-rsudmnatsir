@@ -22,46 +22,32 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
   const [isScrolled, setIsScrolled] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
 
-  // Handle scroll effect with scroll detection
+  // Optimized scroll handler - reduce TBT
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
+    let ticking = false;
     
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 100);
-      setIsScrolling(true);
-      
-      // Clear existing timeout
-      clearTimeout(scrollTimeout);
-      
-      // Set new timeout to detect scroll stop
-      scrollTimeout = setTimeout(() => {
-        setIsScrolling(false);
-      }, 150);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(scrollTimeout);
-    };
-  }, []);
-
-  // Add padding to body to prevent content overlap
-  useEffect(() => {
-    const updateBodyPadding = () => {
-      const navbar = document.querySelector('nav');
-      if (navbar) {
-        const navbarHeight = navbar.offsetHeight;
-        document.body.style.paddingTop = `${navbarHeight}px`;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          setIsScrolled(scrollTop > 100);
+          setIsScrolling(scrollTop > 0);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    updateBodyPadding();
-    window.addEventListener('resize', updateBodyPadding);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Set fixed body padding instead of dynamic - prevents CLS and reduces reflows
+  useEffect(() => {
+    // Use fixed padding values to avoid layout recalculations
+    document.body.style.paddingTop = isScrolled ? '64px' : '80px';
     
     return () => {
-      window.removeEventListener('resize', updateBodyPadding);
       document.body.style.paddingTop = '0px';
     };
   }, [isScrolled]);
@@ -624,7 +610,7 @@ export default function Navigation({ variant = 'default', className = '' }: Navi
           </button>
           
           <div className={`overflow-hidden transition-all duration-300 ${
-            isOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
+            isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
           }`}>
             <div className="ml-2 mt-2 space-y-1 border-l-2 border-blue-100 pl-3">
               {item.children?.map(child => (

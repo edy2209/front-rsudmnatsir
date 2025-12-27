@@ -10,7 +10,7 @@ export default function PageLayout({ children, className = '' }: PageLayoutProps
   return (
     <>
       <Navigation />
-      <div className={`pt-20 min-h-screen ${className}`}>
+      <div className={`pt-20 min-h-screen overflow-x-hidden ${className}`}>
         {children}
       </div>
       <Footer />

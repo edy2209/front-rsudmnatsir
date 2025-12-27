@@ -36,6 +36,9 @@ export default function Footer() {
                   src="/images/logos/logo1.webp"
                   alt="Logo RSUD M. Natsir"
                   className="w-10 h-10 object-contain"
+                  width={40}
+                  height={40}
+                  loading="lazy"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.src = '/images/logos/logo-rsud-placeholder.svg';
