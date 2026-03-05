@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const response = await fetch('http://localhost:8080/berita');
+    const response = await fetch('https://beritabe.onrender.com/berita');
     const data = await response.json();
     return NextResponse.json({
         status: 'success',
