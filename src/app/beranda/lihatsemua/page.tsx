@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
 import { 
   NewspaperIcon,
@@ -143,7 +144,7 @@ export default function LihatSemuaPage() {
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
               {currentNews.map((news) => (
-                <div key={news._id} className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100">
+                <Link href={`/beranda/lihatsemua/${news.id}`} key={news._id} className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 block">
                   <div className="p-4 sm:p-5">
                     <h3 className="font-bold text-gray-800 mb-2 line-clamp-2 leading-tight text-sm sm:text-base group-hover:text-blue-600 transition-colors">
                       {news.judul_berita}
@@ -165,13 +166,13 @@ export default function LihatSemuaPage() {
                     </div>
 
                     <div className="mt-3 pt-3 border-t border-gray-100 flex justify-end">
-                      <button className="flex items-center gap-1 text-blue-600 hover:text-blue-700 transition-colors text-xs sm:text-sm font-medium">
+                      <span className="flex items-center gap-1 text-blue-600 hover:text-blue-700 transition-colors text-xs sm:text-sm font-medium">
                         Baca Selengkapnya
                         <ArrowRightIcon className="w-3 h-3 sm:w-4 sm:h-4" />
-                      </button>
+                      </span>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
 
