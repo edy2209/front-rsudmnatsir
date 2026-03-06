@@ -30,20 +30,33 @@ export default function DetailBeritaPage() {
     const fetchBerita = async () => {
       try {
         setLoading(true);
-        const res = await fetch('/api/berita');
-        const json = await res.json();
+        // Cari berita halaman per halaman sampai ketemu
+        let found: Berita | null = null;
+        let page = 1;
+        let maxPages = 1;
 
-        if (json.status === 'success') {
-          const found = json.data.find(
-            (item: Berita) => String(item.id) === String(params.id)
-          );
-          if (found) {
-            setBerita(found);
-          } else {
-            setError('Berita tidak ditemukan');
+        while (page <= maxPages) {
+          const res = await fetch(`/api/berita?page=${page}&limit=100`);
+          const json = await res.json();
+
+          if (json.status !== 'success' || !json.data) {
+            setError(json.message || 'Gagal mengambil data berita');
+            return;
           }
+
+          maxPages = json.totalPages || 1;
+          found = json.data.find(
+            (item: Berita) => String(item.id) === String(params.id)
+          ) || null;
+
+          if (found) break;
+          page++;
+        }
+
+        if (found) {
+          setBerita(found);
         } else {
-          setError(json.message || 'Gagal mengambil data berita');
+          setError('Berita tidak ditemukan');
         }
       } catch {
         setError('Gagal terhubung ke server');

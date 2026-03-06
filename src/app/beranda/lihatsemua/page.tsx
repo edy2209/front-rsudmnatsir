@@ -25,46 +25,111 @@ export default function LihatSemuaPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [newsData, setNewsData] = useState<Berita[]>([]);
+  const [totalItems, setTotalItems] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isSearching, setIsSearching] = useState(false);
+  const [allNewsCache, setAllNewsCache] = useState<Berita[]>([]);
   const itemsPerPage = 12;
 
-  // Fetch data dari API
-  useEffect(() => {
-    const fetchBerita = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch('/api/berita');
-        const json = await res.json();
+  // Fetch data dari API dengan server-side pagination
+  const fetchBerita = async (page: number) => {
+    try {
+      setLoading(true);
+      setError(null);
+      const res = await fetch(`/api/berita?page=${page}&limit=${itemsPerPage}`);
+      const json = await res.json();
 
-        if (json.status === 'success') {
-          setNewsData(json.data);
-        } else {
-          setError(json.message || 'Gagal mengambil data berita');
-        }
-      } catch (err) {
-        setError('Gagal terhubung ke server');
-      } finally {
-        setLoading(false);
+      if (json.status === 'success') {
+        setNewsData(json.data || []);
+        setTotalItems(json.total || 0);
+        setTotalPages(json.totalPages || 1);
+      } else {
+        setError(json.message || 'Gagal mengambil data berita');
       }
-    };
+    } catch {
+      setError('Gagal terhubung ke server');
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchBerita();
+  // Fetch semua data untuk pencarian (hanya saat user mulai search)
+  const fetchAllForSearch = async () => {
+    if (allNewsCache.length > 0) return allNewsCache;
+    try {
+      setIsSearching(true);
+      // Fetch halaman pertama untuk dapat total
+      const firstRes = await fetch('/api/berita?page=1&limit=100');
+      const firstJson = await firstRes.json();
+      if (firstJson.status !== 'success') return [];
+      
+      let allData: Berita[] = [...(firstJson.data || [])];
+      const fetchTotalPages = firstJson.totalPages || 1;
+
+      // Fetch sisa halaman jika ada
+      const promises = [];
+      for (let p = 2; p <= fetchTotalPages; p++) {
+        promises.push(fetch(`/api/berita?page=${p}&limit=100`).then(r => r.json()));
+      }
+      const results = await Promise.all(promises);
+      for (const r of results) {
+        if (r.status === 'success' && r.data) {
+          allData = [...allData, ...r.data];
+        }
+      }
+
+      setAllNewsCache(allData);
+      setTotalItems(allData.length);
+      return allData;
+    } catch {
+      return [];
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  // Fetch halaman pertama saat mount
+  useEffect(() => {
+    fetchBerita(1);
   }, []);
 
-  const filteredNews = newsData.filter(news => {
-    const matchesSearch =
-      //set data pencarian 
-      news.judul_berita.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      news.deskripsi.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesSearch;
-  });
+  // Fetch halaman baru saat pagination berubah (tanpa search)
+  useEffect(() => {
+    if (!searchTerm) {
+      fetchBerita(currentPage);
+    }
+  }, [currentPage]);
 
-  // Pagination calculations
-  const totalPages = Math.ceil(filteredNews.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentNews = filteredNews.slice(startIndex, endIndex);
+  // Handle search: load semua data lalu filter client-side
+  const [filteredNews, setFilteredNews] = useState<Berita[]>([]);
+
+  useEffect(() => {
+    if (!searchTerm) {
+      // Tanpa search, tampilkan data dari server pagination
+      setFilteredNews(newsData);
+      return;
+    }
+
+    // Dengan search, filter dari cache semua data
+    const doSearch = async () => {
+      const allData = await fetchAllForSearch();
+      const filtered = allData.filter(news =>
+        news.judul_berita.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        news.deskripsi.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredNews(filtered);
+      setTotalPages(Math.ceil(filtered.length / itemsPerPage));
+      setTotalItems(filtered.length);
+    };
+    doSearch();
+  }, [searchTerm, newsData]);
+
+  // Hitung data yang ditampilkan
+  const displayedNews = searchTerm
+    ? filteredNews.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+    : filteredNews;
 
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
@@ -86,7 +151,7 @@ export default function LihatSemuaPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm relative z-20">
               <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                📰 {newsData.length} Artikel
+                📰 {totalItems} Artikel
               </div>
             </div>
           </div>
@@ -113,7 +178,7 @@ export default function LihatSemuaPage() {
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-8">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800">
-            Semua Berita ({filteredNews.length} artikel)
+            Semua Berita ({totalItems} artikel)
           </h2>
           {filteredNews.length > 0 && (
             <p className="text-sm text-gray-600">
@@ -123,10 +188,10 @@ export default function LihatSemuaPage() {
         </div>
 
         {/* Loading State */}
-        {loading && (
+        {(loading || isSearching) && (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-500">Memuat berita...</p>
+            <p className="text-gray-500">{isSearching ? 'Mencari berita...' : 'Memuat berita...'}</p>
           </div>
         )}
 
@@ -140,10 +205,10 @@ export default function LihatSemuaPage() {
         )}
 
         {/* News Cards */}
-        {!loading && !error && (
+        {!loading && !isSearching && !error && (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-              {currentNews.map((news) => (
+              {displayedNews.map((news) => (
                 <Link href={`/beranda/lihatsemua/${news.id}`} key={news._id} className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 block">
                   <div className="p-4 sm:p-5">
                     <h3 className="font-bold text-gray-800 mb-2 line-clamp-2 leading-tight text-sm sm:text-base group-hover:text-blue-600 transition-colors">
@@ -176,7 +241,7 @@ export default function LihatSemuaPage() {
               ))}
             </div>
 
-            {filteredNews.length === 0 && (
+            {displayedNews.length === 0 && (
               <div className="text-center py-12">
                 <NewspaperIcon className="w-16 h-16 mx-auto text-gray-400 mb-4" />
                 <h3 className="text-lg font-medium text-gray-600 mb-2">Tidak ada berita ditemukan</h3>
@@ -185,7 +250,7 @@ export default function LihatSemuaPage() {
             )}
 
             {/* Pagination */}
-            {filteredNews.length > 0 && totalPages > 1 && (
+            {totalPages > 1 && (
               <div className="flex justify-center items-center gap-2 mt-8">
                 <button
                   onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
